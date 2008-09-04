@@ -14,7 +14,9 @@
   * Bot function (Idiot AI)
 
 
-= F.A.Q =
+---
+
+== F.A.Q ==
 
 === Whath does _idiot AI_ mean? ===
-mean a simple AI, like L2Walker and other bots, will be mejores in posterior versions
+* mean a simple AI, like L2Walker and other bots, will be mejores in posterior versions
