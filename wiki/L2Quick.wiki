@@ -1,0 +1,4 @@
+#summary home
+
+= L2Quick =
+L2Quick is a lineage bot, like l2Walker and L2divine
