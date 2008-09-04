@@ -1,0 +1,5 @@
+<servers>
+     <server name='Servidor oficial' host='l2authd.lineage2.com' port='2106' gameservers='Bartz,Devianne,Teon,Franz,Luna,Sayha,Aria,Phoenix'/>
+     <server name='home' host='127.0.0.1' port='2106' gameservers='Bartz,Devianne,Teon,Franz,Luna,Sayha,Aria,Phoenix'/>
+     <server name='gdc' host='88.198.49.38' port='2106' gameservers='Bartz,Devianne,Teon,Franz,Luna,Sayha,Aria,Phoenix'/>
+</servers>
