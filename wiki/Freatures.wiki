@@ -1,4 +1,4 @@
-=Freatures of L2Quick=
+#summary Freatures of L2Quick
 ==Freatures==
 
 ===Alpha 1.0 freatures===
@@ -13,6 +13,8 @@
 * Can use all the actions
 * Can run scripts
 * Bot function (Idiot AI)
+
+----
 
 ==F.A.Q==
 
