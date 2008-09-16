@@ -5,7 +5,7 @@ L2Quick is a lineage bot, like l2Walker and L2divine
 
 == How can i Help? ==
  * If you know java, you can be a developer of --, if you want, send a e-mail to you.wont.take.me.alive.90@hotmail.com (you will need a google account)
-* If you are bilingual (better if you know spanish or english), you can translate ---, if you want, send a e-mail to you.wont.take.me.alive.90@hotmail.com (you will need a google account)
+ * If you are bilingual (better if you know spanish or english), you can translate ---, if you want, send a e-mail to you.wont.take.me.alive.90@hotmail.com (you will need a google account)
  * If you are a skilled/experienced l2 player, you can be a tester and report bugs (now, we not need testers, wi will when the firtt wersion will be released)
  * You can apport your ideas in http://code.google.com/p/l2quick/issues/entry?template=Freature%20request
 
