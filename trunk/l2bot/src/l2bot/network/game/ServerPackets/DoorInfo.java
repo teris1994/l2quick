@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.actor.instance.L2DoorInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2DoorInstance;
 
 /**
  * 60
@@ -29,31 +29,32 @@ import net.sf.l2j.gameserver.model.actor.instance.L2DoorInstance;
  *
  * @version $Revision: 1.3.2.2.2.3 $ $Date: 2005/03/27 15:29:57 $
  */
-public final class DoorInfo extends L2GameServerPacket
+public class DoorInfo extends L2GameServerPacket
 {
-	private static final String _S__60_DOORINFO = "[S] 4c DoorInfo";
-	private final L2DoorInstance _door;
+	//private static final String _S__60_DOORINFO = "[S] 4c DoorInfo";
+	//private final L2DoorInstance _door;
 
-	public DoorInfo(L2DoorInstance door)
-	{
-		_door = door;
-	}
+	//public DoorInfo(L2DoorInstance door)
+	//{
+	//	_door = door;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x4c);
-		writeD(_door.getObjectId());
-		writeD(_door.getDoorId());
+		//writeC(0x4c); (the first byte is the optcode, not read it)
+		int objId = readD();//writeD(_door.getObjectId());
+		int doorId= readD();//writeD(_door.getDoorId());
+                
+                getPj().doorHandler.add(objId, doorId);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__60_DOORINFO;
-	}
-
+	//@Override
+	//public String getType()
+	//{
+	//	return _S__60_DOORINFO;
+	//}
 }
