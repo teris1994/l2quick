@@ -9,6 +9,6 @@ package l2bot.pj.handlers;
  *
  * @author carl
  */
-public class GroundItemsHandler {
+public class GroundItemsHandler  extends AbstractHandler{
 
 }

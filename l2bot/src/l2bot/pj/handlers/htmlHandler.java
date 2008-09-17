@@ -9,7 +9,7 @@ package l2bot.pj.handlers;
  *
  * @author carl
  */
-public class htmlHandler {
+public class htmlHandler extends AbstractHandler {
     boolean isHTMLDialogOpen;
     boolean isTutorialOpen;
 

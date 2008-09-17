@@ -9,6 +9,6 @@ package l2bot.pj.handlers;
  *
  * @author carl
  */
-public class VehiclesHandler {
+public class VehiclesHandler extends AbstractHandler {
 
 }

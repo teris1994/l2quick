@@ -9,6 +9,6 @@ package l2bot.pj.handlers;
  *
  * @author carl
  */
-public class ShortCutHandler {
+public class ShortCutHandler extends AbstractHandler {
 
 }

@@ -9,7 +9,7 @@ package l2bot.pj.handlers;
  *
  * @author carl
  */
-public class AlianceHandler {
+public class AlianceHandler  extends AbstractHandler {
     boolean haveAliance;
     boolean isJoinAlianceOpen;
     

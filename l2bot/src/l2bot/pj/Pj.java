@@ -85,10 +85,11 @@ public class Pj /*extends Character*/ {
     
     //handlers
     public AbnormalStatusHandler abnormalStatusHandler = new AbnormalStatusHandler();
-    public CharSelectHandler charSelectHandler = new CharSelectHandler(this);
+    public CharSelectHandler charSelectHandler = new CharSelectHandler();
     public PartyHandler partyHandler = new PartyHandler();
     public InventoryHandler inventoryHandler;
     public DoorHandler doorHandler = new DoorHandler();
+    
     
     
     public Pj(String Name){
@@ -109,13 +110,22 @@ public class Pj /*extends Character*/ {
         };
         loginSocket.setLoginInfo(connectionInfo.user, connectionInfo.pass,connectionInfo.gss);
         //loginSocket = new LShocket(2106,"127.0.0.1");
+        
+        
+        abnormalStatusHandler.setPj(this);
+        charSelectHandler.setPj(this);
+        partyHandler.setPj(this);
+        inventoryHandler.setPj(this);
+        doorHandler.setPj(this);
+        
+        
     }
     
     
     public void conectarAlGs(GameServerInfo server){
         gameSocket = new GShocket(server.ip,server.port,inter.l);
         gameSocket.pj = this;
-        inventoryHandler = new InventoryHandler(inter.inv);
+        inventoryHandler = new InventoryHandler();
     }
            
     

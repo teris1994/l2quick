@@ -9,7 +9,7 @@ package l2bot.pj.handlers;
  *
  * @author carl
  */
-public class WarehouseHandler {
+public class WarehouseHandler extends AbstractHandler {
     boolean isWHDepositOpen;
     boolean isWHWithdrawOpen;
     

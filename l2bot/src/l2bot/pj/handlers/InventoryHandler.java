@@ -13,7 +13,7 @@ import l2bot.pj.handlers.utils.ItemInfo;
  *
  * @author carl
  */
-public class InventoryHandler {
+public class InventoryHandler extends AbstractHandler {
     Inventario inter;
     
     public Map<Integer,ItemInfo> inventario = new FastMap<Integer,ItemInfo>();
@@ -42,8 +42,8 @@ public class InventoryHandler {
     public int r_bracelet;
     public int l_bracelet;
     
-    public InventoryHandler(Inventario inv){
-    
+    public InventoryHandler(){
+        inter = getPj().inter.inv;
     }
     
     public void addItem(ItemInfo info)

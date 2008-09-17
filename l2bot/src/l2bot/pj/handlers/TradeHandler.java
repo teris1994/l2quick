@@ -9,7 +9,7 @@ package l2bot.pj.handlers;
  *
  * @author carl
  */
-public class TradeHandler {
+public class TradeHandler extends AbstractHandler {
     boolean isTradeDialogOpen;
     boolean isAceptTradeDialogOpen;
 

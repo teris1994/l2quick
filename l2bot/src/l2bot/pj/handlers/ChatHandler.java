@@ -9,7 +9,7 @@ package l2bot.pj.handlers;
  *
  * @author carl
  */
-public class ChatHandler {
+public class ChatHandler  extends AbstractHandler{
     
     
 

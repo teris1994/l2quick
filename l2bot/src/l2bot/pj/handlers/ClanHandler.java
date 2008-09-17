@@ -9,7 +9,7 @@ package l2bot.pj.handlers;
  *
  * @author carl
  */
-public class ClanHandler {
+public class ClanHandler extends AbstractHandler{
     boolean haveClan;
     boolean isClanLeader;
     boolean isJoinClanDialogOpen;
