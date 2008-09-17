@@ -20,13 +20,9 @@ import l2bot.pj.Pj;
  *
  * @author carl
  */
-public class CharSelectHandler {
+public class CharSelectHandler  extends AbstractHandler {
     public boolean isSelectCharDialogOpen;
-    Pj pj;
-    
-    public CharSelectHandler(Pj pj){
-    this.pj = pj;
-    }
+
     
     
     public class Char{
@@ -115,7 +111,7 @@ public class CharSelectHandler {
             @Override
             public void onAceptar(byte cha){
                 //System.out.println("Char Selected");
-                pj.gameSocket.sendPacketToGame((new CharacterSelect(cha)).getBytes());
+                getPj().gameSocket.sendPacketToGame((new CharacterSelect(cha)).getBytes());
             }
         };
         csd.setVisible(true);

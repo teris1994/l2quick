@@ -14,7 +14,7 @@ import l2bot.pj.handlers.utils.Effect;
  *
  * @author carl
  */
-public class PartyHandler {
+public class PartyHandler extends AbstractHandler {
     
     public enum PartyDist{
         LOOTER(0),

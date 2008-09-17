@@ -14,12 +14,8 @@ import l2bot.pj.handlers.utils.Effect;
  *
  * @author carl
  */
-public class AbnormalStatusHandler {
-    List<Effect> effects;
-    
-    public AbnormalStatusHandler(){
-        effects = new FastList<Effect>();
-    }
+public class AbnormalStatusHandler extends AbstractHandler {
+    List<Effect> effects = new FastList<Effect>();
     
     public void addEffect(Effect efecto){
         effects.add(efecto);

@@ -1,9 +1,11 @@
 
-
-
-
-
-
+/*
+ * READ ME FIRST
+ * 
+ * Add the packets allways in numeric order, from the smaller, to the larger
+ * Some packet's classes may not be finished, in the end-version they will have allways the constructor empty 
+ * 
+ */
 
 package l2bot.network.game;
 

@@ -9,7 +9,7 @@ package l2bot.pj.handlers;
  *
  * @author carl
  */
-public class SkillHandler {
+public class SkillHandler extends AbstractHandler {
     boolean isSkillLeanDialogOpen;
     
 
