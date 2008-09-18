@@ -89,6 +89,7 @@ public class Pj /*extends Character*/ {
     public PartyHandler partyHandler = new PartyHandler();
     public InventoryHandler inventoryHandler;
     public DoorHandler doorHandler = new DoorHandler();
+    public ClanHandler clanHandler = new ClanHandler();
     
     
     
