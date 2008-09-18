@@ -14,4 +14,8 @@ public class ClanHandler extends AbstractHandler{
     boolean isClanLeader;
     boolean isJoinClanDialogOpen;
 
+    public void openDialog(int readD, String readS) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
 }
