@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 
 /**
@@ -25,34 +25,34 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 public class ObservationReturn extends L2GameServerPacket
 {
 	// ddSS
-	private static final String _S__E0_OBSERVRETURN = "[S] ec ObservationReturn";
-	private L2PcInstance _activeChar;
+	//private static final String _S__E0_OBSERVRETURN = "[S] ec ObservationReturn";
+	//private L2PcInstance _activeChar;
 
 
 	/**
 	 * @param _characters
 	 */
-	public ObservationReturn(L2PcInstance observer)
-	{
-		_activeChar = observer;
-	}
+	//public ObservationReturn(L2PcInstance observer)
+	//{
+		//_activeChar = observer;
+	//}
 
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC( 0xec );
-		writeD( _activeChar.getObsX() );
-		writeD( _activeChar.getObsY() );
-		writeD( _activeChar.getObsZ() );
+		//writeC( 0xec );
+		int x = readD();//writeD( _activeChar.getObsX() );
+		int y = readD();//writeD( _activeChar.getObsY() );
+		int z = readD();//writeD( _activeChar.getObsZ() );
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__E0_OBSERVRETURN;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__E0_OBSERVRETURN;
+	//}
 }

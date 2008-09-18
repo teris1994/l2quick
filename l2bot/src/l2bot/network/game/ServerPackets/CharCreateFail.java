@@ -22,34 +22,34 @@ package l2bot.network.game.ServerPackets;
  */
 public class CharCreateFail extends L2GameServerPacket
 {
-	private static final String _S__26_CHARCREATEFAIL = "[S] 10 CharCreateFail";
+	//private static final String _S__26_CHARCREATEFAIL = "[S] 10 CharCreateFail";
 
-	public static final int REASON_CREATION_FAILED = 0x00;
-	public static final int REASON_TOO_MANY_CHARACTERS = 0x01;
-	public static final int REASON_NAME_ALREADY_EXISTS = 0x02;
-	public static final int REASON_16_ENG_CHARS = 0x03;
+	//public static final int REASON_CREATION_FAILED = 0x00;
+	//public static final int REASON_TOO_MANY_CHARACTERS = 0x01;
+	//public static final int REASON_NAME_ALREADY_EXISTS = 0x02;
+	//public static final int REASON_16_ENG_CHARS = 0x03;
 
-	private int _error;
+	//private int _error;
 
-	public CharCreateFail()
+	//public CharCreateFail()
+	//{
+		//_error = errorCode;
+	//}
+
+	//@Override
+	public  void readP()
 	{
-		_error = errorCode;
-	}
-
-	@Override
-	protected final void writeImpl()
-	{
-		writeC(0x10);
-		writeD(_error);
+		//writeC(0x10);
+		int error = readD();//writeD(_error);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__26_CHARCREATEFAIL;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__26_CHARCREATEFAIL;
+	//}
 
 }

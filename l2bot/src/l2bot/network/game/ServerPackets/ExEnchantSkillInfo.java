@@ -15,93 +15,90 @@
 package l2bot.network.game.ServerPackets;
 
 import javolution.util.FastList;
-import net.sf.l2j.gameserver.datatables.SkillTreeTable;
-import net.sf.l2j.gameserver.model.L2EnchantSkillLearn.EnchantSkillDetail;
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
-import net.sf.l2j.gameserver.network.serverpackets.ExEnchantSkillList.EnchantSkillType;
+//import net.sf.l2j.gameserver.datatables.SkillTreeTable;
+//import net.sf.l2j.gameserver.model.L2EnchantSkillLearn.EnchantSkillDetail;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.network.serverpackets.ExEnchantSkillList.EnchantSkillType;
 
 public final class ExEnchantSkillInfo extends L2GameServerPacket
 {
-    private static final String _S__FE_18_EXENCHANTSKILLINFO = "[S] FE:2a ExEnchantSkillInfo";
-    private FastList<SkillEnchantDetailElement> _routes;
+    //private static final String _S__FE_18_EXENCHANTSKILLINFO = "[S] FE:2a ExEnchantSkillInfo";
+    //private FastList<SkillEnchantDetailElement> _routes;
     
-    private final int _id;
-    private final EnchantSkillType _type;
-    private final int _xpSpCostMultiplier;
+    //private final int _id;
+    //private final EnchantSkillType _type;
+    //private final int _xpSpCostMultiplier;
     
-    public ExEnchantSkillInfo(EnchantSkillType type, int id)
-    {
-        _routes = new FastList<SkillEnchantDetailElement>();
-        _id = id;
-        _type = type;
-        _xpSpCostMultiplier = (type == EnchantSkillType.SAFE ? SkillTreeTable.SAFE_ENCHANT_COST_MULTIPLIER : SkillTreeTable.NORMAL_ENCHANT_COST_MULTIPLIER);
-    }
+    //public ExEnchantSkillInfo(EnchantSkillType type, int id)
+    //{
+        //_routes = new FastList<SkillEnchantDetailElement>();
+        //_id = id;
+        //_type = type;
+        //_xpSpCostMultiplier = (type == EnchantSkillType.SAFE ? SkillTreeTable.SAFE_ENCHANT_COST_MULTIPLIER : SkillTreeTable.NORMAL_ENCHANT_COST_MULTIPLIER);
+    //}
     
     static class SkillEnchantDetailElement
     {
         public final int _level;
         public final int _rate;
         public final int _spCost;
-        public final int _expCost;
+        public final long _expCost;
+        public final int _id;
         
-        public SkillEnchantDetailElement(int level, int rate, int spCost, int expCost)
+        public SkillEnchantDetailElement(int id, int level, int rate, int spCost, long expCost)
         {
+            _id = id;
             _level = level;
             _rate = rate;
             _spCost = spCost;
             _expCost = expCost;
         }
-        
-        public SkillEnchantDetailElement(L2PcInstance cha, EnchantSkillDetail esd)
-        {
-            this(esd.getLevel(), esd.getRate(cha), esd.getSpCost(), esd.getExp());
-        }
-        
-        public SkillEnchantDetailElement(int rate, EnchantSkillDetail esd)
-        {
-            this(esd.getLevel(), rate, esd.getSpCost(), esd.getExp());
-        }
     }
 
     
-    public void addEnchantSkillDetail(L2PcInstance cha, EnchantSkillDetail esd)
-    {
-        _routes.add(new SkillEnchantDetailElement(cha, esd));
-    }
-    
-    public void addEnchantSkillDetail(int rate, EnchantSkillDetail esd)
-    {
-        _routes.add(new SkillEnchantDetailElement(rate, esd));
-    }
-    
-    public void addEnchantSkillDetail(int level, int rate, int spCost, int expCost)
-    {
-        _routes.add(new SkillEnchantDetailElement(level, rate, spCost, expCost));
-    }
+    //public void addEnchantSkillDetail(L2PcInstance cha, EnchantSkillDetail esd)
+    //{
+        //_routes.add(new SkillEnchantDetailElement(cha, esd));
+    //}
+//    
+    //public void addEnchantSkillDetail(int rate, EnchantSkillDetail esd)
+    //{
+        //_routes.add(new SkillEnchantDetailElement(rate, esd));
+    //}
+//    
+    //public void addEnchantSkillDetail(int level, int rate, int spCost, int expCost)
+    //{
+        //_routes.add(new SkillEnchantDetailElement(level, rate, spCost, expCost));
+    //}
 
     /* (non-Javadoc)
      * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
      */
     @Override
-	protected void writeImpl()
+    public void readP()
     {
-        writeC(0xfe);
-        writeH(0x2a);
+        //writeC(0xfe);
+        readH();//writeH(0x2a);
 
-        writeD(_type.ordinal()); // safe enchant
-        writeD(_routes.size());
+        int type = readD();//writeD(_type.ordinal()); // safe enchant
+        int s = readD();//writeD(_routes.size());
         
-        for (SkillEnchantDetailElement sede : _routes)
-        {
-            writeD(_id);
-            writeD(sede._level);
-            writeD(sede._rate);
-            writeD(sede._spCost * _xpSpCostMultiplier);
-            writeQ(sede._expCost * _xpSpCostMultiplier);
-            writeD(0); // required item count
-            writeD(0); // req type?
-            writeD(0); // required itemId
-            writeD(0); // ?
+        FastList<SkillEnchantDetailElement> skills = new FastList<SkillEnchantDetailElement>();
+        
+        for (int i=0;i<s;i++) {
+            
+        //for (SkillEnchantDetailElement sede : _routes)
+        //{
+            skills.add(new SkillEnchantDetailElement(readD(),readD(),readD(),readD(),readQ()));
+            //writeD(_id);
+            //writeD(sede._level);
+            //writeD(sede._rate);
+            //writeD(sede._spCost * _xpSpCostMultiplier);
+            //writeQ(sede._expCost * _xpSpCostMultiplier);
+            readD();//writeD(0); // required item count
+            readD();//writeD(0); // req type?
+            readD();//writeD(0); // required itemId
+            readD();//writeD(0); // ?
         }
 
     }
@@ -109,10 +106,10 @@ public final class ExEnchantSkillInfo extends L2GameServerPacket
     /* (non-Javadoc)
      * @see net.sf.l2j.gameserver.BasePacket#getType()
      */
-    @Override
-    public String getType()
-    {
-        return _S__FE_18_EXENCHANTSKILLINFO;
-    }
+    //@Override
+    //public String getType()
+    //{
+        //return _S__FE_18_EXENCHANTSKILLINFO;
+    //}
 
 }

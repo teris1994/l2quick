@@ -32,6 +32,11 @@ package l2bot.network.game.ServerPackets;
  */
 public class AllyCrest extends L2GameServerPacket         //implementar crests!!
 {
+
+    @Override
+    public void readP() {
+        
+    }
 	/*private static final String _S__AF_ALLYCREST = "[S] af AllyCrest";
 	private int _crestId;
 	private int _crestSize;
@@ -45,7 +50,7 @@ public class AllyCrest extends L2GameServerPacket         //implementar crests!!
 	}
 
 	//@Override
-	protected final void writeImpl()
+	public void readP()
 	{
 		writeC(0xaf);
 		writeD(_crestId);

@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 /**
  *
@@ -52,50 +52,48 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
  */
 public class ListPartyWating extends L2GameServerPacket
 {
-	private static final String _S__AF_PARTYMATCHLIST = "[S] 9c ListPartyWating";
-	private L2PcInstance[] _matchingPlayers;
+	//private static final String _S__AF_PARTYMATCHLIST = "[S] 9c ListPartyWating";
+	//private L2PcInstance[] _matchingPlayers;
 
 	/**
 	 * @param allPlayers
 	 */
-	public ListPartyWating(L2PcInstance[] allPlayers)
-	{
-		_matchingPlayers = allPlayers;
-	}
+	//public ListPartyWating(L2PcInstance[] allPlayers)
+	//{
+		//_matchingPlayers = allPlayers;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x9c);
-
-		int size = _matchingPlayers.length;
-		if (size > 40)
+		//writeC(0x9c);
+		//int size = _matchingPlayers.length;
+		//if (size > 40)
+		//{
+			//size = 40; // the client only displays 40 players, so we also limit the list to 40
+		//}
+		int s = readD();//writeD(size);
+		for (int i=0;i<s;i++)
 		{
-			size = 40; // the client only displays 40 players, so we also limit the list to 40
-		}
-
-		writeD(size);
-		for (int i=0;i<size;i++)
-		{
-			writeD(_matchingPlayers[i].getObjectId());
-			writeS(_matchingPlayers[i].getName());
-			writeD(_matchingPlayers[i].getLevel());
-			writeD(_matchingPlayers[i].getClassId().getId());
-			writeD(00);   // 00 -white name   01-red name
-			writeD(_matchingPlayers[i].getClanId());
-			writeD(00); //  00 - no affil  01-party  02-party pending  03-
-			writeD(_matchingPlayers[i].getX());
-			writeD(_matchingPlayers[i].getY());
-			writeD(_matchingPlayers[i].getZ());
+			int objid = readD();//writeD(_matchingPlayers[i].getObjectId());
+			String name = readS();//writeS(_matchingPlayers[i].getName());
+			int lvl = readD();//writeD(_matchingPlayers[i].getLevel());
+			int classId = readD();//writeD(_matchingPlayers[i].getClassId().getId());
+			int color = readD();//writeD(00);   // 00 -white name   01-red name
+			int clan =  readD();//writeD(_matchingPlayers[i].getClanId());
+			readD();//writeD(00); //  00 - no affil  01-party  02-party pending  03-
+			int x = readD();//writeD(_matchingPlayers[i].getX());
+			int y = readD();//writeD(_matchingPlayers[i].getY());
+			int z = readD();//writeD(_matchingPlayers[i].getZ());
 		}
 	}
-
+//
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__AF_PARTYMATCHLIST;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__AF_PARTYMATCHLIST;
+	//}
 }

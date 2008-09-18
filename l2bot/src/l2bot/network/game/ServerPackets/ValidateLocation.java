@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Character;
+//import net.sf.l2j.gameserver.model.L2Character;
 
 /**
  *
@@ -29,37 +29,37 @@ import net.sf.l2j.gameserver.model.L2Character;
  */
 public class ValidateLocation extends L2GameServerPacket
 {
-	private static final String _S__76_SETTOLOCATION = "[S] 79 ValidateLocation";
-	private int _charObjId;
-	private int _x, _y, _z, _heading;
+	//private static final String _S__76_SETTOLOCATION = "[S] 79 ValidateLocation";
+	//private int _charObjId;
+	//private int _x, _y, _z, _heading;
 
-	public ValidateLocation(L2Character cha)
-	{
-		_charObjId = cha.getObjectId();
-		_x = cha.getX();
-		_y = cha.getY();
-		_z = cha.getZ();
-		_heading = cha.getHeading();
-	}
+	//public ValidateLocation(L2Character cha) 
+	//{
+		//_charObjId = cha.getObjectId();
+		//_x = cha.getX();
+		//_y = cha.getY();
+		//_z = cha.getZ();
+		//_heading = cha.getHeading();
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x79);
+		//writeC(0x79);
 
-		writeD(_charObjId);
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
-		writeD(_heading);
+		int objId = readD();//writeD(_charObjId);
+		int x = readD();//writeD(_x);
+		int y = readD();//writeD(_y);
+		int z = readD();//writeD(_z);
+		int h = readD();//writeD(_heading);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__76_SETTOLOCATION;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__76_SETTOLOCATION;
+	//}
 }

@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Summon;
+//import net.sf.l2j.gameserver.model.L2Summon;
 
 /**
  * This class ...
@@ -24,24 +24,24 @@ import net.sf.l2j.gameserver.model.L2Summon;
  */
 public class PetStatusShow extends L2GameServerPacket
 {
-	private static final String _S__C9_PETSTATUSSHOW = "[S] b1 PetStatusShow";
-	private int _summonType;
+	//private static final String _S__C9_PETSTATUSSHOW = "[S] b1 PetStatusShow";
+	//private int _summonType;
 
-	public PetStatusShow(L2Summon summon)
-	{
-		_summonType = summon.getSummonType();
-	}
-
-	@Override
-	protected final void writeImpl()
-	{
-		writeC(0xb1);
-		writeD(_summonType);
-	}
+	//public PetStatusShow(L2Summon summon)
+	//{
+		//_summonType = summon.getSummonType();
+	//}
 
 	@Override
-	public String getType()
+	public void readP()
 	{
-		return _S__C9_PETSTATUSSHOW;
+		//writeC(0xb1);
+		int type = readD();//writeD(_summonType);
 	}
+
+	//@Override
+	//public String getType()
+	//{
+		//return _S__C9_PETSTATUSSHOW;
+	//}
 }

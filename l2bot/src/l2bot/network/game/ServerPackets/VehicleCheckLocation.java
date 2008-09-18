@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.actor.instance.L2BoatInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2BoatInstance;
 
 /**
  * @author Maktakien
@@ -22,10 +22,10 @@ import net.sf.l2j.gameserver.model.actor.instance.L2BoatInstance;
  */
 public class VehicleCheckLocation extends L2GameServerPacket
 {
-	private L2BoatInstance _boat;
-	private int _x;
-	private int _y;
-	private int _z;
+	//private L2BoatInstance _boat;
+	//private int _x;
+	//private int _y;
+	//private int _z;
     
 	/**
 	 * @param instance
@@ -33,37 +33,36 @@ public class VehicleCheckLocation extends L2GameServerPacket
 	 * @param y
 	 * @param z
 	 */
-	public VehicleCheckLocation(L2BoatInstance instance, int x, int y, int z)
-	{
-		_boat = instance;
-		_x = x;
-		_y = y;
-		_z = z;
-	}
+	//public VehicleCheckLocation(L2BoatInstance instance, int x, int y, int z)
+	//{
+		//_boat = instance;
+		//_x = x;
+		//_y = y;
+		//_z = z;
+	//}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected
-	void writeImpl()
+	public void readP()
 	{
-		writeC(0x6d);
-		writeD(_boat.getObjectId());
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
-		writeD(_boat.getPosition().getHeading());
+		//writeC(0x6d);
+		int id = readD();//writeD(_boat.getObjectId());
+		int x = readD();//writeD(_x);
+		int y = readD();//writeD(_y);
+		int z = readD();//writeD(_z);
+		int h = readD();//writeD(_boat.getPosition().getHeading());
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//// TODO Auto-generated method stub
+		//return null;
+	//}
 
 }

@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Clan;
+//import net.sf.l2j.gameserver.model.L2Clan;
 
 /**
  *
@@ -29,33 +29,33 @@ import net.sf.l2j.gameserver.model.L2Clan;
  */
 public final class PledgeStatusChanged extends L2GameServerPacket
 {
-	private static final String _S__CD_PLEDGESTATUS_CHANGED = "[S] cd PledgeStatusChanged";
-	private L2Clan _clan;
+	//private static final String _S__CD_PLEDGESTATUS_CHANGED = "[S] cd PledgeStatusChanged";
+	//private L2Clan _clan;
 
-	public PledgeStatusChanged(L2Clan clan)
-	{
-		_clan = clan;
-	}
+	//public PledgeStatusChanged(L2Clan clan)
+	//{
+		//_clan = clan;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0xcd);
-		writeD(_clan.getLeaderId());
-		writeD(_clan.getClanId());
-        writeD(0);
-        writeD(_clan.getLevel());
-        writeD(0);
-        writeD(0);
-        writeD(0);
+		//writeC(0xcd);
+		int leader = readD();//writeD(_clan.getLeaderId());
+		int clan = readD();//writeD(_clan.getClanId());
+                readD();//writeD(0);
+                int lvl = readD();//writeD(_clan.getLevel());
+                //writeD(0);
+                //writeD(0);
+                //writeD(0);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__CD_PLEDGESTATUS_CHANGED;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__CD_PLEDGESTATUS_CHANGED;
+	//}
 }

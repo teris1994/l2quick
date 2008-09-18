@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.SevenSigns;
+//import net.sf.l2j.gameserver.SevenSigns;
 
 /**
  * sample
@@ -26,30 +26,30 @@ import net.sf.l2j.gameserver.SevenSigns;
  */
 public class ShowMiniMap extends L2GameServerPacket
 {
-	private static final String _S__B6_SHOWMINIMAP = "[S] a3 ShowMiniMap";
-	private int _mapId;
+	//private static final String _S__B6_SHOWMINIMAP = "[S] a3 ShowMiniMap";
+	//private int _mapId;
 
 	/**
 	 */
-	public ShowMiniMap(int mapId)
-	{
-		_mapId = mapId;
-	}
+	//public ShowMiniMap(int mapId)
+	//{
+		//_mapId = mapId;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0xa3);
-		writeD(_mapId);
-		writeD(SevenSigns.getInstance().getCurrentPeriod());
+		//writeC(0xa3);
+		int id = readD();//writeD(_mapId);
+		int period = readD();//writeD(SevenSigns.getInstance().getCurrentPeriod());
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__B6_SHOWMINIMAP;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__B6_SHOWMINIMAP;
+	//}
 }

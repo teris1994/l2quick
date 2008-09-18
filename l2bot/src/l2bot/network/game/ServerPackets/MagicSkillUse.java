@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Character;
+//import net.sf.l2j.gameserver.model.L2Character;
 
 /**
  *
@@ -29,71 +29,71 @@ import net.sf.l2j.gameserver.model.L2Character;
  */
 public final class MagicSkillUse extends L2GameServerPacket
 {
-	private static final String _S__5A_MAGICSKILLUSER = "[S] 48 MagicSkillUser";
-	private int _targetId;
-	private int _skillId;
-	private int _skillLevel;
-	private int _hitTime;
-	private int _reuseDelay;
-	private int _charObjId, _x, _y, _z;
+	//private static final String _S__5A_MAGICSKILLUSER = "[S] 48 MagicSkillUser";
+	//private int _targetId;
+	//private int _skillId;
+	//private int _skillLevel;
+	//private int _hitTime;
+	//private int _reuseDelay;
+	//private int _charObjId, _x, _y, _z;
 
-	public MagicSkillUse(L2Character cha, L2Character target, int skillId, int skillLevel, int hitTime, int reuseDelay)
-	{
-		_charObjId = cha.getObjectId();
-		_targetId = target.getObjectId();
-		_skillId = skillId;
-		_skillLevel = skillLevel;
-		_hitTime = hitTime;
-		_reuseDelay = reuseDelay;
-		_x = cha.getX();
-		_y = cha.getY();
-		_z = cha.getZ();
-	}
-
-	public MagicSkillUse(L2Character cha, int skillId, int skillLevel, int hitTime, int reuseDelay)
-	{
-		_charObjId = cha.getObjectId();
-		_targetId = cha.getTargetId();
-		_skillId = skillId;
-		_skillLevel = skillLevel;
-		_hitTime = hitTime;
-		_reuseDelay = reuseDelay;
-		_x = cha.getX();
-		_y = cha.getY();
-		_z = cha.getZ();
-	}
+	//public MagicSkillUse(L2Character cha, L2Character target, int skillId, int skillLevel, int hitTime, int reuseDelay)
+	//{
+		//_charObjId = cha.getObjectId();
+		//_targetId = target.getObjectId();
+		//_skillId = skillId;
+		//_skillLevel = skillLevel;
+		//_hitTime = hitTime;
+		//_reuseDelay = reuseDelay;
+		//_x = cha.getX();
+		//_y = cha.getY();
+		//_z = cha.getZ();
+	//}
+//
+	//public MagicSkillUse(L2Character cha, int skillId, int skillLevel, int hitTime, int reuseDelay)
+	//{
+		//_charObjId = cha.getObjectId();
+		//_targetId = cha.getTargetId();
+		//_skillId = skillId;
+		//_skillLevel = skillLevel;
+		//_hitTime = hitTime;
+		//_reuseDelay = reuseDelay;
+		//_x = cha.getX();
+		//_y = cha.getY();
+		//_z = cha.getZ();
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x48);
-		writeD(_charObjId);
-		writeD(_targetId);
-		writeD(_skillId);
-		writeD(_skillLevel);
-		writeD(_hitTime);
-		writeD(_reuseDelay);
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
-		writeH(0x00); // unknown loop but not AoE
-		writeH(0x00);
-		//for()
-		//{
-			writeH(0x00);
-			writeH(0x00);
-			writeH(0x00);
-		//}
+		//writeC(0x48);
+		int objId = readD();//writeD(_charObjId);
+		int target = readD();//writeD(_targetId);
+		int skill = readD();//writeD(_skillId);
+		int skilllvl = readD();//writeD(_skillLevel);
+		int time = readD();//writeD(_hitTime);
+		int reuse = readD();//writeD(_reuseDelay);
+		int x = readD();//writeD(_x);
+		int y = readD();//writeD(_y);
+		int z = readD();//writeD(_z);
+		//writeH(0x00); // unknown loop but not AoE
+		//writeH(0x00);
+		////for()
+		////{
+			//writeH(0x00);
+			//writeH(0x00);
+			//writeH(0x00);
+		////}
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__5A_MAGICSKILLUSER;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__5A_MAGICSKILLUSER;
+	//}
 
 }
 

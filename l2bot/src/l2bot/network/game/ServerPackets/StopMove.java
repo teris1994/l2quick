@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Character;
+//import net.sf.l2j.gameserver.model.L2Character;
 
 /**
  * format   ddddd
@@ -27,48 +27,48 @@ import net.sf.l2j.gameserver.model.L2Character;
  */
 public final class StopMove extends L2GameServerPacket
 {
-	private static final String _S__59_STOPMOVE = "[S] 47 StopMove";
-	private int _objectId;
-	private int _x;
-	private int _y;
-	private int _z;
-	private int _heading;
+	//private static final String _S__59_STOPMOVE = "[S] 47 StopMove";
+	//private int _objectId;
+	//private int _x;
+	//private int _y;
+	//private int _z;
+	//private int _heading;
 
 
-	public StopMove(L2Character cha)
-	{
-		this(cha.getObjectId(), cha.getX(), cha.getY(), cha.getZ(), cha.getHeading());
-	}
+	//public StopMove(L2Character cha)
+	//{
+		//this(cha.getObjectId(), cha.getX(), cha.getY(), cha.getZ(), cha.getHeading());
+	//}
 
 	/**
 	 * @param _characters
 	 */
-	public StopMove(int objectId, int x, int y, int z, int heading)
-	{
-		_objectId = objectId;
-		_x = x;
-		_y = y;
-		_z = z;
-		_heading = heading;
-	}
-
+	//public StopMove(int objectId, int x, int y, int z, int heading)
+	//{
+		//_objectId = objectId;
+		//_x = x;
+		//_y = y;
+		//_z = z;
+		//_heading = heading;
+	//}
+//
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x47);
-		writeD(_objectId);
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
-		writeD(_heading);
+		//writeC(0x47);
+		int objId = readD();//writeD(_objectId);
+		int x = readD();//writeD(_x);
+		int y = readD();//writeD(_y);
+		int z = readD();//writeD(_z);
+		int h = readD();//writeD(_heading);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__59_STOPMOVE;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__59_STOPMOVE;
+	//}
 }

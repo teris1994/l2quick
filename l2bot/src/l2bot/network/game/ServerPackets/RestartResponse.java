@@ -22,29 +22,29 @@ package l2bot.network.game.ServerPackets;
  */
 public final class RestartResponse extends L2GameServerPacket
 {
-	private static final String _S__74_RESTARTRESPONSE = "[S] 71 RestartResponse";
-	private String _message;
+	//private static final String _S__74_RESTARTRESPONSE = "[S] 71 RestartResponse";
+	//private String _message;
 
-	public RestartResponse()
-	{
-		_message = "ok merong~ khaha";
-	}
+	//public RestartResponse()
+	//{
+		//_message = "ok merong~ khaha";
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x71);
+		//writeC(0x71);
 
-		writeD(0x01);	//01-ok
-		writeS(_message);
+		int res = readD();//writeD(0x01);	//01-ok
+		String s = readS();//writeS(_message);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__74_RESTARTRESPONSE;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__74_RESTARTRESPONSE;
+	//}
 }

@@ -16,27 +16,27 @@ package l2bot.network.game.ServerPackets;
 
 public class EnchantResult extends L2GameServerPacket
 {
-	private static final String _S__81_ENCHANTRESULT = "[S] 87 EnchantResult";
-	private int _unknown;
+	//private static final String _S__81_ENCHANTRESULT = "[S] 87 EnchantResult";
+	//private int _unknown;
 
-	public EnchantResult(int unknown)
-	{
-		_unknown = unknown;
-	}
+	//public EnchantResult(int unknown)
+	//{
+		//_unknown = unknown;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public  void readP()
 	{
-		writeC(0x87);
-		writeD(_unknown);
+		//writeC(0x87);
+		//writeD(_unknown);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__81_ENCHANTRESULT;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__81_ENCHANTRESULT;
+	//}
 }

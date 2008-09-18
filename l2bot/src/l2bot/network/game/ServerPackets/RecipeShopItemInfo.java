@@ -14,8 +14,8 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2World;
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.L2World;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 /**
  * ddddd
@@ -24,38 +24,39 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 public class RecipeShopItemInfo  extends L2GameServerPacket
 {
 
-	private static final String _S__DA_RecipeShopItemInfo = "[S] e0 RecipeShopItemInfo";
-	private int _shopId;
-	private int _recipeId;
+	//private static final String _S__DA_RecipeShopItemInfo = "[S] e0 RecipeShopItemInfo";
+	//private int _shopId;
+	//private int _recipeId;
 
 
-	public RecipeShopItemInfo(int shopId, int recipeId)
-	{
-		_shopId = shopId;
-		_recipeId = recipeId;
-	}
+	//public RecipeShopItemInfo(int shopId, int recipeId)
+	//{
+		//_shopId = shopId;
+		//_recipeId = recipeId;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-        if (!(L2World.getInstance().findObject(_shopId) instanceof L2PcInstance))
-            return;
-
-		L2PcInstance manufacturer = (L2PcInstance)L2World.getInstance().findObject(_shopId);
-		writeC(0xe0);
-		writeD(_shopId);
-		writeD(_recipeId);
-		writeD(manufacturer != null ? (int)manufacturer.getCurrentMp() : 0);
-		writeD(manufacturer != null ? (int)manufacturer.getMaxMp() : 0);
-		writeD(0xffffffff);
+        //if (!(L2World.getInstance().findObject(_shopId) instanceof L2PcInstance))
+            //return;
+//
+		//L2PcInstance manufacturer = (L2PcInstance)L2World.getInstance().findObject(_shopId);
+		//writeC(0xe0);
+	
+                int shop = readD();//writeD(_shopId);
+		int recipe = readD();//writeD(_recipeId);
+		int mp = readD();//writeD(manufacturer != null ? (int)manufacturer.getCurrentMp() : 0);
+		int maxMp = readD();//writeD(manufacturer != null ? (int)manufacturer.getMaxMp() : 0);
+		//writeD(0xffffffff);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__DA_RecipeShopItemInfo;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__DA_RecipeShopItemInfo;
+	//}
 }

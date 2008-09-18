@@ -15,12 +15,12 @@
 
 package l2bot.network.game.ServerPackets;
 
-import javolution.util.FastList;
-import javolution.util.FastMap;
-import net.sf.l2j.gameserver.instancemanager.CastleManorManager.CropProcure;
-import net.sf.l2j.gameserver.model.L2ItemInstance;
-import net.sf.l2j.gameserver.model.L2Manor;
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import javolution.util.FastList;
+//import javolution.util.FastMap;
+//import net.sf.l2j.gameserver.instancemanager.CastleManorManager.CropProcure;
+//import net.sf.l2j.gameserver.model.L2ItemInstance;
+//import net.sf.l2j.gameserver.model.L2Manor;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 /**
  * format(packet 0xFE) ch dd [ddddcdcdddc] c - id h - sub id
@@ -34,91 +34,92 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 public class ExShowSellCropList extends L2GameServerPacket
 {
-    private static final String _S__FE_21_EXSHOWSELLCROPLIST = "[S] FE:2c ExShowSellCropList";
+//    private static final String _S__FE_21_EXSHOWSELLCROPLIST = "[S] FE:2c ExShowSellCropList";
     
-    private int _manorId = 1;
+    //private int _manorId = 1;
     
-    private FastMap<Integer, L2ItemInstance> _cropsItems;
+    //private FastMap<Integer, L2ItemInstance> _cropsItems;
     
-    private FastMap<Integer, CropProcure> _castleCrops;
+    //private FastMap<Integer, CropProcure> _castleCrops;
     
-    public ExShowSellCropList(L2PcInstance player, int manorId,
-            FastList<CropProcure> crops)
-    {
-        _manorId = manorId;
-        _castleCrops = new FastMap<Integer, CropProcure>();
-        _cropsItems = new FastMap<Integer, L2ItemInstance>();
+    //public ExShowSellCropList(L2PcInstance player, int manorId,
+            //FastList<CropProcure> crops)
+    //{
+        //_manorId = manorId;
+        //_castleCrops = new FastMap<Integer, CropProcure>();
+        //_cropsItems = new FastMap<Integer, L2ItemInstance>();
         
-        FastList<Integer> allCrops = L2Manor.getInstance().getAllCrops();
-        for (int cropId : allCrops)
-        {
-            L2ItemInstance item = player.getInventory().getItemByItemId(cropId);
-            if (item != null)
-            {
-                _cropsItems.put(cropId, item);
-            }
-        }
-        
-        for (CropProcure crop : crops)
-        {
-            if (_cropsItems.containsKey(crop.getId()) && crop.getAmount() > 0)
-            {
-                _castleCrops.put(crop.getId(), crop);
-            }
-        }
-        
-    }
+        //FastList<Integer> allCrops = L2Manor.getInstance().getAllCrops();
+        //for (int cropId : allCrops)
+        //{
+            //L2ItemInstance item = player.getInventory().getItemByItemId(cropId);
+            //if (item != null)
+            //{
+                //_cropsItems.put(cropId, item);
+            //}
+        //}
+//        
+        //for (CropProcure crop : crops)
+        //{
+            //if (_cropsItems.containsKey(crop.getId()) && crop.getAmount() > 0)
+            //{
+                //_castleCrops.put(crop.getId(), crop);
+            //}
+        //}
+//        
+    //}
+//    
+    //@Override
+    //public void runImpl()
+    //{
+        //// no long running
+    //}
     
     @Override
-    public void runImpl()
+    public void readP()
     {
-        // no long running
-    }
-    
-    @Override
-    public void writeImpl()
-    {
-        writeC(0xFE);
-        writeH(0x2c);
+        //writeC(0xFE);
+        readD();//writeH(0x2c);
         
-        writeD(_manorId); // manor id
-        writeD(_cropsItems.size()); // size
-        
-        for (L2ItemInstance item : _cropsItems.values())
+        int mid = readD();//writeD(_manorId); // manor id
+        int s = readD();//writeD(_cropsItems.size()); // size
+       
+        //for (L2ItemInstance item : _cropsItems.values())
+        for (int i = 0; i < s; i++) 
         {
-            writeD(item.getObjectId()); // Object id
-            writeD(item.getItemId()); // crop id
-            writeD(L2Manor.getInstance().getSeedLevelByCrop(item.getItemId())); // seed
-                                                                                // level
-            writeC(1);
-            writeD(L2Manor.getInstance().getRewardItem(item.getItemId(), 1)); // reward
-                                                                                // 1 id
-            writeC(1);
-            writeD(L2Manor.getInstance().getRewardItem(item.getItemId(), 2)); // reward
-                                                                                // 2 id
+            int objId = readD();//writeD(item.getObjectId()); // Object id
+            int itemId = readD();//writeD(item.getItemId()); // crop id
+            int seed = readD();//writeD(L2Manor.getInstance().getSeedLevelByCrop(item.getItemId())); // seed
+                                                                                //// level
+            readC();//writeC(1);
+            int reward1 = readD();//writeD(L2Manor.getInstance().getRewardItem(item.getItemId(), 1)); // reward
+                                                                                //// 1 id
+            readC();//writeC(1);
+            int reward2 = readD();//writeD(L2Manor.getInstance().getRewardItem(item.getItemId(), 2)); // reward
+                                                                                //// 2 id
             
-            if (_castleCrops.containsKey(item.getItemId()))
-            {
-                CropProcure crop = _castleCrops.get(item.getItemId());
-                writeD(_manorId); // manor
-                writeD(crop.getAmount()); // buy residual
-                writeD(crop.getPrice()); // buy price
-                writeC(crop.getReward()); // reward
-            }
-            else
-            {
-                writeD(0xFFFFFFFF); // manor
-                writeD(0); // buy residual
-                writeD(0); // buy price
-                writeC(0); // reward
-            }
-            writeD(item.getCount()); // my crops
+            //if (_castleCrops.containsKey(item.getItemId()))
+            //{
+                //CropProcure crop = _castleCrops.get(item.getItemId());
+                int manor = readD();//writeD(_manorId); // manor
+                int residual = readD();//writeD(crop.getAmount()); // buy residual
+                int price = readD();//writeD(crop.getPrice()); // buy price
+                int reward = readD();//writeC(crop.getReward()); // reward
+            //}
+            //else
+            //{
+                //writeD(0xFFFFFFFF); // manor
+                //writeD(0); // buy residual
+                //writeD(0); // buy price
+                //writeC(0); // reward
+            //}
+            int count = readD();//writeD(item.getCount()); // my crops
         }
     }
     
-    @Override
-    public String getType()
-    {
-        return _S__FE_21_EXSHOWSELLCROPLIST;
-    }
+    //@Override
+    //public String getType()
+    //{
+        //return _S__FE_21_EXSHOWSELLCROPLIST;
+    //}
 }

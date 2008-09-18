@@ -14,9 +14,9 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Summon;
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
-import net.sf.l2j.gameserver.model.actor.instance.L2PlayableInstance;
+//import net.sf.l2j.gameserver.model.L2Summon;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PlayableInstance;
 
 /**
  *
@@ -34,49 +34,49 @@ public final class RelationChanged extends L2GameServerPacket
 	public static final int RELATION_MUTUAL_WAR   = 0x08000; // double fist
 	public static final int RELATION_1SIDED_WAR   = 0x10000; // single fist
 
-	private static final String _S__CE_RELATIONCHANGED = "[S] ce RelationChanged";
+	//private static final String _S__CE_RELATIONCHANGED = "[S] ce RelationChanged";
 
-	private int _objId, _relation, _autoAttackable, _karma, _pvpFlag;
+	//private int _objId, _relation, _autoAttackable, _karma, _pvpFlag;
 
-	public RelationChanged(L2PlayableInstance activeChar, int relation, boolean autoattackable)
-	{
-		_objId = activeChar.getObjectId();
-		_relation = relation;
-		_autoAttackable = autoattackable ? 1 : 0;
-
-		if (activeChar instanceof L2PcInstance)
-		{
-			_karma = ((L2PcInstance)activeChar).getKarma();
-			_pvpFlag = ((L2PcInstance)activeChar).getPvpFlag();
-		}
-		else if (activeChar instanceof L2Summon)
-		{
-			_karma =  ((L2Summon)activeChar).getOwner().getKarma();
-			_pvpFlag = ((L2Summon)activeChar).getOwner().getPvpFlag();
-		}
-	}
+	//public RelationChanged(L2PlayableInstance activeChar, int relation, boolean autoattackable)
+	//{
+		//_objId = activeChar.getObjectId();
+		//_relation = relation;
+		//_autoAttackable = autoattackable ? 1 : 0;
+//
+		//if (activeChar instanceof L2PcInstance)
+		//{
+			//_karma = ((L2PcInstance)activeChar).getKarma();
+			//_pvpFlag = ((L2PcInstance)activeChar).getPvpFlag();
+		//}
+		//else if (activeChar instanceof L2Summon)
+		//{
+			//_karma =  ((L2Summon)activeChar).getOwner().getKarma();
+			//_pvpFlag = ((L2Summon)activeChar).getOwner().getPvpFlag();
+		//}
+	//}
 
 	/**
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0xce);
-		writeD(_objId);
-		writeD(_relation);
-		writeD(_autoAttackable);
-		writeD(_karma);
-		writeD(_pvpFlag);
+		//writeC(0xce);
+		int objId = readD();//writeD(_objId);
+		int relation = readD();//writeD(_relation);
+		int auto = readD();//writeD(_autoAttackable);
+		int karma = readD();//writeD(_karma);
+		int pvpFlag = readD();//writeD(_pvpFlag);
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__CE_RELATIONCHANGED;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__CE_RELATIONCHANGED;
+	//}
 
 }

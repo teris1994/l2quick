@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 /**
  * This class ...
@@ -23,28 +23,28 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
  */
 public class RecipeShopMsg extends L2GameServerPacket
 {
-	private static final String _S__DB_RecipeShopMsg = "[S] e1 RecipeShopMsg";
-	private L2PcInstance _activeChar;
-
-	public RecipeShopMsg(L2PcInstance player)
-	{
-		_activeChar = player;
-	}
-
+	//private static final String _S__DB_RecipeShopMsg = "[S] e1 RecipeShopMsg";
+	//private L2PcInstance _activeChar;
+//
+	//public RecipeShopMsg(L2PcInstance player)
+	//{
+		//_activeChar = player;
+	//}
+//
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0xe1);
-		writeD(_activeChar.getObjectId());
-		writeS(_activeChar.getCreateList().getStoreName());//_activeChar.getTradeList().getSellStoreName());
+		//writeC(0xe1);
+		int objId = readD();//writeD(_activeChar.getObjectId());
+		String msg = readS();//writeS(_activeChar.getCreateList().getStoreName());//_activeChar.getTradeList().getSellStoreName());
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__DB_RecipeShopMsg;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__DB_RecipeShopMsg;
+	//}
 }

@@ -16,31 +16,31 @@ package l2bot.network.game.ServerPackets;
 
 public final class TutorialShowHtml extends L2GameServerPacket
 {
-	private static final String _S__A6_TUTORIALSHOWHTML = "[S] a6 TutorialShowHtml";
-	private String _html;
+	//private static final String _S__A6_TUTORIALSHOWHTML = "[S] a6 TutorialShowHtml";
+	//private String _html;
 
-	public TutorialShowHtml(String html)
-	{
-		_html = html;
-	}
+	//public TutorialShowHtml(String html)
+	//{
+		//_html = html;
+	//}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xa6);
-		writeS(_html);
+		//writeC(0xa6);
+		String html = readS();//writeS(_html);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__A6_TUTORIALSHOWHTML;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__A6_TUTORIALSHOWHTML;
+	//}
 
 }

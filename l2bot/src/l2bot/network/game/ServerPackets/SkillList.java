@@ -13,10 +13,9 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package l2bot.network.game.ServerPackets;
+//import java.util.List;
 
-import java.util.List;
-
-import javolution.util.FastList;
+//import javolution.util.FastList;
 
 /**
  *
@@ -39,8 +38,8 @@ import javolution.util.FastList;
  */
 public final class SkillList extends L2GameServerPacket
 {
-    private static final String _S__6D_SKILLLIST = "[S] 5f SkillList";
-    private List<Skill> _skills;
+    //private static final String _S__6D_SKILLLIST = "[S] 5f SkillList";
+    //private List<Skill> _skills;
 
     class Skill
     {
@@ -56,37 +55,39 @@ public final class SkillList extends L2GameServerPacket
         }
     }
 
-    public SkillList()
-    {
-        _skills = new FastList<Skill>();
-    }
+    //public SkillList()
+    //{
+        //_skills = new FastList<Skill>();
+    //}
 
-    public void addSkill(int id, int level, boolean passive)
-    {
-        _skills.add(new Skill(id, level, passive));
-    }
+    //public void addSkill(int id, int level, boolean passive)
+    //{
+        //_skills.add(new Skill(id, level, passive));
+    //}
 
     @Override
-	protected final void writeImpl()
+	public void readP()
     {
-        writeC(0x5f);
-        writeD(_skills.size());
+        //writeC(0x5f);
+        int s = readD();//writeD(_skills.size());
 
-        for (Skill temp : _skills)
+        //for (Skill temp : _skills)
+        for (int i = 0; i < s; i++) 
         {
-            writeD(temp.passive ? 1 : 0);
-            writeD(temp.level);
-            writeD(temp.id);
-            writeC(0x00); //c5
+            boolean pasive = readD() !=0;//writeD(temp.passive ? 1 : 0);
+            int lvl = readD();//writeD(temp.level);
+            int id = readD();//writeD(temp.id);
+            readD();//writeC(0x00); //c5
+            new Skill(id,lvl,pasive);
         }
     }
 
     /* (non-Javadoc)
      * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
      */
-    @Override
-	public String getType()
-    {
-        return _S__6D_SKILLLIST;
-    }
+    //@Override
+	//public String getType()
+    //{
+        //return _S__6D_SKILLLIST;
+    //}
 }

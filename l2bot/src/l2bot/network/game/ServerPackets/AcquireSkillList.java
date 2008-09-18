@@ -40,7 +40,7 @@ import javolution.util.FastList;
  * 0030: 00 d4 00 00 00 01 00 00 00 06 00 00 00 08 52 00    ..............R.
  * @version $Revision: 1.3.2.1.2.5 $ $Date: 2005/03/27 15:29:57 $
  */
-public final class AcquireSkillList extends L2GameServerPacket          //Esta y las 3 anteriores nesesitan un dialogo ;)
+public class AcquireSkillList extends L2GameServerPacket          //Esta y las 3 anteriores nesesitan un dialogo ;)
 {
 	//private static Logger _log = Logger.getLogger(AquireSkillList.class.getName());
    /* public enum skillType
@@ -54,7 +54,7 @@ public final class AcquireSkillList extends L2GameServerPacket          //Esta y
 
 	private List<Skill> _skills;
 	private skillType _fishingSkills;
-
+*/
 	private class Skill
 	{
 		public int id;
@@ -72,7 +72,7 @@ public final class AcquireSkillList extends L2GameServerPacket          //Esta y
 			requirements = pRequirements;
 		}
 	}
-
+/*
 	public AcquireSkillList(skillType type)
 	{
 		_skills = new FastList<Skill>();
@@ -83,22 +83,27 @@ public final class AcquireSkillList extends L2GameServerPacket          //Esta y
 	{
 		_skills.add(new Skill(id, nextLevel, maxLevel, spCost, requirements));
 	}
-
+*/
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x90);
-        writeD(_fishingSkills.ordinal());   //c4 : C5 : 0: usuall  1: fishing 2: clans
-		writeD(_skills.size());
+		//writeC(0x90);
+                int type = readD();//writeD(_fishingSkills.ordinal());   //c4 : C5 : 0: usuall  1: fishing 2: clans
+		int s = readD();//writeD(_skills.size());
 
-		for (Skill temp : _skills)
-		{
-			writeD(temp.id);
-			writeD(temp.nextLevel);
-			writeD(temp.maxLevel);
-			writeD(temp.spCost);
-			writeD(temp.requirements);
-		}
+                FastList<Skill> skills = new FastList<Skill>();
+                for(int i=0;i<=s;i++){
+                    skills.add(new Skill(readD(),readD(),readD(),readD(),readD()));
+                }
+                
+		//for (Skill temp : _skills)
+		//{
+			//writeD(temp.id);
+			//writeD(temp.nextLevel);
+			//writeD(temp.maxLevel);
+			//writeD(temp.spCost);
+			//writeD(temp.requirements);
+		//}
 	}
 
 	/* (non-Javadoc)

@@ -14,56 +14,56 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Clan;
+//import net.sf.l2j.gameserver.model.L2Clan;
 
 
 public class ManagePledgePower extends L2GameServerPacket
 {
-    private static final String _S__30_MANAGEPLEDGEPOWER = "[S] 2a ManagePledgePower";
+    //private static final String _S__30_MANAGEPLEDGEPOWER = "[S] 2a ManagePledgePower";
 
-    private int _action;
-    private L2Clan _clan;
-    private int _rank;
-    private int _privs;
+    //private int _action;
+    //private L2Clan _clan;
+    //private int _rank;
+    //private int _privs;
 
-    public ManagePledgePower(L2Clan clan, int action, int rank)
-    {
-        _clan = clan;
-        _action = action;
-        _rank = rank;
-    }
+    //public ManagePledgePower(L2Clan clan, int action, int rank)
+    //{
+        //_clan = clan;
+        //_action = action;
+        //_rank = rank;
+    //}
 
     @Override
-	protected final void writeImpl()
+	public void readP()
     {
-        writeC(0x2a);
-        if(_action == 1)
-        {
-        	_privs = _clan.getRankPrivs(_rank);
-        }
-        else
-        {
-            return;
-        	/*
-            if (L2World.getInstance().findObject(_clanId) == null)
-                return;
-
-			privs = ((L2PcInstance)L2World.getInstance().findObject(_clanId)).getClanPrivileges();
-			*/
-        }
-        
-        writeD(0);
-        writeD(0);
-        writeD(_privs);
+        //writeC(0x2a);
+        //if(_action == 1)
+        //{
+        	//_privs = _clan.getRankPrivs(_rank);
+        //}
+        //else
+        //{
+            //return;
+        	///*
+            //if (L2World.getInstance().findObject(_clanId) == null)
+                //return;
+//
+			//privs = ((L2PcInstance)L2World.getInstance().findObject(_clanId)).getClanPrivileges();
+			//*/
+        //}
+//        
+        readD();//writeD(0);
+        readD();//writeD(0);
+        int privs = readD();//writeD(_privs);
    }
 
     /* (non-Javadoc)
      * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
      */
-    @Override
-	public String getType()
-    {
-        return _S__30_MANAGEPLEDGEPOWER;
-    }
+    //@Override
+	//public String getType()
+    //{
+        //return _S__30_MANAGEPLEDGEPOWER;
+    //}
 
 }

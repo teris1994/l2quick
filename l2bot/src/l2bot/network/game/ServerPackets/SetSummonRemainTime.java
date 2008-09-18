@@ -22,31 +22,31 @@ package l2bot.network.game.ServerPackets;
  */
 public final class SetSummonRemainTime extends L2GameServerPacket
 {
-	private static final String _S__D1_SET_SUMMON_REMAIN_TIME = "[S] d1 SetSummonRemainTime";
-	private int _maxTime;
-	private int _remainingTime;
+	//private static final String _S__D1_SET_SUMMON_REMAIN_TIME = "[S] d1 SetSummonRemainTime";
+	//private int _maxTime;
+	//private int _remainingTime;
 
-	public SetSummonRemainTime(int maxTime, int remainingTime)
-	{
-		_remainingTime = remainingTime;
-		_maxTime = maxTime;
-	}
+	//public SetSummonRemainTime(int maxTime, int remainingTime)
+	//{
+		//_remainingTime = remainingTime;
+		//_maxTime = maxTime;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0xd1);
-		writeD(_maxTime);
-		writeD(_remainingTime);
+		//writeC(0xd1);
+		//writeD(_maxTime);
+		//writeD(_remainingTime);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__D1_SET_SUMMON_REMAIN_TIME;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__D1_SET_SUMMON_REMAIN_TIME;
+	//}
 
 }

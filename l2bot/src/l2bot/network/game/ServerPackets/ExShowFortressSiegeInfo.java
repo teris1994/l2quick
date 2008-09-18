@@ -24,24 +24,24 @@ public class ExShowFortressSiegeInfo extends L2GameServerPacket
     /**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#getType()
      */
-    @Override
-    public String getType()
-    {
-        return "[S] FE:17 ExShowFortressSiegeInfo";
-    }
+    //@Override
+    //public String getType()
+    //{
+        //return "[S] FE:17 ExShowFortressSiegeInfo";
+    //}
 
     /**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#writeImpl()
      */
     @Override
-    protected void writeImpl()
+    public void readP()
     {
-        writeC(0xfe);
-        writeH(0x17);
+        //writeC(0xfe);
+        readD();//writeH(0x17);
         
-        writeD(0x00); // Fortress Id
-        writeD(0x00); // Total Barracks Count
-        writeD(0x00); // Captured Barracks Count
+        readD();//writeD(0x00); // Fortress Id
+        readD();//writeD(0x00); // Total Barracks Count
+        readD();//writeD(0x00); // Captured Barracks Count
     }
     
 }

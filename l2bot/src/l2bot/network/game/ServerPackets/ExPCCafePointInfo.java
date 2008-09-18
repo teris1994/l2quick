@@ -20,37 +20,37 @@ package l2bot.network.game.ServerPackets;
  */
 public class ExPCCafePointInfo extends L2GameServerPacket
 {
-	private static final String _S__FE_31_EXPCCAFEPOINTINFO = "[S] FE:32 ExPCCafePointInfo";
-	private int _unk1, _unk2, _unk3, _unk4, _unk5 = 0;
+	//private static final String _S__FE_31_EXPCCAFEPOINTINFO = "[S] FE:32 ExPCCafePointInfo";
+	//private int _unk1, _unk2, _unk3, _unk4, _unk5 = 0;
 
-	public ExPCCafePointInfo(int val1, int val2, int val3, int val4, int val5)
-	{
-		_unk1 = val1;
-		_unk2 = val2;
-		_unk3 = val3;
-		_unk4 = val4;
-		_unk5 = val5;
-	}
+	//public ExPCCafePointInfo(int val1, int val2, int val3, int val4, int val5)
+	//{
+		//_unk1 = val1;
+		//_unk2 = val2;
+		//_unk3 = val3;
+		//_unk4 = val4;
+		//_unk5 = val5;
+	//}
 
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xFE);
-		writeH(0x32);
-		writeD(_unk1); // num points
-		writeD(_unk2); // points inc display
-		writeC(_unk3); // period(0=don't show window,1=acquisition,2=use points)
-		writeD(_unk4); // period hours left
-		writeC(_unk5); // points inc display color(0=yellow,1=cyan-blue,2=red,all other black)
+		//writeC(0xFE);
+		readH();//writeH(0x32);
+		int points = readD();//writeD(_unk1); // num points
+		int pointsInc = readD();//writeD(_unk2); // points inc display
+		int period = readC();//writeC(_unk3); // period(0=don't show window,1=acquisition,2=use points)
+		int hours = readD();//writeD(_unk4); // period hours left
+		int color = readC();//writeC(_unk5); // points inc display color(0=yellow,1=cyan-blue,2=red,all other black)
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_31_EXPCCAFEPOINTINFO;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_31_EXPCCAFEPOINTINFO;
+	//}
 
 }

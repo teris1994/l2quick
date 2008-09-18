@@ -14,8 +14,8 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import java.util.Map;
-import java.util.Map.Entry;
+//import java.util.Map;
+//import java.util.Map.Entry;
 
 /**
  * Format: (c) d[dS]
@@ -29,36 +29,37 @@ import java.util.Map.Entry;
  */
 public class PackageToList extends L2GameServerPacket
 {
-	private static final String _S__C2_PACKAGETOLIST = "[S] c8 PackageToList";
-	private Map<Integer,String> _players;
-
-	public PackageToList(Map<Integer,String> players)
-	{
-		_players = players;
-	}
-
-	/**
+	//private static final String _S__C2_PACKAGETOLIST = "[S] c8 PackageToList";
+	//private Map<Integer,String> _players;
+//
+	//public PackageToList(Map<Integer,String> players)
+	//{
+		//_players = players;
+	//}
+//
+        /*
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xc8);
-		writeD(_players.size());
-		for (Entry<Integer,String> entry : _players.entrySet())
+		//writeC(0xc8);
+		int s = readD();//writeD(_players.size());
+		//for (Entry<Integer,String> entry : _players.entrySet())
+                for (int i = 0; i < s; i++) 
 		{
-			writeD(entry.getKey());
-			writeS(entry.getValue());
+			int key = readD();//writeD(entry.getKey());
+			String value = readS();//writeS(entry.getValue());
 		}
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__C2_PACKAGETOLIST;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__C2_PACKAGETOLIST;
+	//}
 
 }

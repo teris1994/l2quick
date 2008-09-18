@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Character;
+//import net.sf.l2j.gameserver.model.L2Character;
 /**
  * This class ...
  *
@@ -22,37 +22,37 @@ import net.sf.l2j.gameserver.model.L2Character;
  */
 public class ValidateLocationInVehicle extends L2GameServerPacket
 {
-    private static final String _S__73_ValidateLocationInVehicle = "[S] 80 ValidateLocationInVehicle";
-    private L2Character _activeChar;
+    //private static final String _S__73_ValidateLocationInVehicle = "[S] 80 ValidateLocationInVehicle";
+    //private L2Character _activeChar;
 
 
     /**
      * 0x73 ValidateLocationInVehicle         hdd
      * @param _characters
      */
-    public ValidateLocationInVehicle(L2Character player)
-    {
-    	_activeChar = player;
-    }
+    //public ValidateLocationInVehicle(L2Character player)
+    //{
+    	//_activeChar = player;
+    //}
 
     @Override
-	protected final void writeImpl()
+    public void readP()
     {
-        writeC(0x80);
-        writeD(_activeChar.getObjectId());
-        writeD(1343225858); //TODO verify vehicle object id ??
-        writeD(_activeChar.getX());
-        writeD(_activeChar.getY());
-        writeD(_activeChar.getZ());
-        writeD(_activeChar.getHeading());
+        //writeC(0x80);
+        int objId = readD();//writeD(_activeChar.getObjectId());
+        readD();//writeD(1343225858); //TODO verify vehicle object id ??
+        int x = readD();//writeD(_activeChar.getX());
+        int y = readD();//writeD(_activeChar.getY());
+        int z = readD();//writeD(_activeChar.getZ());
+        int h = readD();//writeD(_activeChar.getHeading());
     }
 
     /* (non-Javadoc)
      * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
      */
-    @Override
-	public String getType()
-    {
-        return _S__73_ValidateLocationInVehicle;
-    }
+    //@Override
+	//public String getType()
+    //{
+        //return _S__73_ValidateLocationInVehicle;
+    ////}
 }

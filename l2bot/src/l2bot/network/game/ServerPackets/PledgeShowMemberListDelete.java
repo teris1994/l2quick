@@ -21,27 +21,27 @@ package l2bot.network.game.ServerPackets;
  */
 public class PledgeShowMemberListDelete extends L2GameServerPacket
 {
-	private static final String _S__6B_PLEDGESHOWMEMBERLISTDELETE = "[S] 5d PledgeShowMemberListDelete";
-	private String _player;
+	//private static final String _S__6B_PLEDGESHOWMEMBERLISTDELETE = "[S] 5d PledgeShowMemberListDelete";
+	//private String _player;
 
-	public PledgeShowMemberListDelete(String playerName)
-	{
-		_player = playerName;
-	}
+	//public PledgeShowMemberListDelete(String playerName)
+	//{
+		//_player = playerName;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x5d);
-		writeS(_player);
+		//writeC(0x5d);
+		String player = readS();//writeS(_player);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__6B_PLEDGESHOWMEMBERLISTDELETE;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__6B_PLEDGESHOWMEMBERLISTDELETE;
+	//}
 }

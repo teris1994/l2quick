@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.actor.instance.L2DoorInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2DoorInstance;
 
 /**
  * 61
@@ -31,33 +31,33 @@ import net.sf.l2j.gameserver.model.actor.instance.L2DoorInstance;
  */
 public final class DoorStatusUpdate extends L2GameServerPacket
 {
-	private static final String _S__61_DOORSTATUSUPDATE = "[S] 4d DoorStatusUpdate";
-	private L2DoorInstance _door;
+	//private static final String _S__61_DOORSTATUSUPDATE = "[S] 4d DoorStatusUpdate";
+	//private L2DoorInstance _door;
 
-	public DoorStatusUpdate(L2DoorInstance door)
-	{
-		_door=door;
-	}
+	//public DoorStatusUpdate(L2DoorInstance door)
+	//{
+		//_door=door;
+	//}
 
 	@Override
-	protected final void writeImpl()
+        public void readP()
 	{
-		writeC(0x4d);
-		writeD(_door.getObjectId());
-		writeD(_door.getOpen());
-		writeD(_door.getDamage());
-		writeD(_door.isEnemy() ? 1 : 0);
-		writeD(_door.getDoorId());
-		writeD((int)_door.getCurrentHp());
-		writeD(_door.getMaxHp());
+		//writeC(0x4d);
+		int objId = readD();//writeD(_door.getObjectId());
+		int open = readD();//writeD(_door.getOpen());
+		int damage = readD();//writeD(_door.getDamage());
+		boolean enemy = readD() != 0x00; //writeD(_door.isEnemy() ? 1 : 0);
+		int id = readD();//writeD(_door.getDoorId());
+		int hp = readD();//writeD((int)_door.getCurrentHp());
+		int maxHp = readD();//writeD(_door.getMaxHp());
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__61_DOORSTATUSUPDATE;
-	}
+	//@Override
+	//public String getType()
+	//{
+		////return _S__61_DOORSTATUSUPDATE;
+	//}
 }

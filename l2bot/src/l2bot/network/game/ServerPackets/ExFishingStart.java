@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Character;
+//import net.sf.l2j.gameserver.model.L2Character;
 
 /**
  * Format (ch)ddddd
@@ -23,48 +23,48 @@ import net.sf.l2j.gameserver.model.L2Character;
  */
 public class ExFishingStart extends L2GameServerPacket
 {
-	private static final String _S__FE_13_EXFISHINGSTART = "[S] FE:1e ExFishingStart";
-	private L2Character _activeChar;
-	private int _x,_y,_z, _fishType;
-	@SuppressWarnings("unused")
-	private boolean _isNightLure;
+	//private static final String _S__FE_13_EXFISHINGSTART = "[S] FE:1e ExFishingStart";
+	//private L2Character _activeChar;
+	//private int _x,_y,_z, _fishType;
+	//@SuppressWarnings("unused")
+	//private boolean _isNightLure;
 
-	public ExFishingStart(L2Character character, int fishType, int x, int y,int z, boolean isNightLure)
-	{
-		_activeChar = character;
-		_fishType = fishType;
-		_x = x;
-		_y = y;
-		_z = z;
-		_isNightLure = isNightLure;
-	}
+	//public ExFishingStart(L2Character character, int fishType, int x, int y,int z, boolean isNightLure)
+	//{
+		//_activeChar = character;
+		//_fishType = fishType;
+		//_x = x;
+		//_y = y;
+		//_z = z;
+		//_isNightLure = isNightLure;
+	//}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x1e);
-		writeD(_activeChar.getObjectId());
-		writeD(_fishType); // fish type
-		writeD(_x); // x poisson
-		writeD(_y); // y poisson
-		writeD(_z); // z poisson
-		writeC(0x00); // night lure
-		writeC(0x00); //??
-		writeC((_fishType >= 7 && _fishType <= 9) ? 0x01 : 0x00); // 0 = day lure  1 = night lure
-		writeC(0x00);
+		//writeC(0xfe);
+		readH();//writeH(0x1e);
+		int objId = readD();//writeD(_activeChar.getObjectId());
+		int fish = readD();//writeD(_fishType); // fish type
+		int x = readD();//writeD(_x); // x poisson
+		int y = readD();//writeD(_y); // y poisson
+		int z = readD();//writeD(_z); // z poisson
+		readC();//writeC(0x00); // night lure
+		readC();//writeC(0x00); //??
+		int type = readC();//writeC((_fishType >= 7 && _fishType <= 9) ? 0x01 : 0x00); // 0 = day lure  1 = night lure
+		//writeC(0x00);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_13_EXFISHINGSTART;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_13_EXFISHINGSTART;
+	//}
 
 }

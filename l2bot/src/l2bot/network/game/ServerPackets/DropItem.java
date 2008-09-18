@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2ItemInstance;
+//import net.sf.l2j.gameserver.model.L2ItemInstance;
 
 /**
  * 16
@@ -34,53 +34,53 @@ import net.sf.l2j.gameserver.model.L2ItemInstance;
  */
 public class DropItem extends L2GameServerPacket
 {
-	private static final String _S__16_DROPITEM = "[S] 16 DropItem";
-	private L2ItemInstance _item;
-	private int _charObjId;
+	//private static final String _S__16_DROPITEM = "[S] 16 DropItem";
+	//private L2ItemInstance _item;
+	//private int _charObjId;
 
 	/**
 	 * Constructor of the DropItem server packet
 	 * @param item : L2ItemInstance designating the item
 	 * @param playerObjId : int designating the player ID who dropped the item
 	 */
-	public DropItem(L2ItemInstance item, int playerObjId)
-	{
-		_item=item;
-		_charObjId = playerObjId;
-	}
+	//public DropItem(L2ItemInstance item, int playerObjId)
+	//{
+		//_item=item;
+		//_charObjId = playerObjId;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x16);
-		writeD(_charObjId);
-		writeD(_item.getObjectId());
-		writeD(_item.getItemId());
+		//writeC(0x16);
+		int dropeador = readD();//writeD(_charObjId);
+		int objId = readD();//writeD(_item.getObjectId());
+		int item = readD();//writeD(_item.getItemId());
 
-		writeD(_item.getX());
-		writeD(_item.getY());
-		writeD(_item.getZ());
+		int x = readD();//writeD(_item.getX());
+		int y = readD();//writeD(_item.getY());
+		int z = readD();//writeD(_item.getZ());
 		// only show item count if it is a stackable item
-		if (_item.isStackable())
-		{
-			writeD(0x01);
-		}
-		else
-		{
-			writeD(0x00);
-		}
-		writeD(_item.getCount());
-
-		writeD(1); // unknown
+		boolean showCount = readD() != 0x00;
+                //if (_item.isStackable())
+		//{
+			//writeD(0x01);
+		//}
+		//else
+		//{
+			//writeD(0x00);
+		//}
+		int count = readD();//writeD(_item.getCount());
+		//writeD(1); // unknown
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__16_DROPITEM;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__16_DROPITEM;
+	//}
 
 }

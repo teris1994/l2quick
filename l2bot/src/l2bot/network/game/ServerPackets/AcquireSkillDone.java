@@ -27,7 +27,7 @@ public class AcquireSkillDone extends L2GameServerPacket
 	}
 /*
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
 		writeC(0x94);
 	}

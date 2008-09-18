@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Character;
+//import net.sf.l2j.gameserver.model.L2Character;
 
 /**
  *
@@ -29,42 +29,40 @@ import net.sf.l2j.gameserver.model.L2Character;
  */
 public class MoveToPawn extends L2GameServerPacket
 {
-	private static final String _S__75_MOVETOPAWN = "[S] 72 MoveToPawn";
-	private int _charObjId;
-	private int _targetId;
-	private int _distance;
-	private int _x, _y, _z;
+	//private static final String _S__75_MOVETOPAWN = "[S] 72 MoveToPawn";
+	//private int _charObjId;
+	//private int _targetId;
+	//private int _distance;
+	//private int _x, _y, _z;
 
-	public MoveToPawn(L2Character cha, L2Character target, int distance)
-	{
-		_charObjId = cha.getObjectId();
-		_targetId = target.getObjectId();
-		_distance = distance;
-		_x = cha.getX();
-		_y = cha.getY();
-		_z = cha.getZ();
-	}
+	//public MoveToPawn(L2Character cha, L2Character target, int distance)
+	//{
+		//_charObjId = cha.getObjectId();
+		//_targetId = target.getObjectId();
+		//_distance = distance;
+		//_x = cha.getX();
+		//_y = cha.getY();
+		//_z = cha.getZ();
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x72);
-
-		writeD(_charObjId);
-		writeD(_targetId);
-		writeD(_distance);
-
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
+		//writeC(0x72);
+		int objId = readD();//writeD(_charObjId);
+		int target = readD();//writeD(_targetId);
+		int d = readD();//writeD(_distance);
+		int x = readD();//writeD(_x);
+		int y = readD();//writeD(_y);
+		int z = readD();//writeD(_z);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__75_MOVETOPAWN;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__75_MOVETOPAWN;
+	//}
 }

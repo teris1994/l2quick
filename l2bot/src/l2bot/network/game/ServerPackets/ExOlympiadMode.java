@@ -26,33 +26,33 @@ package l2bot.network.game.ServerPackets;
 public class ExOlympiadMode extends L2GameServerPacket
 {
 	// chc
-	private static final String _S__FE_2B_OLYMPIADMODE = "[S] FE:7c ExOlympiadMode";
-	private static int _mode;
+	//private static final String _S__FE_2B_OLYMPIADMODE = "[S] FE:7c ExOlympiadMode";
+	//private static int _mode;
 
 
 	/**
 	 * @param _mode (0 = return, 3 = spectate)
 	 */
-	public ExOlympiadMode(int mode)
-	{
-		_mode = mode;
-	}
+	//public ExOlympiadMode(int mode)
+	//{
+		//_mode = mode;
+	//}
 
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x7c);
-		writeC(_mode);
+		//writeC(0xfe);
+		readH();//writeH(0x7c);
+		int mode = readC();//writeC(_mode);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_2B_OLYMPIADMODE;
-	}
+	//@Override
+	///public String getType()
+	//{
+		//return _S__FE_2B_OLYMPIADMODE;
+	//}
 }

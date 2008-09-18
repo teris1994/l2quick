@@ -14,9 +14,9 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2ItemInstance;
-import net.sf.l2j.gameserver.model.TradeList;
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.L2ItemInstance;
+//import net.sf.l2j.gameserver.model.TradeList;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 /**
  * This class ...
@@ -25,83 +25,84 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
  */
 public class PrivateStoreManageListBuy extends L2GameServerPacket
 {
-	private static final String _S__D0_PRIVATESELLLISTBUY = "[S] bd PrivateStoreManageListBuy";
-	private L2PcInstance _activeChar;
-	private int _playerAdena;
-	private L2ItemInstance[] _itemList;
-	private TradeList.TradeItem[] _buyList;
+	//private static final String _S__D0_PRIVATESELLLISTBUY = "[S] bd PrivateStoreManageListBuy";
+	//private L2PcInstance _activeChar;
+	//private int _playerAdena;
+	//private L2ItemInstance[] _itemList;
+	//private TradeList.TradeItem[] _buyList;
 
-	public PrivateStoreManageListBuy(L2PcInstance player)
-	{
-		_activeChar = player;
-		_playerAdena = _activeChar.getAdena();
-		_itemList = _activeChar.getInventory().getUniqueItems(false,true);
-		_buyList = _activeChar.getBuyList().getItems();
-	}
+	//public PrivateStoreManageListBuy(L2PcInstance player)
+	//{
+		//_activeChar = player;
+		//_playerAdena = _activeChar.getAdena();
+		//_itemList = _activeChar.getInventory().getUniqueItems(false,true);
+		//_buyList = _activeChar.getBuyList().getItems();
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0xbd);
-		//section 1
-		writeD(_activeChar.getObjectId());
-		writeD(_playerAdena);
+		//writeC(0xbd);
+		////section 1
+		int objId = readD();//writeD(_activeChar.getObjectId());
+		int adena = readD();//writeD(_playerAdena);
 
-		//section2
-		writeD(_itemList.length); // inventory items for potential buy
-		for (L2ItemInstance item : _itemList)
+		////section2
+		int s = readD();//writeD(_itemList.length); // inventory items for potential buy
+		//for (L2ItemInstance item : _itemList)
+                for (int i = 0; i < s; i++) 
 		{
-			writeD(item.getItemId());
-			writeH(0); //show enchant lvl as 0, as you can't buy enchanted weapons
-			writeD(item.getCount());
-			writeD(item.getReferencePrice());
-			writeH(0x00);
-			writeD(item.getItem().getBodyPart());
-			writeH(item.getItem().getType2());
+			int id = readD();//writeD(item.getItemId());
+			readH();//writeH(0); //show enchant lvl as 0, as you can't buy enchanted weapons
+			int count = readD();//writeD(item.getCount());
+			int price = readD();//writeD(item.getReferencePrice());
+			readH();//writeH(0x00);
+			int part = readD();//writeD(item.getItem().getBodyPart());
+			int type2 = readD();//writeH(item.getItem().getType2());
 
-			// T1
-			writeD(item.getAttackAttrElement());
-			writeD(item.getAttackAttrElementVal());
-			writeD(item.getDefAttrFire());
-			writeD(item.getDefAttrWater());
-			writeD(item.getDefAttrWind());
-			writeD(item.getDefAttrEarth());
-			writeD(item.getDefAttrHoly());
-			writeD(item.getDefAttrUnholy());
+			//// T1
+			readD();//writeD(item.getAttackAttrElement());
+			readD();//writeD(item.getAttackAttrElementVal());
+			readD();//writeD(item.getDefAttrFire());
+			readD();//writeD(item.getDefAttrWater());
+			readD();//writeD(item.getDefAttrWind());
+			readD();//writeD(item.getDefAttrEarth());
+			readD();//writeD(item.getDefAttrHoly());
+			readD();//writeD(item.getDefAttrUnholy());
 		}
 
 		//section 3
-		writeD(_buyList.length); //count for all items already added for buy
-		for (TradeList.TradeItem item : _buyList)
+		s = readD();//writeD(_buyList.length); //count for all items already added for buy
+		for (int i = 0; i < s; i++) 
 		{
-			writeD(item.getItem().getItemId());
-			writeH(0);
-			writeD(item.getCount());
-			writeD(item.getItem().getReferencePrice());
-			writeH(0x00);
-			writeD(item.getItem().getBodyPart());
-			writeH(item.getItem().getType2());
-			writeD(item.getPrice());//your price
-			writeD(item.getItem().getReferencePrice());//fixed store price
+			readD();//writeD(item.getItem().getItemId());
+			readD();//writeH(0);
+			readD();//writeD(item.getCount());
+			readD();//writeD(item.getItem().getReferencePrice());
+			readD();//writeH(0x00);
+			readD();//writeD(item.getItem().getBodyPart());
+			readD();//writeH(item.getItem().getType2());
+			readD();//writeD(item.getPrice());//your price
+			readD();//writeD(item.getItem().getReferencePrice());//fixed store price
 			
 			// T1
-            writeD(item.getAttackAttrElement());
-            writeD(item.getAttackAttrElementVal());
-            writeD(item.getDefAttrFire());
-            writeD(item.getDefAttrWater());
-            writeD(item.getDefAttrWind());
-            writeD(item.getDefAttrEarth());
-            writeD(item.getDefAttrHoly());
-            writeD(item.getDefAttrUnholy());
+                        readD();//writeD(item.getAttackAttrElement());
+                        readD();//writeD(item.getAttackAttrElementVal());
+                        readD();//writeD(item.getDefAttrFire());
+                        readD();//writeD(item.getDefAttrWater());
+                        readD();//writeD(item.getDefAttrWind());
+                        readD();//writeD(item.getDefAttrEarth());
+                        readD();//writeD(item.getDefAttrHoly());
+                        readD();//writeD(item.getDefAttrUnholy());
 		}
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__D0_PRIVATESELLLISTBUY;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__D0_PRIVATESELLLISTBUY;
+	//}
 }

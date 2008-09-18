@@ -22,46 +22,46 @@ package l2bot.network.game.ServerPackets;
  */
 public class Dice extends L2GameServerPacket
 {
-	private static final String _S__D4_Dice = "[S] da Dice";
-	private int _charObjId;
-	private int _itemId;
-	private int _number;
-	private int _x;
-	private int _y;
-	private int _z;
+	//private static final String _S__D4_Dice = "[S] da Dice";
+	//private int _charObjId;
+	//private int _itemId;
+	//private int _number;
+	//private int _x;
+	//private int _y;
+	//private int _z;
 
 	/**
 	 * 0xd4 Dice         dddddd
 	 * @param _characters
 	 */
-	public Dice(int charObjId, int itemId, int number, int x , int y , int z)
-	{
-		_charObjId = charObjId;
-		_itemId = itemId;
-		_number = number;
-		_x =x;
-		_y =y;
-		_z =z;
-	}
+	//public Dice(int charObjId, int itemId, int number, int x , int y , int z)
+	////{
+		//_charObjId = charObjId;
+		//_itemId = itemId;
+		//_number = number;
+		//_x =x;
+		//_y =y;
+		//_z =z;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0xda);
-		writeD(_charObjId);  //object id of player
-		writeD(_itemId);     //	item id of dice (spade)  4625,4626,4627,4628
-		writeD(_number);      //number rolled
-		writeD(_x);       //x
-		writeD(_y);       //y
-		writeD(_z);     //z
+		//writeC(0xda);
+		int objId = readD();//writeD(_charObjId);  //object id of player
+		int id = readD();//writeD(_itemId);     //	item id of dice (spade)  4625,4626,4627,4628
+		int number = readD();//writeD(_number);      //number rolled
+		int x=readD(),y=readD(),z=readD();//writeD(_x);       //x
+		//writeD(_y);       //y
+		//writeD(_z);     //z
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__D4_Dice;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__D4_Dice;
+	//}
 }

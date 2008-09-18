@@ -24,10 +24,10 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.datatables.ItemTable;
-import net.sf.l2j.gameserver.model.L2Multisell.MultiSellEntry;
-import net.sf.l2j.gameserver.model.L2Multisell.MultiSellIngredient;
-import net.sf.l2j.gameserver.model.L2Multisell.MultiSellListContainer;
+//import net.sf.l2j.gameserver.datatables.ItemTable;
+//import net.sf.l2j.gameserver.model.L2Multisell.MultiSellEntry;
+//import net.sf.l2j.gameserver.model.L2Multisell.MultiSellIngredient;
+//import net.sf.l2j.gameserver.model.L2Multisell.MultiSellListContainer;
 
 
 /**
@@ -37,99 +37,101 @@ import net.sf.l2j.gameserver.model.L2Multisell.MultiSellListContainer;
  */
 public final class MultiSellList extends L2GameServerPacket
 {
-    private static final String _S__D0_MULTISELLLIST = "[S] d0 MultiSellList";
+    //private static final String _S__D0_MULTISELLLIST = "[S] d0 MultiSellList";
 
-    protected int _listId, _page, _finished;
-    protected MultiSellListContainer _list;
+    //protected int _listId, _page, _finished;
+    //protected MultiSellListContainer _list;
 
-    public MultiSellList(MultiSellListContainer list, int page, int finished)
-    {
-    	_list = list;
-    	_listId = list.getListId();
-    	_page = page;
-    	_finished = finished;
-    }
+    //public MultiSellList(MultiSellListContainer list, int page, int finished)
+    //{
+    	//_list = list;
+    	//_listId = list.getListId();
+    	//_page = page;
+    	//_finished = finished;
+    //}
 
     @Override
-	protected void writeImpl()
+	public void readP()
     {
     	// [ddddd] [dchh] [hdhdh] [hhdh]
 
-        writeC(0xd0);
-        writeD(_listId);    // list id
-        writeD(_page);		// page
-        writeD(_finished);	// finished
-        writeD(0x28);	// size of pages
-        writeD(_list == null ? 0 : _list.getEntries().size()); //list length
+        //writeC(0xd0);
+        int id = readD();//writeD(_listId);    // list id
+        int page = readD();//writeD(_page);		// page
+        int fin = readD();//writeD(_finished);	// finished
+        int sz = readD();//writeD(0x28);	// size of pages
+        int s = readD();//writeD(_list == null ? 0 : _list.getEntries().size()); //list length
 
-        if(_list != null)
-        {
-            for(MultiSellEntry ent : _list.getEntries())
+        //if(_list != null)
+        //{
+            //for(MultiSellEntry ent : _list.getEntries())
+            for (int i = 0; i < s; i++) 
             {
-            	writeD(ent.getEntryId());
-            	writeC(1);
-                writeH(0x00); // C6
-                writeD(0x00); // C6
-                writeD(-2); // T1
-                writeD(0x00); // T1
-                writeD(0x00); // T1
-                writeD(0x00); // T1
-                writeD(0x00); // T1
-                writeD(0x00); // T1
-                writeD(0x00); // T1
-                writeD(0x00); // T1
-                writeD(0x00); // T1
-            	writeH(ent.getProducts().size());
-            	writeH(ent.getIngredients().size());
-
-            	for(MultiSellIngredient i: ent.getProducts())
+            	int enid = readD();//writeD(ent.getEntryId());
+            	readC();//writeC(1);
+                readH();//writeH(0x00); // C6
+                readD();//writeD(0x00); // C6
+                readD();//writeD(-2); // T1
+                readD();//writeD(0x00); // T1
+                readD();//writeD(0x00); // T1
+                readD();//writeD(0x00); // T1
+                readD();//writeD(0x00); // T1
+                readD();//writeD(0x00); // T1
+                readD();//writeD(0x00); // T1
+                readD();//writeD(0x00); // T1
+                readD();//writeD(0x00); // T1
+            	int s2 = readD();//writeH(ent.getProducts().size());
+            	int s3 = readD();//writeH(ent.getIngredients().size());
+            	//for(MultiSellIngredient i: ent.getProducts())
+                for (int j = 0; j < s2; j++) 
             	{
-	            	writeD(i.getItemId());
-	            	writeD(0);
-	            	writeH(ItemTable.getInstance().getTemplate(i.getItemId()).getType2());
-	            	writeD(i.getItemCount());
-	        	    writeH(i.getEnchantmentLevel()); //enchtant lvl
-	            	writeD(0x00); // C6
-	            	writeD(0x00); // C6
-                    writeD(-2); // T1
-                    writeD(0x00); // T1
-                    writeD(0x00); // T1
-                    writeD(0x00); // T1
-                    writeD(0x00); // T1
-                    writeD(0x00); // T1
-                    writeD(0x00); // T1
-                    writeD(0x00); // T1
+	            int item = readD();//writeD(i.getItemId());
+	            readD();//writeD(0);
+	            int type2 = readH();//writeH(ItemTable.getInstance().getTemplate(i.getItemId()).getType2());
+	            int count = readD();//writeD(i.getItemCount());
+	            int enchant = readH();//writeH(i.getEnchantmentLevel()); //enchtant lvl
+	            readD();//writeD(0x00); // C6
+	            readD();//writeD(0x00); // C6
+                    readD();//writeD(-2); // T1
+                    readD();//writeD(0x00); // T1
+                    readD();//writeD(0x00); // T1
+                    readD();//writeD(0x00); // T1
+                    readD();//writeD(0x00); // T1
+                    readD();//writeD(0x00); // T1
+                    readD();//writeD(0x00); // T1
+                    readD();//writeD(0x00); // T1
             	}
-
-                for(MultiSellIngredient i : ent.getIngredients())
+//
+                //for(MultiSellIngredient i : ent.getIngredients())
+                for (int j = 0; j < s3; j++) 
                 {
-                	int items = i.getItemId();
-                	int typeE = 65535;
-                	if (items != -200)
-                		typeE = ItemTable.getInstance().getTemplate(i.getItemId()).getType2();
-                    writeD(items);      //ID
-                    writeH(typeE);
-                    writeD(i.getItemCount());	//Count
-                    writeH(i.getEnchantmentLevel()); //Enchant Level
-                	writeD(0x00); // C6
-                	writeD(0x00); // C6
-                    writeD(-2); // T1
-                    writeD(0x00); // T1
-                    writeD(0x00); // T1
-                    writeD(0x00); // T1
-                    writeD(0x00); // T1
-                    writeD(0x00); // T1
-                    writeD(0x00); // T1
-                    writeD(0x00); // T1
+                    //int items = i.getItemId();
+                    //int typeE = 65535;
+                    //if (items != -200)
+                    //typeE = ItemTable.getInstance().getTemplate(i.getItemId()).getType2();
+                    int item = readD();//writeD(items);      //ID
+                    int type2 = readH();//writeH(typeE);
+                    int count = readD();//writeD(i.getItemCount());	//Count
+                    int enchant = readH();//writeH(i.getEnchantmentLevel()); //Enchant Level
+                    readD();//writeD(0x00); // C6
+                    readD();//writeD(0x00); // C6
+                    readD();//writeD(-2); // T1
+                    readD();//writeD(0x00); // T1
+                    readD();//writeD(0x00); // T1
+                    readD();//writeD(0x00); // T1
+                    readD();//writeD(0x00); // T1
+                    readD();//writeD(0x00); // T1
+                    readD();//writeD(0x00); // T1
+                    readD();//writeD(0x00); // T1
                 }
             }
-        }
+        //}
     }
 
-    @Override
-    public String getType()
-    {
-        return _S__D0_MULTISELLLIST;
-    }
+    //@Override
+    //public String getType()
+    //{
+        //return _S__D0_MULTISELLLIST;
+    //}
 
 }

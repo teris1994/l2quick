@@ -14,10 +14,10 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2ManufactureItem;
-import net.sf.l2j.gameserver.model.L2ManufactureList;
-import net.sf.l2j.gameserver.model.L2RecipeList;
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.L2ManufactureItem;
+//import net.sf.l2j.gameserver.model.L2ManufactureList;
+//import net.sf.l2j.gameserver.model.L2RecipeList;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 /**
  * dd d(dd) d(ddd)
@@ -26,81 +26,81 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 public class RecipeShopManageList  extends L2GameServerPacket
 {
 
-	private static final String _S__D8_RecipeShopManageList = "[S] de RecipeShopManageList";
-	private L2PcInstance _seller;
-	private boolean _isDwarven;
-	private L2RecipeList[] _recipes;
+	//private static final String _S__D8_RecipeShopManageList = "[S] de RecipeShopManageList";
+	//private L2PcInstance _seller;
+	//private boolean _isDwarven;
+	//private L2RecipeList[] _recipes;
 
-	public RecipeShopManageList(L2PcInstance seller, boolean isDwarven)
-	{
-		_seller = seller;
-		_isDwarven = isDwarven;
+////	public RecipeShopManageList(L2PcInstance seller, boolean isDwarven)
+	//{
+		//_seller = seller;
+		//_isDwarven = isDwarven;
 
-		if (_isDwarven && _seller.hasDwarvenCraft())
-			_recipes = _seller.getDwarvenRecipeBook();
-		else
-			_recipes = _seller.getCommonRecipeBook();
-
+		//if (_isDwarven && _seller.hasDwarvenCraft())
+			//_recipes = _seller.getDwarvenRecipeBook();
+		//else
+			//_recipes = _seller.getCommonRecipeBook();
+//
 		// clean previous recipes
-        if (_seller.getCreateList() != null)
-        {
-            L2ManufactureList list = _seller.getCreateList();
-            for (L2ManufactureItem item : list.getList())
-            {
-            	if (item.isDwarven() != _isDwarven)
-            		list.getList().remove(item);
-            }
-        }
-	}
+        //if (_seller.getCreateList() != null)
+        //{
+            //L2ManufactureList list = _seller.getCreateList();
+            //for (L2ManufactureItem item : list.getList())
+            //{
+            	//if (item.isDwarven() != _isDwarven)
+            		//list.getList().remove(item);
+            //}
+        //}
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0xde);
-		writeD(_seller.getObjectId());
-		writeD(_seller.getAdena());
-		writeD(_isDwarven ? 0x00 : 0x01);
+		//writeC(0xde);
+		int objId = readD();//writeD(_seller.getObjectId());
+		int adena = readD();//writeD(_seller.getAdena());
+		boolean enano = readD() == 0;//writeD(_isDwarven ? 0x00 : 0x01);
 
-		if (_recipes == null)
-		{
-			writeD(0);
-		}
-		else
-		{
-			writeD(_recipes.length);//number of items in recipe book
+		//if (_recipes == null)
+		//{
+			//writeD(0);
+		///}
+		//else
+		//{
+                int s = readD();//writeD(_recipes.length);//number of items in recipe book
 
-			for (int i = 0; i < _recipes.length; i++)
+			for (int i = 0; i < s; i++)
 			{
-				L2RecipeList temp = _recipes[i];
-				writeD(temp.getId());
-				writeD(i+1);
+				//L2RecipeList temp = _recipes[i];
+				int id = readD();//writeD(temp.getId());
+				readD();//writeD(i+1);
 			}
-		}
+		//}
 
-        if (_seller.getCreateList() == null)
-        {
-            writeD(0);
-        }
-        else
-        {
-            L2ManufactureList list = _seller.getCreateList();
-            writeD(list.size());
-
-            for (L2ManufactureItem item : list.getList())
-            {
-                writeD(item.getRecipeId());
-                writeD(0x00);
-                writeD(item.getCost());
-            }
-        }
+        //if (_seller.getCreateList() == null)
+        //{
+            //writeD(0);
+        //}
+        //else
+        //{
+            //L2ManufactureList list = _seller.getCreateList();
+            //writeD(list.size());
+//
+            //for (L2ManufactureItem item : list.getList())
+            //{
+                //writeD(item.getRecipeId());
+                //writeD(0x00);
+                //writeD(item.getCost());
+            //}
+        //}
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__D8_RecipeShopManageList;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__D8_RecipeShopManageList;
+	//}
 }

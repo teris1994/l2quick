@@ -20,32 +20,32 @@ package l2bot.network.game.ServerPackets;
  */
 public class ExRedSky extends L2GameServerPacket
 {
-	private static final String _S__FE_40_EXREDSKYPACKET = "[S] FE:41 ExRedSkyPacket";
-	private int _duration;
+	//private static final String _S__FE_40_EXREDSKYPACKET = "[S] FE:41 ExRedSkyPacket";
+	//private int _duration;
 
-	public ExRedSky(int duration)
-	{
-		_duration = duration;
-	}
+	//public ExRedSky(int duration)
+	//{
+		//_duration = duration;
+	//}
 
 	/**
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xFE);
-		writeH(0x41);
-		writeD(_duration);
+		//writeC(0xFE);
+		//writeH(0x41);
+		//writeD(_duration);
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_40_EXREDSKYPACKET;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_40_EXREDSKYPACKET;
+	//}
 
 }

@@ -16,32 +16,32 @@ package l2bot.network.game.ServerPackets;
 
 public final class TutorialShowQuestionMark extends L2GameServerPacket
 {
-	private static final String _S__A7_TUTORIALSHOWQUESTIONMARK = "[S] a7 TutorialShowQuestionMark";
-	private int _markId;
+	//private static final String _S__A7_TUTORIALSHOWQUESTIONMARK = "[S] a7 TutorialShowQuestionMark";
+	//private int _markId;
 
-	public TutorialShowQuestionMark(int blink)
-	{
-		_markId = blink; 
-	}
+	//public TutorialShowQuestionMark(int blink)
+	//{
+		//_markId = blink; 
+	//}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xa7);
-		writeD(_markId);
-
+		//writeC(0xa7);
+		int mark = readD();//writeD(_markId);
+//
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__A7_TUTORIALSHOWQUESTIONMARK;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__A7_TUTORIALSHOWQUESTIONMARK;
+	//}
 
 }

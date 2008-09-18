@@ -22,6 +22,11 @@ package l2bot.network.game.ServerPackets;
  */ 
 public class AgitDecoInfo extends L2GameServerPacket    //no se que hacer cn esto
 {
+
+    @Override
+    public void readP() {
+        this.getPj().inter.l.logError("Not info about packet");
+    }
     //private static final String _S__F7_AGITDECOINFO = "[S] fd AgitDecoInfo";
     //private ClanHall _clanHall;
     //private ClanHallFunction _function;
@@ -48,7 +53,7 @@ public class AgitDecoInfo extends L2GameServerPacket    //no se que hacer cn est
 		writeD(0);
      */
    /* @Override
-    protected final void writeImpl(){
+    public void readP(){
         writeC(0xfd);
         writeD(_clanHall.getId()); // clanhall id
         //FUNC_RESTORE_HP

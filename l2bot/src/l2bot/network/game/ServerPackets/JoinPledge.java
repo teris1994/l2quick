@@ -21,30 +21,29 @@ package l2bot.network.game.ServerPackets;
  */
 public final class JoinPledge extends L2GameServerPacket
 {
-	private static final String _S__45_JOINPLEDGE = "[S] 2d JoinPledge";
+	//private static final String _S__45_JOINPLEDGE = "[S] 2d JoinPledge";
 
-	private int _pledgeId;
+ //	private int _pledgeId;
 
-	public JoinPledge(int pledgeId)
-	{
-		_pledgeId = pledgeId;
-	}
+	//public JoinPledge(int pledgeId)
+	//{
+		//_pledgeId = pledgeId;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x2d);
-
-		writeD(_pledgeId);
+		//writeC(0x2d);
+		int id = readD();//writeD(_pledgeId);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__45_JOINPLEDGE;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__45_JOINPLEDGE;
+	//}
 
 }

@@ -17,10 +17,10 @@ package l2bot.network.game.ServerPackets;
 //import java.util.Calendar; //signed time related
 //import java.util.logging.Logger;
 
-import net.sf.l2j.gameserver.datatables.ClanTable;
-import net.sf.l2j.gameserver.model.L2Clan;
-import net.sf.l2j.gameserver.model.L2SiegeClan;
-import net.sf.l2j.gameserver.model.entity.Fort;
+//import net.sf.l2j.gameserver.datatables.ClanTable;
+//import net.sf.l2j.gameserver.model.L2Clan;
+//import net.sf.l2j.gameserver.model.L2SiegeClan;
+//import net.sf.l2j.gameserver.model.entity.Fort;
 /**
  * Populates the Siege Attacker List in the SiegeInfo Window<BR>
  * <BR>
@@ -49,60 +49,62 @@ import net.sf.l2j.gameserver.model.entity.Fort;
  */
 public final class FortSiegeAttackerList extends L2GameServerPacket
 {
-    private static final String _S__CA_SiegeAttackerList = "[S] ca SiegeAttackerList";
+    //private static final String _S__CA_SiegeAttackerList = "[S] ca SiegeAttackerList";
     //private static Logger _log = Logger.getLogger(SiegeAttackerList.class.getName());
-    private Fort _fort;
+    //private Fort _fort;
 
-    public FortSiegeAttackerList(Fort fort)
-    {
-        _fort = fort;
-    }
+    //public FortSiegeAttackerList(Fort fort)
+    //{
+        //_fort = fort;
+    //}
 
     @Override
-    protected final void writeImpl()
+    public void readP()
     {
-        writeC(0xca);
-        writeD(_fort.getFortId());
-        writeD(0x00); //0
-        writeD(0x01); //1
-        writeD(0x00); //0
-        int size = _fort.getSiege().getAttackerClans().size();
-        if (size > 0)
-        {
-            L2Clan clan;
-
-            writeD(size);
-            writeD(size);
-            for(L2SiegeClan siegeclan : _fort.getSiege().getAttackerClans())
+        //writeC(0xca);
+        int id = readD();//writeD(_fort.getFortId());
+        readD();//writeD(0x00); //0
+        readD();//writeD(0x01); //1
+        readD();//writeD(0x00); //0
+        int s = readD();//int size = _fort.getSiege().getAttackerClans().size();
+        if(s<=0){return;}
+        //if (size > 0)
+        //{
+            //L2Clan clan;
+//
+            //writeD(size);
+            readD();//writeD(size);
+            //for(L2SiegeClan siegeclan : _fort.getSiege().getAttackerClans())
+            for (int i = 0; i <s; i++)
             {
-                clan = ClanTable.getInstance().getClan(siegeclan.getClanId());
-                if (clan == null) continue;
-
-                writeD(clan.getClanId());
-                writeS(clan.getName());
-                writeS(clan.getLeaderName());
-                writeD(clan.getCrestId());
-                writeD(0x00); //signed time (seconds) (not storated by L2J)
-                writeD(clan.getAllyId());
-                writeS(clan.getAllyName());
-                writeS(""); //AllyLeaderName
-                writeD(clan.getAllyCrestId());
+                //clan = ClanTable.getInstance().getClan(siegeclan.getClanId());
+                //if (clan == null) continue;
+//
+                int cid = readD();//writeD(clan.getClanId());
+                String name = readS();//writeS(clan.getName());
+                String leader = readS();//writeS(clan.getLeaderName());
+                int crest = readD();//writeD(clan.getCrestId());
+                readD();//writeD(0x00); //signed time (seconds) (not storated by L2J)
+                int ally = readD();//writeD(clan.getAllyId());
+                String allyn = readS();//writeS(clan.getAllyName());
+                readS();//writeS(""); //AllyLeaderName
+                int allyCrest = readD();//writeD(clan.getAllyCrestId());
             }
-        }
-        else
-        {
-            writeD(0x00);
-            writeD(0x00);
-        }
+        //}
+        //else
+        //{
+            //writeD(0x00);
+            //writeD(0x00);
+        //}
     }
 
     /* (non-Javadoc)
      * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
      */
-    @Override
-    public String getType()
-    {
-        return _S__CA_SiegeAttackerList;
-    }
+    //@Override
+    //public String getType()
+    //{
+        //return _S__CA_SiegeAttackerList;
+    //}
 
 }

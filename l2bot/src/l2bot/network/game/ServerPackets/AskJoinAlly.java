@@ -47,12 +47,12 @@ public class AskJoinAlly extends L2GameServerPacket          //dialogo
         _requestorObjId = requestorObjId;
     }*/
     
-    //@Override
-    protected final void writeImpl()
+    @Override
+    public void readP()
     {
-        //weC(0xbb);
-        //writeD(_requestorObjId);
-        //writeS(_requestorName);
+        //writeC(0xbb);
+        int objId = readD();//writeD(_requestorObjId);
+        int name = readD();//writeS(_requestorName);
     }
     
     /* (non-Javadoc)

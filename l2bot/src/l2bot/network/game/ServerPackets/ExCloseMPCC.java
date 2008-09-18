@@ -30,19 +30,19 @@ public class ExCloseMPCC extends L2GameServerPacket
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x13);
+		//writeC(0xfe);
+		//writeH(0x13);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_26_EXCLOSEMPCC;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_26_EXCLOSEMPCC;
+	//}
 
 }

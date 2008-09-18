@@ -21,39 +21,39 @@ package l2bot.network.game.ServerPackets;
 public final class NpcSay extends L2GameServerPacket
 {
 	// dddS
-	private static final String _S__30_NPCSAY = "[S] 30 NpcSay";
-	private int _objectId;
-	private int _textType;
-	private int _npcId;
-	private String _text;
+	//private static final String _S__30_NPCSAY = "[S] 30 NpcSay";
+	//private int _objectId;
+	//private int _textType;
+	//private int _npcId;
+	//private String _text;
 
 	/**
 	 * @param _characters
 	 */
-	public NpcSay(int objectId, int messageType, int npcId, String text)
-	{
-		_objectId = objectId;
-		_textType = messageType;
-		_npcId = 1000000+npcId;
-		_text = text;
-	}
+	//public NpcSay(int objectId, int messageType, int npcId, String text)
+	//{
+		//_objectId = objectId;
+		//_textType = messageType;
+		//_npcId = 1000000+npcId;
+		//_text = text;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x30);
-		writeD(_objectId);
-		writeD(_textType);
-		writeD(_npcId);
-		writeS(_text);
+		//writeC(0x30);
+		int objId = readD();//writeD(_objectId);
+		int type = readD();//writeD(_textType);
+		int npc = readD();//writeD(_npcId);
+		String text = readS();//writeS(_text);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__30_NPCSAY;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//////return _S__30_NPCSAY;
+	//}
 }

@@ -14,13 +14,13 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import java.util.List;
-import java.util.logging.Logger;
+//import java.util.List;
+//import java.util.logging.Logger;
 
-import net.sf.l2j.gameserver.datatables.ClanTable;
-import net.sf.l2j.gameserver.instancemanager.FortManager;
-import net.sf.l2j.gameserver.model.L2Clan;
-import net.sf.l2j.gameserver.model.entity.Fort;
+//import net.sf.l2j.gameserver.datatables.ClanTable;
+//import net.sf.l2j.gameserver.instancemanager.FortManager;
+//import net.sf.l2j.gameserver.model.L2Clan;
+//import net.sf.l2j.gameserver.model.entity.Fort;
 
 /**
  *
@@ -28,59 +28,60 @@ import net.sf.l2j.gameserver.model.entity.Fort;
  */
 public class ExShowFortressInfo extends L2GameServerPacket
 {
-    private static final Logger _log = Logger.getLogger(ExShowFortressInfo.class.getName());
+    //private static final Logger _log = Logger.getLogger(ExShowFortressInfo.class.getName());
 	
 	/**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#getType()
      */
-    @Override
-    public String getType()
-    {
-        return "[S] FE:15 ExShowFortressInfo";
-    }
+    //@Override
+    //public String getType()
+    //{
+        //return "[S] FE:15 ExShowFortressInfo";
+    //}
 
     /**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#writeImpl()
      */
     @Override
-    protected void writeImpl()
+    public void readP()
     {
-        writeC(0xfe);
-        writeH(0x15);
-        List<Fort> forts = FortManager.getInstance().getForts();
-        writeD(forts.size());
-        for (Fort fort : forts)
+        //writeC(0xfe);
+        readH();//writeH(0x15);
+        //List<Fort> forts = FortManager.getInstance().getForts();
+        int s = readD();//writeD(forts.size());
+        //for (Fort fort : forts)
+        for (int i = 0; i < s; i++) 
         {
-            writeD(fort.getFortId());
-            if (fort.getOwnerId() > 0)
-            {
-                L2Clan clan = ClanTable.getInstance().getClan(fort.getOwnerId());
-                if (clan != null)
-                {
-                    writeS(clan.getName());
-                }
-                else
-                {
-                    _log.warning("No owner clan for fortress: "+fort.getName()+" - Owner Id: "+fort.getOwnerId());
-                    writeS("");
-                }
-            }
-            else
-            {
-                writeS("");
-            }
-            
-            if ((fort.getSiege().getIsScheduled()) || (fort.getSiege().getIsInProgress()))
-            {
-                writeD(1);
-            }
-            else
-            {
-            	writeD(0);
-            }
-            
-            // Time of possession
-            writeD(fort.getOwnedTime());
+            int id = readD();//writeD(fort.getFortId());
+            //if (fort.getOwnerId() > 0)
+            //{
+                //L2Clan clan = ClanTable.getInstance().getClan(fort.getOwnerId());
+                //if (clan != null)
+                //{
+                    String clan = readS();//writeS(clan.getName());
+                //}
+                //else
+                //{
+                    //_log.warning("No owner clan for fortress: "+fort.getName()+" - Owner Id: "+fort.getOwnerId());
+                    //writeS("");
+                //}
+            //}
+            //else
+            //{
+                //writeS("");
+            //}
+//            
+            //if ((fort.getSiege().getIsScheduled()) || (fort.getSiege().getIsInProgress()))
+            //{
+                int scheduled = readD();//writeD(1);
+            //}
+            //else
+            //{
+            	//writeD(0);
+            //}
+//            
+            //// Time of possession
+            int time = readD();//writeD(fort.getOwnedTime());
         }
     }
     

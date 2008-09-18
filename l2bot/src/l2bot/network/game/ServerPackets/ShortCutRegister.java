@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2ShortCut;
+//import net.sf.l2j.gameserver.model.L2ShortCut;
 /**
  *
  *
@@ -36,9 +36,9 @@ import net.sf.l2j.gameserver.model.L2ShortCut;
  */
 public final class ShortCutRegister extends L2GameServerPacket
 {
-	private static final String _S__56_SHORTCUTREGISTER = "[S] 44 ShortCutRegister";
+	//private static final String _S__56_SHORTCUTREGISTER = "[S] 44 ShortCutRegister";
 
-    private L2ShortCut _shortcut;
+    //private L2ShortCut _shortcut;
 
 	/**
 	 * Register new skill shortcut
@@ -48,50 +48,50 @@ public final class ShortCutRegister extends L2GameServerPacket
 	 * @param level
 	 * @param dat2
 	 */
-	public ShortCutRegister(L2ShortCut shortcut)
-	{
-		_shortcut = shortcut;
-	}
+	//public ShortCutRegister(L2ShortCut shortcut)
+	//{
+		//_shortcut = shortcut;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x44);
+		//writeC(0x44);
 
-		writeD(_shortcut.getType());
-		writeD(_shortcut.getSlot() + _shortcut.getPage() * 12); // C4 Client
-		switch(_shortcut.getType())
+        int type = readD();//writeD(_shortcut.getType());
+        int slot = readD();//writeD(_shortcut.getSlot() + _shortcut.getPage() * 12); // C4 Client
+        switch(type)
         {
-        case L2ShortCut.TYPE_ITEM: //1
-        	writeD(_shortcut.getId());
-        	break;
-        case L2ShortCut.TYPE_SKILL: //2
-        	writeD(_shortcut.getId());
-        	writeD(_shortcut.getLevel());
-        	writeC(0x00); // C5
-        	break;
-        case L2ShortCut.TYPE_ACTION: //3
-        	writeD(_shortcut.getId());
-        	break;
-        case L2ShortCut.TYPE_MACRO: //4
-        	writeD(_shortcut.getId());
-        	break;
-        case L2ShortCut.TYPE_RECIPE: //5
-        	writeD(_shortcut.getId());
-        	break;
+        case 1://case L2ShortCut.TYPE_ITEM: //1
+        	int id = readD();//writeD(_shortcut.getId());
+        	//break;
+        case 2://case L2ShortCut.TYPE_SKILL: //2
+        	int sid = readD();//writeD(_shortcut.getId());
+        	int lvl = readD();//writeD(_shortcut.getLevel());
+        	readC();//writeC(0x00); // C5
+        	//break;
+        case 3://case L2ShortCut.TYPE_ACTION: //3
+        	int aid = readD();//writeD(_shortcut.getId());
+        	//break;
+        case 4://case L2ShortCut.TYPE_MACRO: //4
+        	int mid = readD();//writeD(_shortcut.getId());
+        	//break;
+        case 5://case L2ShortCut.TYPE_RECIPE: //5
+        	int rid = readD();//writeD(_shortcut.getId());
+        	//break;
         default:
-        	writeD(_shortcut.getId());
+        	//writeD(_shortcut.getId());
         }
 
-		writeD(1);//??
+		//writeD(1);//??
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__56_SHORTCUTREGISTER;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__56_SHORTCUTREGISTER;
+	//}
 }

@@ -14,12 +14,12 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import java.util.logging.Logger;
+//import java.util.logging.Logger;
 
-import net.sf.l2j.Config;
-import net.sf.l2j.gameserver.RecipeController;
-import net.sf.l2j.gameserver.model.L2RecipeList;
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.Config;
+//import net.sf.l2j.gameserver.RecipeController;
+//import net.sf.l2j.gameserver.model.L2RecipeList;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 /**
  *
@@ -31,51 +31,51 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
  */
 public class RecipeItemMakeInfo extends L2GameServerPacket
 {
-    private static final String _S__D7_RECIPEITEMMAKEINFO = "[S] dd RecipeItemMakeInfo";
-    private static Logger _log = Logger.getLogger(RecipeItemMakeInfo.class.getName());
+    //private static final String _S__D7_RECIPEITEMMAKEINFO = "[S] dd RecipeItemMakeInfo";
+    //private static Logger _log = Logger.getLogger(RecipeItemMakeInfo.class.getName());
 
-    private int _id;
-    private L2PcInstance _activeChar;
-    private boolean _success;
+    //private int _id;
+    //private L2PcInstance _activeChar;
+    //private boolean _success;
 
-    public RecipeItemMakeInfo(int id, L2PcInstance player, boolean success)
-    {
-        _id = id;
-        _activeChar = player;
-        _success = success;
-    }
+    //public RecipeItemMakeInfo(int id, L2PcInstance player, boolean success)
+    //{
+        //_id = id;
+        //_activeChar = player;
+        //_success = success;
+    //}
 
-    public RecipeItemMakeInfo(int id, L2PcInstance player)
-    {
-        _id = id;
-        _activeChar = player;
-        _success = true;
-    }
+    //public RecipeItemMakeInfo(int id, L2PcInstance player)
+    //{
+        //_id = id;
+        //_activeChar = player;
+        //_success = true;
+    //}
 
     @Override
-	protected final void writeImpl()
+	public void readP()
     {
-        L2RecipeList recipe = RecipeController.getInstance().getRecipeById(_id);
-
-        if (recipe != null)
-        {
-            writeC(0xdd);
-
-            writeD(_id);
-            writeD(recipe.isDwarvenRecipe() ? 0 : 1); // 0 = Dwarven - 1 = Common
-            writeD((int) _activeChar.getCurrentMp());
-            writeD(_activeChar.getMaxMp());
-            writeD(_success ? 1 : 0); // item creation success/failed
-        }
-        else if (Config.DEBUG) _log.info("No recipe found with ID = " + _id);
+        //L2RecipeList recipe = RecipeController.getInstance().getRecipeById(_id);
+//
+        //if (recipe != null)
+        //{
+            //writeC(0xdd);
+//
+            int id = readD();//writeD(_id);
+            boolean eneno = readD() == 0;//writeD(recipe.isDwarvenRecipe() ? 0 : 1); // 0 = Dwarven - 1 = Common
+            int mp = readD();//writeD((int) _activeChar.getCurrentMp());
+            int maxMp = readD();//writeD(_activeChar.getMaxMp());
+            boolean success = readD() != 0;//writeD(_success ? 1 : 0); // item creation success/failed
+        //}
+        //else if (Config.DEBUG) _log.info("No recipe found with ID = " + _id);
     }
 
     /* (non-Javadoc)
      * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
      */
-    @Override
-	public String getType()
-    {
-        return _S__D7_RECIPEITEMMAKEINFO;
-    }
+    //@Override
+	//public String getType()
+    //{
+        //return _S__D7_RECIPEITEMMAKEINFO;
+    //}
 }

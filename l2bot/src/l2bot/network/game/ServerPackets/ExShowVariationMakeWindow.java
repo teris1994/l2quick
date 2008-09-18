@@ -21,25 +21,25 @@ package l2bot.network.game.ServerPackets;
  */
 public class ExShowVariationMakeWindow extends L2GameServerPacket
 {
-	private static final String _S__FE_50_EXSHOWVARIATIONMAKEWINDOW = "[S] FE:51 ExShowVariationMakeWindow";
+	//private static final String _S__FE_50_EXSHOWVARIATIONMAKEWINDOW = "[S] FE:51 ExShowVariationMakeWindow";
 
 	/**
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x51);
+		//writeC(0xfe);
+		//writeH(0x51);
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_50_EXSHOWVARIATIONMAKEWINDOW;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_50_EXSHOWVARIATIONMAKEWINDOW;
+	//}
 
 }

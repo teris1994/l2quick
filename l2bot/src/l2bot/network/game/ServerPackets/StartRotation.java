@@ -14,37 +14,37 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 public final class StartRotation extends L2GameServerPacket
 {
-	private static final String _S__77_BEGINROTATION = "[S] 7a BeginRotation";
-	private int _charObjId;
-	private int _degree;
-	private int _side;
+	//private static final String _S__77_BEGINROTATION = "[S] 7a BeginRotation";
+	//private int _charObjId;
+	//private int _degree;
+	//private int _side;
 
-	public StartRotation(L2PcInstance player, int degree, int side)
-	{
-		_charObjId = player.getObjectId();
-		_degree = degree;
-		_side = side;
-	}
+	//public StartRotation(L2PcInstance player, int degree, int side)
+	//{
+		//_charObjId = player.getObjectId();
+		//_degree = degree;
+		//_side = side;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x7a);
-		writeD(_charObjId);
-		writeD(_degree);
-		writeD(_side);
+		//writeC(0x7a);
+		int objId = readD();//writeD(_charObjId);
+		int degree = readD();//writeD(_degree);
+		int side = readD();//writeD(_side);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__77_BEGINROTATION;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__77_BEGINROTATION;
+	//}
 }

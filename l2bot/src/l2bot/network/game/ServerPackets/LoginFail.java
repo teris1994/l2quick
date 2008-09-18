@@ -22,7 +22,7 @@ package l2bot.network.game.ServerPackets;
  */
 public class LoginFail extends L2GameServerPacket
 {
-	private static final String _S__12_AUTHLOGINFAIL = "[S] 0a LoginFail";
+	//private static final String _S__12_AUTHLOGINFAIL = "[S] 0a LoginFail";
 	public static final int NO_TEXT = 0;
 	public static final int SYSTEM_ERROR_LOGIN_LATER = 1;
 	public static final int PASSWORD_DOES_NOT_MATCH_THIS_ACCOUNT = 2;
@@ -35,29 +35,29 @@ public class LoginFail extends L2GameServerPacket
 	public static final int ACCESS_FAILED_TRY_LATER4 = 9;
 	public static final int ACCESS_FAILED_TRY_LATER5 = 10;
 
-	private int _reason;
+	//private int _reason;
 
 	/**
 	 * @param _characters
 	 */
-	public LoginFail(int reason)
-	{
-		_reason = reason;
-	}
+	//public LoginFail(int reason)
+	//{
+		//_reason = reason;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x0a);
-		writeD(_reason);
+		//writeC(0x0a);
+		int razon = readD();//writeD(_reason);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__12_AUTHLOGINFAIL;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__12_AUTHLOGINFAIL;
+	//}
 }

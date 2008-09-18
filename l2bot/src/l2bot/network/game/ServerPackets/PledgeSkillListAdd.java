@@ -21,35 +21,34 @@ package l2bot.network.game.ServerPackets;
  */
 public class PledgeSkillListAdd extends L2GameServerPacket
 {
-	private static final String _S__FE_3A_PLEDGESKILLLISTADD = "[S] FE:3b PledgeSkillListAdd";
-	private int _id;
-	private int _lvl;
+	//private static final String _S__FE_3A_PLEDGESKILLLISTADD = "[S] FE:3b PledgeSkillListAdd";
+	//private int _id;
+	//private int _lvl;
 
-	public PledgeSkillListAdd(int id, int lvl)
-	{
-		_id = id;
-		_lvl = lvl;
-	}
+	//public PledgeSkillListAdd(int id, int lvl)
+	//{
+		//_id = id;
+		//_lvl = lvl;
+	//}
 
 	/**
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x3b);
-
-		writeD(_id);
-		writeD(_lvl);
+		//writeC(0xfe);
+		readH();//writeH(0x3b);
+		int id = readD();//writeD(_id);
+		int lvl = readD();//writeD(_lvl);
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_3A_PLEDGESKILLLISTADD;
-	}
+	//@Override
+	//public String getType()
+	//{
+		////return _S__FE_3A_PLEDGESKILLLISTADD;
+	//}
 }

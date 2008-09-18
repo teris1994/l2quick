@@ -21,28 +21,28 @@ package l2bot.network.game.ServerPackets;
  */
 public class TradeDone extends L2GameServerPacket
 {
-	private static final String _S__32_SENDTRADEDONE = "[S] 1c SendTradeDone";
-	private int _num;
+	//private static final String _S__32_SENDTRADEDONE = "[S] 1c SendTradeDone";
+	//private int _num;
 
-	public TradeDone (int num)
-	{
-		_num = num;
-	}
+	//public TradeDone (int num)
+	//{
+		//_num = num;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x1c);
-		writeD(_num);
+		//writeC(0x1c);
+		int num = readD();//writeD(_num);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__32_SENDTRADEDONE;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__32_SENDTRADEDONE;
+	//}
 
 }

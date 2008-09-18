@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Character;
+//import net.sf.l2j.gameserver.model.L2Character;
 
 /**
  * format  dddd
@@ -27,40 +27,40 @@ import net.sf.l2j.gameserver.model.L2Character;
  */
 public class TargetUnselected extends L2GameServerPacket
 {
-	private static final String _S__3A_TARGETUNSELECTED = "[S] 24 TargetUnselected";
-	private int _targetObjId;
-	private int _x;
-	private int _y;
-	private int _z;
+	//private static final String _S__3A_TARGETUNSELECTED = "[S] 24 TargetUnselected";
+	//private int _targetObjId;
+	//private int _x;
+	//private int _y;
+	//private int _z;
 
 	/**
 	 * @param _characters
 	 */
-	public TargetUnselected(L2Character character)
-	{
-		_targetObjId = character.getObjectId();
-		_x = character.getX();
-		_y = character.getY();
-		_z = character.getZ();
-	}
+	//public TargetUnselected(L2Character character)
+	//{
+		//_targetObjId = character.getObjectId();
+		//_x = character.getX();
+		//_y = character.getY();
+		//_z = character.getZ();
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x24);
-		writeD(_targetObjId);
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
-		writeD(0x00); //??
+		//writeC(0x24);
+		int objId = readD();//writeD(_targetObjId);
+		int x = readD();//writeD(_x);
+		int y = readD();//writeD(_y);
+		int z = readD();//writeD(_z);
+		//writeD(0x00); //??
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__3A_TARGETUNSELECTED;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__3A_TARGETUNSELECTED;
+	//}
 }

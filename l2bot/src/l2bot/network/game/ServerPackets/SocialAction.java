@@ -21,34 +21,34 @@ package l2bot.network.game.ServerPackets;
  */
 public class SocialAction extends L2GameServerPacket
 {
-	private static final String _S__3D_SOCIALACTION = "[S] 27 SocialAction";
-	private int _charObjId;
-	private int _actionId;
+	//private static final String _S__3D_SOCIALACTION = "[S] 27 SocialAction";
+	//private int _charObjId;
+	//private int _actionId;
 
 	/**
 	 * 0x3d SocialAction         dd
 	 * @param _characters
 	 */
-	public SocialAction(int playerId, int actionId)
-	{
-		_charObjId = playerId;
-		_actionId = actionId;
-	}
+	//public SocialAction(int playerId, int actionId)
+	//{
+		//_charObjId = playerId;
+		//_actionId = actionId;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x27);
-		writeD(_charObjId);
-		writeD(_actionId);
+		//writeC(0x27);
+		int objId = readD();//writeD(_charObjId);
+		int actionId = readD();  //writeD(_actionId);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__3D_SOCIALACTION;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__3D_SOCIALACTION;
+	//}
 }

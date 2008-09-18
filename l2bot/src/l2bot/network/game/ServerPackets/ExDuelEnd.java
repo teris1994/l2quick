@@ -20,30 +20,30 @@ package l2bot.network.game.ServerPackets;
  */
 public class ExDuelEnd extends L2GameServerPacket
 {
-	private static final String _S__FE_4E_EXDUELEND = "[S] FE:4f ExDuelEnd";
-	private int _unk1;
+	//private static final String _S__FE_4E_EXDUELEND = "[S] FE:4f ExDuelEnd";
+	//private int _unk1;
 
-	public ExDuelEnd(int unk1)
-	{
-		_unk1 = unk1;
-	}
+	//public ExDuelEnd(int unk1)
+	//{
+		//_unk1 = unk1;
+	//}
 
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x4f);
+		//writeC(0xfe);
+                readH();//writeH(0x4f);
 
-		writeD(_unk1);
+		int unk = readD();//writeD(_unk1);
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_4E_EXDUELEND;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_4E_EXDUELEND;
+	//}
 
 }

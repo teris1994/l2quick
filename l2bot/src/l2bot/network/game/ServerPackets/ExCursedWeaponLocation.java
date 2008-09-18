@@ -16,7 +16,8 @@ package l2bot.network.game.ServerPackets;
 
 import java.util.List;
 
-import net.sf.l2j.util.Point3D;
+//import net.sf.l2j.util.Point3D;
+import l2bot.util.Point3D;
 
 /**
  * Format: (ch) d[ddddd]
@@ -25,51 +26,54 @@ import net.sf.l2j.util.Point3D;
  */
 public class ExCursedWeaponLocation extends L2GameServerPacket
 {
-	private static final String _S__FE_46_EXCURSEDWEAPONLOCATION = "[S] FE:47 ExCursedWeaponLocation";
-	private List<CursedWeaponInfo> _cursedWeaponInfo;
+	//private static final String _S__FE_46_EXCURSEDWEAPONLOCATION = "[S] FE:47 ExCursedWeaponLocation";
+	//private List<CursedWeaponInfo> _cursedWeaponInfo;
 
-	public ExCursedWeaponLocation(List<CursedWeaponInfo> cursedWeaponInfo)
-	{
-		_cursedWeaponInfo = cursedWeaponInfo;
-	}
+	//public ExCursedWeaponLocation(List<CursedWeaponInfo> cursedWeaponInfo)
+	//{
+		//_cursedWeaponInfo = cursedWeaponInfo;
+	//}
 
 	/**
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x47);
+		//writeC(0xfe);
+		readH();//writeH(0x47);
 
-		if(!_cursedWeaponInfo.isEmpty())
-		{
-			writeD(_cursedWeaponInfo.size());
-			for(CursedWeaponInfo w : _cursedWeaponInfo)
-			{
-				writeD(w.id);
-				writeD(w.activated);
-
-				writeD(w.pos.getX());
-				writeD(w.pos.getY());
-				writeD(w.pos.getZ());
-			}
+		//if(!_cursedWeaponInfo.isEmpty())
+		//{
+			int s = readD();//writeD(_cursedWeaponInfo.size());
+			//for(CursedWeaponInfo w : _cursedWeaponInfo)
+			//{
+                                for(int i=0;i<s;i++){
+                                    int id = readD();//writeD(w.id);
+                                    int act = readD();//writeD(w.activated);
+                                    int x = readD();//writeD(w.pos.getX());
+                                    int y = readD();//writeD(w.pos.getY());
+                                    int z = readD();//writeD(w.pos.getZ());
+                                    
+                                    new CursedWeaponInfo(new Point3D(x,y,z),id,act);
+                                }
+			//}
 		}
-		else
-		{
-			writeD(0);
-			writeD(0);
-		}
-	}
+		//else
+		//{
+			//writeD(0);
+			//writeD(0);
+		//}
+	
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_46_EXCURSEDWEAPONLOCATION;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_46_EXCURSEDWEAPONLOCATION;
+	//}
 
 	public static class CursedWeaponInfo
 	{

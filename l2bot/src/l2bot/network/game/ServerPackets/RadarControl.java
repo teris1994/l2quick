@@ -16,43 +16,43 @@ package l2bot.network.game.ServerPackets;
 
 public class RadarControl extends L2GameServerPacket
 {
-    private static final String _S__EB_RadarControl = "[S] f1 RadarControl";
-    private int _showRadar;
-    private int _type;
-    private int _x;
-    private int _y;
-    private int _z;
+    //private static final String _S__EB_RadarControl = "[S] f1 RadarControl";
+    //private int _showRadar;
+    //private int _type;
+    //private int _x;
+    //private int _y;
+    //private int _z;
     /**
      * 0xEB RadarControl         ddddd
      * @param _
      */
 
-    public RadarControl(int showRadar, int type, int x , int  y ,int z)
-    {
-        _showRadar = showRadar;         // showRader?? 0 = showradar; 1 = delete radar;
-        _type = type;                   // radar type??
-        _x = x;
-        _y = y;
-        _z = z;
-    }
+    //public RadarControl(int showRadar, int type, int x , int  y ,int z)
+    //{
+        //_showRadar = showRadar;         // showRader?? 0 = showradar; 1 = delete radar;
+        //_type = type;                   // radar type??
+        //_x = x;
+        //_y = y;
+        //_z = z;
+    //}
 
 	@Override
-	protected final void writeImpl()
-    {
-        writeC(0xf1);
-        writeD(_showRadar);
-        writeD(_type);     //maybe type
-        writeD(_x);    //x
-        writeD(_y);    //y
-        writeD(_z);    //z
-    }
+	public void readP()
+        {
+            //writeC(0xf1);
+            boolean show = readD() != 0;//writeD(_showRadar);
+            int type = readD();//writeD(_type);     //maybe type
+            int x = readD();//writeD(_x);    //x
+            int y = readD();//writeD(_y);    //y
+            int z = readD();//writeD(_z);    //z
+        }
 
     /* (non-Javadoc)
      * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
      */
-    @Override
-	public String getType()
-    {
-        return _S__EB_RadarControl;
-    }
+    //@Override
+	//public String getType()
+    //{
+        //return _S__EB_RadarControl;
+    //}
 }

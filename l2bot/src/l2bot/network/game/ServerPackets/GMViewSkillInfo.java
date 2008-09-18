@@ -15,46 +15,46 @@
 
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Skill;
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.L2Skill;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 public class GMViewSkillInfo extends L2GameServerPacket
 {
-	private static final String _S__91_GMViewSkillInfo = "[S] 97 GMViewSkillInfo";
-	private L2PcInstance _activeChar;
-	private L2Skill[] _skills;
+	//private static final String _S__91_GMViewSkillInfo = "[S] 97 GMViewSkillInfo";
+	//private L2PcInstance _activeChar;
+	//private L2Skill[] _skills;
 
-	public GMViewSkillInfo (L2PcInstance cha)
-	{
-		_activeChar = cha;
-		_skills = _activeChar.getAllSkills();
-		if (_skills.length == 0)
-			_skills = new L2Skill[0];
-	}
-
+	//public GMViewSkillInfo (L2PcInstance cha)
+	//{
+		//_activeChar = cha;
+		//_skills = _activeChar.getAllSkills();
+		//if (_skills.length == 0)
+			//_skills = new L2Skill[0];
+	//}
+//
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x97);
-		writeS(_activeChar.getName());
-		writeD(_skills.length);
-
-		for (int i = 0; i < _skills.length; i++)
-		{
-			L2Skill skill = _skills[i];
-			writeD(skill.isPassive() ? 1 : 0);
-			writeD(skill.getLevel());
-			writeD(skill.getId());
-            writeC(0x00); //c5
-		}
+		//writeC(0x97);
+		//writeS(_activeChar.getName());
+		//writeD(_skills.length);
+//
+		//for (int i = 0; i < _skills.length; i++)
+		//{
+			//L2Skill skill = _skills[i];
+			//writeD(skill.isPassive() ? 1 : 0);
+			//writeD(skill.getLevel());
+			//writeD(skill.getId());
+            //writeC(0x00); //c5
+		//}
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__91_GMViewSkillInfo;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//////return _S__91_GMViewSkillInfo;
+	//}
 }

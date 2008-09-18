@@ -17,9 +17,9 @@ package l2bot.network.game.ServerPackets;
 import java.util.List;
 import java.util.logging.Logger;
 
-import net.sf.l2j.gameserver.datatables.ClanTable;
-import net.sf.l2j.gameserver.instancemanager.CastleManager;
-import net.sf.l2j.gameserver.model.entity.Castle;
+//import net.sf.l2j.gameserver.datatables.ClanTable;
+//import net.sf.l2j.gameserver.instancemanager.CastleManager;
+//import net.sf.l2j.gameserver.model.entity.Castle;
 
 /**
  *
@@ -31,41 +31,42 @@ public class ExShowCastleInfo extends L2GameServerPacket
     /**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#getType()
      */
-	private static Logger _log = Logger.getLogger(ExShowCastleInfo.class.getName());
+	//private static Logger _log = Logger.getLogger(ExShowCastleInfo.class.getName());
 
-    @Override
-    public String getType()
-    {
-        return "[S] FE:14 ExShowCastleInfo";
-    }
+    //@Override
+    //public String getType()
+    //{
+        //return "[S] FE:14 ExShowCastleInfo";
+    //}
 
     /**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#writeImpl()
      */
     @Override
-    protected void writeImpl()
+    public void readP()
     {
-        writeC(0xfe);
-        writeH(0x14);
-        List<Castle> castles = CastleManager.getInstance().getCastles();
-        writeD(castles.size());
-        for (Castle castle : castles)
+        //writeC(0xfe);
+        readD();//writeH(0x14);
+        //List<Castle> castles = CastleManager.getInstance().getCastles();
+        int s = readD();//writeD(castles.size());
+        //for (Castle castle : castles)
+        for (int i = 0; i < s; i++) 
         {
-            writeD(castle.getCastleId());
-            if (castle.getOwnerId() > 0)
-            {
-                if (ClanTable.getInstance().getClan(castle.getOwnerId()) != null)
-                    writeS(ClanTable.getInstance().getClan(castle.getOwnerId()).getName());
-                else
-                {
-                    _log.warning("Castle owner with no name! Castle: " + castle.getName() + " has an OwnerId = " + castle.getOwnerId() + " who does not have a  name!");
-                    writeS("");
-                }
-            }
-            else
-                writeS("");
-            writeD(castle.getTaxPercent());
-            writeD((int)(castle.getSiege().getSiegeDate().getTimeInMillis()/1000));
+            readD();//writeD(castle.getCastleId());
+            //if (castle.getOwnerId() > 0)
+            //{
+                //if (ClanTable.getInstance().getClan(castle.getOwnerId()) != null)
+                    String owner = readS();//writeS(ClanTable.getInstance().getClan(castle.getOwnerId()).getName());
+                //else
+                //{
+                    //_log.warning("Castle owner with no name! Castle: " + castle.getName() + " has an OwnerId = " + castle.getOwnerId() + " who does not have a  name!");
+                    //writeS("");
+                //}
+            //}
+            //else
+                //writeS("");
+            int tax = readD();//writeD(castle.getTaxPercent());
+            int time = readD();//writeD((int)(castle.getSiege().getSiegeDate().getTimeInMillis()/1000));
         }
     }
     

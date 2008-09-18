@@ -24,35 +24,35 @@ package l2bot.network.game.ServerPackets;
  */
 public class ShowTownMap extends L2GameServerPacket
 {
-	private static final String _S__DE_ShowTownMap = "[S] ea ShowTownMap";
-	private String _texture;
-	private int _x;
-	private int _y;
+	//private static final String _S__DE_ShowTownMap = "[S] ea ShowTownMap";
+	//private String _texture;
+	//private int _x;
+	//private int _y;
 
 	/**
 	 */
-	public ShowTownMap(String texture, int x, int y)
-	{
-		_texture = texture;
-		_x = x;
-		_y = y;
-	}
+	//public ShowTownMap(String texture, int x, int y)
+	//{
+		//_texture = texture;
+		//_x = x;
+		//_y = y;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0xea);
-		writeS(_texture);
-		writeD(_x);
-		writeD(_y);
+		//writeC(0xea);
+		String text =readS();//writeS(_texture);
+		int x = readD();//writeD(_x);
+		int y = readD();//writeD(_y);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__DE_ShowTownMap;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__DE_ShowTownMap;
+	//}
 }

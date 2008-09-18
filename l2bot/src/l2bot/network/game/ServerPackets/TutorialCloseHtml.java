@@ -16,17 +16,17 @@ package l2bot.network.game.ServerPackets;
 
 public class TutorialCloseHtml extends L2GameServerPacket
 {
-	private static final String _S__A9_TUTORIALCLOSEHTML = "[S] a9 TutorialCloseHtml";
+	//private static final String _S__A9_TUTORIALCLOSEHTML = "[S] a9 TutorialCloseHtml";
 
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xa9);
+		//writeC(0xa9);
 	}
 
-	@Override
-	public String getType()
-	{
-		return _S__A9_TUTORIALCLOSEHTML;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__A9_TUTORIALCLOSEHTML;
+	//}
 } 

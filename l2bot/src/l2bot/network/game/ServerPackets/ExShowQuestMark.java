@@ -20,31 +20,31 @@ package l2bot.network.game.ServerPackets;
  */
 public class ExShowQuestMark extends L2GameServerPacket
 {
-	private int _questId;
+	//private int _questId;
 
-	public ExShowQuestMark(int questId)
-	{
-		_questId = questId;
-	}
+	//public ExShowQuestMark(int questId)
+	//{
+		//_questId = questId;
+	//}
 
 	/**
 	 * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return "[S] FE:21 ExShowQuestMark";
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return "[S] FE:21 ExShowQuestMark";
+	//}
 
 	/**
 	 * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x21);
-		writeD(_questId);
+		//writeC(0xfe);
+		readH();//writeH(0x21);
+		int id = readD();//writeD(_questId);
 	}
 
 }

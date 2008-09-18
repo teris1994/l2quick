@@ -16,28 +16,28 @@ package l2bot.network.game.ServerPackets;
 
 public final class ChooseInventoryItem extends L2GameServerPacket
 {
-	private static final String _S__6F_CHOOSEINVENTORYITEM = "[S] 7c ChooseInventoryItem";
+	//private static final String _S__6F_CHOOSEINVENTORYITEM = "[S] 7c ChooseInventoryItem";
 
-	private int _itemId;
+	//private int _itemId;
 
-	public ChooseInventoryItem(int itemId)
-	{
-		_itemId=itemId;
-	}
+	//public ChooseInventoryItem(int itemId)
+	//{
+		//_itemId=itemId;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	   public void readP()
 	{
-		writeC(0x7c);
-		writeD(_itemId);
+		//writeC(0x7c);
+		int item = readD();//writeD(_itemId);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__6F_CHOOSEINVENTORYITEM;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__6F_CHOOSEINVENTORYITEM;
+	//}
 }

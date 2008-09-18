@@ -22,20 +22,25 @@ package l2bot.network.game.ServerPackets;
  */
 public class CharDeleteSuccess extends L2GameServerPacket
 {
-	private static final String _S__33_CHARDELETEOK = "[S] 1d CharDeleteOk";
 
-	@Override
-	protected final void writeImpl()
-	{
-		writeC(0x1d);
-	}
+        @Override
+        public void readP() {
+
+        }
+	//private static final String _S__33_CHARDELETEOK = "[S] 1d CharDeleteOk";
+
+	//@Override
+	//public void readP()
+	//{
+		//writeC(0x1d);
+	//}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__33_CHARDELETEOK;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__33_CHARDELETEOK;
+	//}
 }

@@ -22,32 +22,34 @@ package l2bot.network.game.ServerPackets;
  */
 public final class AskJoinPledge extends L2GameServerPacket
 {
-	private static final String _S__44_ASKJOINPLEDGE = "[S] 2c AskJoinPledge";
+	//private static final String _S__44_ASKJOINPLEDGE = "[S] 2c AskJoinPledge";
 
-	private int _requestorObjId;
-	private String _pledgeName;
+	//private int _requestorObjId;
+	//private String _pledgeName;
 
-	public AskJoinPledge()
-	{
-		_requestorObjId = requestorObjId;
-		_pledgeName = pledgeName;
-	}
+	//public AskJoinPledge()
+	//{
+		//_requestorObjId = requestorObjId;
+		//_pledgeName = pledgeName;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x2c);
-		writeD(_requestorObjId);
-		writeS(_pledgeName);
+		//writeC(0x2c);
+		//writeD(_requestorObjId);
+		//writeS(_pledgeName);
+            
+                getPj().clanHandler.openDialog(readD(),readS());
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__44_ASKJOINPLEDGE;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__44_ASKJOINPLEDGE;
+	//}
 
 }

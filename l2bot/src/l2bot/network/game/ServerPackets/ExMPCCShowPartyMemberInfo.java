@@ -14,8 +14,8 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Party;
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.L2Party;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 /**
  * Format: ch d[Sdd]
@@ -23,37 +23,38 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
  */
 public class ExMPCCShowPartyMemberInfo extends L2GameServerPacket
 {
-	private static final String _S__FE_4A_EXMPCCSHOWPARTYMEMBERINFO = "[S] FE:4b ExMPCCShowPartyMemberInfo";
-	private L2Party _party;
+	//private static final String _S__FE_4A_EXMPCCSHOWPARTYMEMBERINFO = "[S] FE:4b ExMPCCShowPartyMemberInfo";
+	//private L2Party _party;
 	
-	public ExMPCCShowPartyMemberInfo(L2Party party)
-	{
-		this._party = party;
-	}
+	//public ExMPCCShowPartyMemberInfo(L2Party party)
+	//{
+		/////this._party = party;
+	//}
 	/**
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x4b);
-		writeD(_party.getMemberCount()); // Number of Members
-		for(L2PcInstance pc : _party.getPartyMembers())
+		//writeC(0xfe);
+		readH();//writeH(0x4b);
+		int s = readD();//writeD(_party.getMemberCount()); // Number of Members
+		//for(L2PcInstance pc : _party.getPartyMembers())
+                for (int i = 0; i < s; i++) 
 		{
-			writeS(pc.getName()); // Membername
-			writeD(pc.getObjectId()); // ObjId
-			writeD(pc.getClassId().getId()); // Classid
+			String name = readS();//writeS(pc.getName()); // Membername
+			int objId = readD();//writeD(pc.getObjectId()); // ObjId
+			int classId = readD();//writeD(pc.getClassId().getId()); // Classid
 		}
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_4A_EXMPCCSHOWPARTYMEMBERINFO;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_4A_EXMPCCSHOWPARTYMEMBERINFO;
+	//}
 
 }

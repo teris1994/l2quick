@@ -32,7 +32,7 @@ import java.util.Vector;
  */
 public final class StatusUpdate extends L2GameServerPacket
 {
-    private static final String _S__1A_STATUSUPDATE = "[S] 18 StatusUpdate";
+    //private static final String _S__1A_STATUSUPDATE = "[S] 18 StatusUpdate";
     public static final int LEVEL = 0x01;
     public static final int EXP = 0x02;
     public static final int STR = 0x03;
@@ -66,8 +66,7 @@ public final class StatusUpdate extends L2GameServerPacket
     public static final int CUR_CP = 0x21;
     public static final int MAX_CP = 0x22;
 
-    private int _objectId;
-    private Vector<Attribute> _attributes;
+    //private int _objectId;
 
     class Attribute
     {
@@ -88,39 +87,40 @@ public final class StatusUpdate extends L2GameServerPacket
         }
     }
 
-    public StatusUpdate(int objectId)
-    {
-        _attributes = new Vector<Attribute>();
-        _objectId = objectId;
-    }
+    //public StatusUpdate(int objectId)
+    //{
+        //_attributes = new Vector<Attribute>();
+        //_objectId = objectId;
+    //}
 
-    public void addAttribute(int id, int level)
-    {
-        _attributes.add(new Attribute(id, level));
-    }
+    //public void addAttribute(int id, int level)
+    //{
+        //_attributes.add(new Attribute(id, level));
+    //}
 
     @Override
-	protected final void writeImpl()
+	public void readP()
     {
-        writeC(0x18);
-        writeD(_objectId);
-        writeD(_attributes.size());
+        Vector<Attribute> attributes = new Vector<Attribute>();
+        //writeC(0x18);
+        int objId = readD();//writeD(_objectId);
+        int s = readD(); //writeD(_attributes.size());
 
-        for (int i = 0; i < _attributes.size(); i++)
+        for (int i = 0; i < s; i++)
         {
-            Attribute temp = _attributes.get(i);
-
-            writeD(temp.id);
-            writeD(temp.value);
+            //Attribute temp = _attributes.get(i);
+            //writeD(temp.id);
+            //writeD(temp.value);
+            attributes.add(new Attribute(readD(),readD()));
         }
     }
 
     /* (non-Javadoc)
      * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
      */
-    @Override
-	public String getType()
-    {
-        return _S__1A_STATUSUPDATE;
-    }
+    //@Override
+	//public String getType()
+    //{
+        //return _S__1A_STATUSUPDATE;
+    //}
 }
