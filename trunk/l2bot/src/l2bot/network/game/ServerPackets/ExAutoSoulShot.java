@@ -21,35 +21,35 @@ package l2bot.network.game.ServerPackets;
  */
 public class ExAutoSoulShot extends L2GameServerPacket
 {
-	private static final String _S__FE_12_EXAUTOSOULSHOT = "[S] FE:0c ExAutoSoulShot";
-	private int _itemId;
-	private int _type;
+	//private static final String _S__FE_12_EXAUTOSOULSHOT = "[S] FE:0c ExAutoSoulShot";
+	//private int _itemId;
+	//private int _type;
 
 	/**
 	 * 0xfe:0x12 ExAutoSoulShot         (ch)dd
 	 * @param _characters
 	 */
-	public ExAutoSoulShot(int itemId, int type)
-	{
-		_itemId = itemId;
-		_type = type;
-	}
+	//public ExAutoSoulShot(int itemId, int type)
+	//{
+		//_itemId = itemId;
+		//_type = type;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0xFE);
-		writeH(0x0c);     // sub id
-		writeD(_itemId);
-		writeD(_type);
+		//writeC(0xFE);
+		readH();//writeH(0x0c);     // sub id
+		int id = readD();//writeD(_itemId);
+		int type = readD();//writeD(_type);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_12_EXAUTOSOULSHOT;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_12_EXAUTOSOULSHOT;
+	//}
 }

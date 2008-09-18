@@ -20,33 +20,33 @@ package l2bot.network.game.ServerPackets;
  */
 public class ExDuelStart extends L2GameServerPacket
 {
-	private static final String _S__FE_4D_EXDUELSTART = "[S] FE:4e ExDuelStart";
-	private int _unk1;
+	//private static final String _S__FE_4D_EXDUELSTART = "[S] FE:4e ExDuelStart";
+	//private int _unk1;
 
-	public ExDuelStart(int unk1)
-	{
-		_unk1 = unk1;
-	}
+	//public ExDuelStart(int unk1)
+	//{
+		//_unk1 = unk1;
+	//}
 
 	/**
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x4e);
+		//writeC(0xfe);
+		readH();//writeH(0x4e);
 
-		writeD(_unk1);
+		int unk = readD();//writeD(_unk1);
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_4D_EXDUELSTART;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_4D_EXDUELSTART;
+	//}
 
 }

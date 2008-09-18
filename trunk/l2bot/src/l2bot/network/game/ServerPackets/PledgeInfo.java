@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Clan;
+//import net.sf.l2j.gameserver.model.L2Clan;
 
 /**
  *
@@ -32,30 +32,30 @@ import net.sf.l2j.gameserver.model.L2Clan;
  */
 public class PledgeInfo extends L2GameServerPacket
 {
-	private static final String _S__9C_PLEDGEINFO = "[S] 89 PledgeInfo";
-	private L2Clan _clan;
+	//private static final String _S__9C_PLEDGEINFO = "[S] 89 PledgeInfo";
+	//private L2Clan _clan;
 
-	public PledgeInfo(L2Clan clan)
-	{
-		_clan = clan;
-	}
+	//public PledgeInfo(L2Clan clan)
+	//{
+		//_clan = clan;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x89);
-		writeD(_clan.getClanId());
-		writeS(_clan.getName());
-		writeS(_clan.getAllyName());
+		//writeC(0x89);
+		int id = readD();//writeD(_clan.getClanId());
+		String name = readS();//writeS(_clan.getName());
+		String ally = readS();//writeS(_clan.getAllyName());
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__9C_PLEDGEINFO;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__9C_PLEDGEINFO;
+	//}
 
 }

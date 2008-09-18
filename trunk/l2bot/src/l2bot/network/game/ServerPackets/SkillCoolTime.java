@@ -14,10 +14,10 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import java.util.Collection;
+//import java.util.Collection;
 
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance.TimeStamp;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance.TimeStamp;
 
 /**
  *
@@ -25,36 +25,37 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance.TimeStamp;
  */
 public class SkillCoolTime extends L2GameServerPacket
 {
-    public Collection<TimeStamp> _reuseTimeStamps;
+    //public Collection<TimeStamp> _reuseTimeStamps;
     
-    public SkillCoolTime(L2PcInstance cha)
-    {
-        _reuseTimeStamps = cha.getReuseTimeStamps();
-    }
+    //public SkillCoolTime(/*L2PcInstance cha*/)
+    //{
+        //_reuseTimeStamps = cha.getReuseTimeStamps();
+    //}
     
     /**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#getType()
      */
-    @Override
+    /*@Override
     public String getType()
     {
         return "[S] C7 SkillCoolTime";
-    }
+    }*/
 
     /**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#writeImpl()
      */
     @Override
-    protected void writeImpl()
+    public void readP()
     {
-        writeC(0xc7);
-        writeD(_reuseTimeStamps.size()); // list size
-        for (TimeStamp ts : _reuseTimeStamps)
+        //writeC(0xc7);
+        int s = readD();//writeD(_reuseTimeStamps.size()); // list size
+        //for (TimeStamp ts : _reuseTimeStamps)
+        for (int i = 0; i < s; i++) 
         {
-            writeD(ts.getSkill());
-            writeD(0x00);
-            writeD((int) ts.getReuse() / 1000);
-            writeD((int) ts.getRemaining() / 1000);
+            int skill = readD();//writeD(ts.getSkill());
+            readD();//writeD(0x00);
+            int reuse = readD();//writeD((int) ts.getReuse() / 1000);
+            int remaining = readD();//writeD((int) ts.getRemaining() / 1000);
         }
     }
     

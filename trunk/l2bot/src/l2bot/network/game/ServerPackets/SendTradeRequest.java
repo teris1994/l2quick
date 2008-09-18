@@ -21,27 +21,27 @@ package l2bot.network.game.ServerPackets;
  */
 public class SendTradeRequest extends L2GameServerPacket
 {
-	private static final String _S__73_SENDTRADEREQUEST = "[S] 70 SendTradeRequest";
-	private int _senderID;
+	//private static final String _S__73_SENDTRADEREQUEST = "[S] 70 SendTradeRequest";
+	//private int _senderID;
 
-	public SendTradeRequest(int senderID)
-	{
-		_senderID = senderID;
-	}
+	//public SendTradeRequest(int senderID)
+	//{
+		//_senderID = senderID;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x70);
-		writeD(_senderID);
+		//writeC(0x70);
+		int sender = readD();//writeD(_senderID);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__73_SENDTRADEREQUEST;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__73_SENDTRADEREQUEST;
+	//}
 }

@@ -14,8 +14,8 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.TradeList;
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.TradeList;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 /**
  * This class ...
@@ -25,64 +25,65 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 public class PrivateStoreListBuy extends L2GameServerPacket
 {
 //	private static final String _S__D1_PRIVATEBUYLISTBUY = "[S] b8 PrivateBuyListBuy";
-	private static final String _S__D1_PRIVATESTORELISTBUY = "[S] be PrivateStoreListBuy";
-	private L2PcInstance _storePlayer;
-	private L2PcInstance _activeChar;
-	private int _playerAdena;
-	private TradeList.TradeItem[] _items;
+	//private static final String _S__D1_PRIVATESTORELISTBUY = "[S] be PrivateStoreListBuy";
+	//private L2PcInstance _storePlayer;
+	//private L2PcInstance _activeChar;
+	//private int _playerAdena;
+	//private TradeList.TradeItem[] _items;
 
-	public PrivateStoreListBuy(L2PcInstance player, L2PcInstance storePlayer)
-	{
-		_storePlayer = storePlayer;
-		_activeChar = player;
-		_playerAdena = _activeChar.getAdena();
-		_storePlayer.getSellList().updateItems(); // Update SellList for case inventory content has changed
-		_items = _storePlayer.getBuyList().getAvailableItems(_activeChar.getInventory());
-	}
+	//public PrivateStoreListBuy(L2PcInstance player, L2PcInstance storePlayer)
+	//{
+		//_storePlayer = storePlayer;
+		//_activeChar = player;
+		//_playerAdena = _activeChar.getAdena();
+		//_storePlayer.getSellList().updateItems(); // Update SellList for case inventory content has changed
+		//_items = _storePlayer.getBuyList().getAvailableItems(_activeChar.getInventory());
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0xbe);
-		writeD(_storePlayer.getObjectId());
-		writeD(_playerAdena);
+		//writeC(0xbe);
+		int objid = readD();//writeD(_storePlayer.getObjectId());
+		int adena = readD();//writeD(_playerAdena);
 
-		writeD(_items.length);
+		int s = readD();//writeD(_items.length);
 
-		for (TradeList.TradeItem item : _items)
+		//for (TradeList.TradeItem item : _items)
+                for (int i = 0; i <s; i++) 
 		{
-			writeD(item.getObjectId());
-			writeD(item.getItem().getItemId());
-			writeH(item.getEnchant());
-			writeD(item.getCount()); //give max possible sell amount
+			int iobjId = readD();//writeD(item.getObjectId());
+			int itemid = readD();//writeD(item.getItem().getItemId());
+			int enchant = readH();//writeH(item.getEnchant());
+			int count = readD();//writeD(item.getCount()); //give max possible sell amount
 
-			writeD(item.getItem().getReferencePrice());
-			writeH(0);
+			int price = readD();//writeD(item.getItem().getReferencePrice());
+			readH();//writeH(0);
 
-			writeD(item.getItem().getBodyPart());
-			writeH(item.getItem().getType2());
-			writeD(item.getPrice());//buyers price
+			int bodypart = readD();//writeD(item.getItem().getBodyPart());
+			int type2 = readH();//writeH(item.getItem().getType2());
+			int pricef = readD();//writeD(item.getPrice());//buyers price
 
-			writeD(item.getCount());  // maximum possible tradecount
+			int max = readD();//writeD(item.getCount());  // maximum possible tradecount
 			
-			// T1
-            writeD(item.getAttackAttrElement());
-            writeD(item.getAttackAttrElementVal());
-            writeD(item.getDefAttrFire());
-            writeD(item.getDefAttrWater());
-            writeD(item.getDefAttrWind());
-            writeD(item.getDefAttrEarth());
-            writeD(item.getDefAttrHoly());
-            writeD(item.getDefAttrUnholy());
+			//// T1
+                        readD();//writeD(item.getAttackAttrElement());
+                        readD();//writeD(item.getAttackAttrElementVal());
+                        readD();//writeD(item.getDefAttrFire());
+                        readD();//writeD(item.getDefAttrWater());
+                        readD();//writeD(item.getDefAttrWind());
+                        readD();//writeD(item.getDefAttrEarth());
+                        readD();//writeD(item.getDefAttrHoly());
+                        readD();//writeD(item.getDefAttrUnholy());
 		}
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__D1_PRIVATESTORELISTBUY;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__D1_PRIVATESTORELISTBUY;
+	//}
 }

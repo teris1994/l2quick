@@ -35,36 +35,36 @@ package l2bot.network.game.ServerPackets;
  */
 public class MyTargetSelected extends L2GameServerPacket
 {
-	private static final String _S__BF_MYTARGETSELECTED = "[S] b9 MyTargetSelected";
-	private int _objectId;
-	private int _color;
+	//private static final String _S__BF_MYTARGETSELECTED = "[S] b9 MyTargetSelected";
+	//private int _objectId;
+	//private int _color;
 
 	/**
 	 * @param int objectId of the target
 	 * @param int level difference to the target. name color is calculated from that
 	 */
-	public MyTargetSelected(int objectId, int color)
-	{
-		_objectId = objectId;
-		_color = color;
-	}
+	//public MyTargetSelected(int objectId, int color)
+	//{
+		//_objectId = objectId;
+		//_color = color;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0xb9);
-		writeD(_objectId);
-		writeH(_color);
-		writeD(0x00);
+		//writeC(0xb9);
+		int objId = readD();//writeD(_objectId);
+		int color = readH();//writeH(_color);
+		//writeD(0x00);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__BF_MYTARGETSELECTED;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__BF_MYTARGETSELECTED;
+	//}
 
 }

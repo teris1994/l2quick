@@ -14,10 +14,10 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import java.util.Collection;
+//import java.util.Collection;
 
-import net.sf.l2j.gameserver.model.L2TradeList;
-import net.sf.l2j.gameserver.model.L2TradeList.L2TradeItem;
+//import net.sf.l2j.gameserver.model.L2TradeList;
+//import net.sf.l2j.gameserver.model.L2TradeList.L2TradeItem;
 
 /**
  * Format: c ddh[hdddhhd]
@@ -41,44 +41,45 @@ import net.sf.l2j.gameserver.model.L2TradeList.L2TradeItem;
 
 public final class BuyListSeed extends L2GameServerPacket
 {
-	private static final String _S__E8_BUYLISTSEED = "[S] e9 BuyListSeed";
+	//private static final String _S__E8_BUYLISTSEED = "[S] e9 BuyListSeed";
 
-	private int _manorId;
-	private Collection<L2TradeItem> _list;
-	private int _money;
+	//private int _manorId;
+	//private Collection<L2TradeItem> _list;
+	//private int _money;
 
-	public BuyListSeed()
-	{
-		_money  = currentMoney;
-		_manorId = manorId;
-		_list   = list.getItems();
-	}
+	//public BuyListSeed()
+	//{
+		//_money  = currentMoney;
+		//_manorId = manorId;
+		//_list   = list.getItems();
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0xe9);
+		//writeC(0xe9);
 
-		writeD(_money);                                 // current money
-		writeD(_manorId);                               // manor id
+		int adena = readD();//writeD(_money);                                 // current money
+		int id = readD();//writeD(_manorId);                               // manor id
 
-		writeH(_list.size());                           // list length
+		int s = readH();//writeH(_list.size());                           // list length
 
-		for (L2TradeItem item : _list)
-		{
-			writeH(0x04);                               // item->type1
-			writeD(0x00);                               // objectId
-			writeD(item.getItemId());                   // item id
-			writeD(item.getCurrentCount());             // item count
-			writeH(0x04);                               // item->type2
-			writeH(0x00);                               // unknown :)
-			writeD(item.getPrice());                    // price
+		for (int i = 0; i < s; i++) {
+                //for (L2TradeItem item : _list)
+		//{
+			readC();//writeH(0x04);                               // item->type1
+			readD();//writeD(0x00);                               // objectId
+			int itid = readD();//writeD(item.getItemId());                   // item id
+			int count = readD();//writeD(item.getCurrentCount());             // item count
+			readH();//writeH(0x04);                               // item->type2
+			readH();//writeH(0x00);                               // unknown :)
+			int precio = readD();//writeD(item.getPrice());                    // price
 		}
 	}
 
-	@Override
-	public String getType()
-	{
-		return _S__E8_BUYLISTSEED;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__E8_BUYLISTSEED;
+	//}
 }

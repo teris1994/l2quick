@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Object;
+//import net.sf.l2j.gameserver.model.L2Object;
 
 /**
  * sample
@@ -26,29 +26,29 @@ import net.sf.l2j.gameserver.model.L2Object;
  */
 public final class DeleteObject extends L2GameServerPacket
 {
-	private static final String _S__1E_DELETEOBJECT = "[S] 08 DeleteObject";
-	private int _objectId;
+	//private static final String _S__1E_DELETEOBJECT = "[S] 08 DeleteObject";
+	//private int _objectId;
 
-	public DeleteObject(L2Object obj)
-	{
-		_objectId = obj.getObjectId();
-	}
+	//public DeleteObject(L2Object obj)
+	//{
+		//_objectId = obj.getObjectId();
+	//}
 
 	@Override
-	protected final void writeImpl()
+	   public void readP()
 	{
-		writeC(0x08);
-		writeD(_objectId);
-		writeD(0x00); //c2
+		//writeC(0x08);
+		int objId = readD();//writeD(_objectId);
+		//writeD(0x00); //c2
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__1E_DELETEOBJECT;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__1E_DELETEOBJECT;
+	//}
 
 }

@@ -14,8 +14,8 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Character;
-import net.sf.l2j.gameserver.model.L2Object;
+//import net.sf.l2j.gameserver.model.L2Character;
+//import net.sf.l2j.gameserver.model.L2Object;
 
 /**
  *
@@ -31,59 +31,60 @@ import net.sf.l2j.gameserver.model.L2Object;
  */
 public class MagicSkillLaunched extends L2GameServerPacket
 {
-	private static final String _S__8E_MAGICSKILLLAUNCHED = "[S] 54 MagicSkillLaunched";
-	private int _charObjId;
-	private int _skillId;
-	private int _skillLevel;
-	private int _numberOfTargets;
-	private L2Object[] _targets;
-	private int _singleTargetId;
+	//private static final String _S__8E_MAGICSKILLLAUNCHED = "[S] 54 MagicSkillLaunched";
+	//private int _charObjId;
+	//private int _skillId;
+	//private int _skillLevel;
+	//private int _numberOfTargets;
+	//private L2Object[] _targets;
+	//private int _singleTargetId;
+//
 
+	//public MagicSkillLaunched(L2Character cha, int skillId, int skillLevel, L2Object[] targets)
+	//{
+		//_charObjId = cha.getObjectId();
+		//_skillId = skillId;
+		//_skillLevel = skillLevel;
+		//_numberOfTargets = targets.length;
+		//_targets = targets;
+		//_singleTargetId = 0;
+	//}
 
-	public MagicSkillLaunched(L2Character cha, int skillId, int skillLevel, L2Object[] targets)
-	{
-		_charObjId = cha.getObjectId();
-		_skillId = skillId;
-		_skillLevel = skillLevel;
-		_numberOfTargets = targets.length;
-		_targets = targets;
-		_singleTargetId = 0;
-	}
-
-	public MagicSkillLaunched(L2Character cha, int skillId, int skillLevel)
-	{
-		_charObjId = cha.getObjectId();
-		_skillId = skillId;
-		_skillLevel = skillLevel;
-		_numberOfTargets = 1;
-		_singleTargetId = cha.getTargetId();
-	}
+	//public MagicSkillLaunched(L2Character cha, int skillId, int skillLevel)
+	//{
+		//_charObjId = cha.getObjectId();
+		//_skillId = skillId;
+		//_skillLevel = skillLevel;
+		//_numberOfTargets = 1;
+		//_singleTargetId = cha.getTargetId();
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x54);
-		writeD(_charObjId);
-		writeD(_skillId);
-		writeD(_skillLevel);
-		writeD(_numberOfTargets); // also failed or not?
-		if (_singleTargetId != 0 || _numberOfTargets == 0)
-        {
-			writeD(_singleTargetId);
-        }
-		else for(L2Object target : _targets)
-		{
-            writeD(target.getObjectId());
-		}
+		//writeC(0x54);
+		int objId = readD();//writeD(_charObjId);
+		int skillid = readD();//writeD(_skillId);
+		int skilllvl = readD();//writeD(_skillLevel);
+		int targets = readD();//writeD(_numberOfTargets); // also failed or not?
+		//if (_singleTargetId != 0 || _numberOfTargets == 0)
+        //{
+			//writeD(_singleTargetId);
+        //}
+		//else for(L2Object target : _targets)
+		//{
+            //writeD(target.getObjectId());
+		//}
+                int target = readD();
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__8E_MAGICSKILLLAUNCHED;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__8E_MAGICSKILLLAUNCHED;
+	//}
 
 }

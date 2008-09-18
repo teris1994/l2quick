@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Character;
+//import net.sf.l2j.gameserver.model.L2Character;
 
 /**
  * 0000: 01  7a 73 10 4c  b2 0b 00 00  a3 fc 00 00  e8 f1 ff    .zs.L...........
@@ -27,43 +27,43 @@ import net.sf.l2j.gameserver.model.L2Character;
  */
 public final class MoveToLocation extends L2GameServerPacket
 {
-	private static final String _S__01_CHARMOVETOLOCATION = "[S] 2f MoveToLocation";
-	private int _charObjId, _x, _y, _z, _xDst, _yDst, _zDst;
+	//private static final String _S__01_CHARMOVETOLOCATION = "[S] 2f MoveToLocation";
+	//private int _charObjId, _x, _y, _z, _xDst, _yDst, _zDst;
 
-	public MoveToLocation(L2Character cha)
-	{
-		_charObjId = cha.getObjectId();
-		_x = cha.getX();
-		_y = cha.getY();
-		_z = cha.getZ();
-		_xDst = cha.getXdestination();
-		_yDst = cha.getYdestination();
-		_zDst = cha.getZdestination();
-	}
+	//public MoveToLocation(L2Character cha)
+	//{
+		//_charObjId = cha.getObjectId();
+		//_x = cha.getX();
+		//_y = cha.getY();
+		//_z = cha.getZ();
+		//_xDst = cha.getXdestination();
+		//_yDst = cha.getYdestination();
+		//_zDst = cha.getZdestination();
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x2f);
+		//writeC(0x2f);
 
-		writeD(_charObjId);
+		int objId = readD();//writeD(_charObjId);
 
-		writeD(_xDst);
-		writeD(_yDst);
-		writeD(_zDst);
+		int x1 = readD();//writeD(_xDst);
+		int y1 = readD();//writeD(_yDst);
+		int z1 = readD();//writeD(_zDst);
 
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
+		int x0 = readD();//writeD(_x);
+		int y0 = readD();//writeD(_y);
+		int z0 = readD();//writeD(_z);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__01_CHARMOVETOLOCATION;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__01_CHARMOVETOLOCATION;
+	//}
 
 }

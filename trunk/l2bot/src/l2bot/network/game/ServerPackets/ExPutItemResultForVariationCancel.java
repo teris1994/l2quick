@@ -20,40 +20,40 @@ package l2bot.network.game.ServerPackets;
  */
 public class ExPutItemResultForVariationCancel extends L2GameServerPacket
 {
-	private static final String _S__FE_56_EXCONFIRMCANCELITEM = "[S] FE:57 ExPutItemResultForVariationCancel";
+	//private static final String _S__FE_56_EXCONFIRMCANCELITEM = "[S] FE:57 ExPutItemResultForVariationCancel";
 
-	private int _itemObjId;
-	private int _price;
+	//private int _itemObjId;
+	//private int _price;
 
-	public ExPutItemResultForVariationCancel(int itemObjId, int price)
-	{
-		_itemObjId = itemObjId;
-		_price = price;
-	}
+	//public ExPutItemResultForVariationCancel(int itemObjId, int price)
+	//{
+		//_itemObjId = itemObjId;
+		//_price = price;
+	//}
 
 	/**
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x57);
-		writeD(0x40A97712);
-		writeD(_itemObjId);
-		writeD(0x27);
-		writeD(0x2006);
-		writeQ(_price);
-		writeD(0x01);
+		//writeC(0xfe);
+		readH();//writeH(0x57);
+		readD();//writeD(0x40A97712);
+		int objId = readD();//writeD(_itemObjId);
+		readD();//writeD(0x27);
+		readD();//writeD(0x2006);
+		long price = readQ();//writeQ(_price);
+		//writeD(0x01);
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_56_EXCONFIRMCANCELITEM;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_56_EXCONFIRMCANCELITEM;
+	//}
 
 }

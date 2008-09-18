@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Object;
+//import net.sf.l2j.gameserver.model.L2Object;
 
 /**
  * format  dddd
@@ -27,39 +27,39 @@ import net.sf.l2j.gameserver.model.L2Object;
  */
 public final class TeleportToLocation extends L2GameServerPacket
 {
-	private static final String _S__38_TELEPORTTOLOCATION = "[S] 22 TeleportToLocation";
-	private int _targetObjId;
-	private int _x;
-	private int _y;
-	private int _z;
+	//private static final String _S__38_TELEPORTTOLOCATION = "[S] 22 TeleportToLocation";
+	//private int _targetObjId;
+	//private int _x;
+	//private int _y;
+	//private int _z;
 
 	/**
 	 * @param _characters
 	 */
-	public TeleportToLocation(L2Object obj, int x, int y, int z)
-	{
-		_targetObjId = obj.getObjectId();
-		_x = x;
-		_y = y;
-		_z = z;
-	}
+	//public TeleportToLocation(L2Object obj, int x, int y, int z)
+	//{
+		//_targetObjId = obj.getObjectId();
+		//_x = x;
+		//_y = y;
+		//_z = z;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x22);
-		writeD(_targetObjId);
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
+		//writeC(0x22);
+		int objId = readD();//writeD(_targetObjId);
+		int x = readD();//writeD(_x);
+		int y = readD();//writeD(_y);
+		int z = readD();//writeD(_z);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__38_TELEPORTTOLOCATION;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__38_TELEPORTTOLOCATION;
+	//}
 }

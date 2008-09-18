@@ -20,39 +20,39 @@ package l2bot.network.game.ServerPackets;
  */
 public class ExUseSharedGroupItem extends L2GameServerPacket
 {
-	private static final String _S__FE_49_EXUSESHAREDGROUPITEM = "[S] FE:4a ExUseSharedGroupItem";
-	private int _unk1, _unk2, _unk3, _unk4;
+	//private static final String _S__FE_49_EXUSESHAREDGROUPITEM = "[S] FE:4a ExUseSharedGroupItem";
+	//private int _unk1, _unk2, _unk3, _unk4;
 
-	public ExUseSharedGroupItem(int unk1, int unk2, int unk3, int unk4)
-	{
-		_unk1 = unk1;
-		_unk2 = unk2;
-		_unk3 = unk3;
-		_unk4 = unk4;
-	}
+	//public ExUseSharedGroupItem(int unk1, int unk2, int unk3, int unk4)
+	//{
+		//_unk1 = unk1;
+		//_unk2 = unk2;
+		//_unk3 = unk3;
+		//_unk4 = unk4;
+	//}
 
 	/**
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x4a);
+		//writeC(0xfe);
+		readH();//writeH(0x4a);
 
-		writeD(_unk1);
-		writeD(_unk2);
-		writeD(_unk3);
-		writeD(_unk4);
+		readD();//writeD(_unk1);
+		readD();//writeD(_unk2);
+		readD();//writeD(_unk3);
+		readD();//writeD(_unk4);
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_49_EXUSESHAREDGROUPITEM;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_49_EXUSESHAREDGROUPITEM;
+	//}
 
 }

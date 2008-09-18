@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 /**
  * Format: (ch)ddddddd
@@ -30,54 +30,53 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
  */
 public class ExStorageMaxCount extends L2GameServerPacket
 {
-	private static final String _S__FE_2E_EXSTORAGEMAXCOUNT = "[S] FE:2f ExStorageMaxCount";
-	private L2PcInstance _activeChar;
-	private int _inventory;
-	private int _warehouse;
-	private int _freight;
-	private int _privateSell;
-	private int _privateBuy;
-	private int _receipeD;
-	private int _recipe;
+	//private static final String _S__FE_2E_EXSTORAGEMAXCOUNT = "[S] FE:2f ExStorageMaxCount";
+	//private L2PcInstance _activeChar;
+	//private int _inventory;
+	//private int _warehouse;
+	//private int _freight;
+	//private int _privateSell;
+	//private int _privateBuy;
+	//private int _receipeD;
+	//private int _recipe;
 
-	public ExStorageMaxCount(L2PcInstance character)
-	{
-		_activeChar = character;
-		_inventory = _activeChar.getInventoryLimit();
-        _warehouse = _activeChar.getWareHouseLimit();
-		_privateSell = _activeChar.getPrivateSellStoreLimit();
-		_privateBuy = _activeChar.getPrivateBuyStoreLimit();
-		_freight = _activeChar.getFreightLimit();
-		_receipeD = _activeChar.getDwarfRecipeLimit();
-		_recipe = _activeChar.getCommonRecipeLimit();
-	}
+	//public ExStorageMaxCount(L2PcInstance character)
+	//{
+		//_activeChar = character;
+		//_inventory = _activeChar.getInventoryLimit();
+        //_warehouse = _activeChar.getWareHouseLimit();
+		//_privateSell = _activeChar.getPrivateSellStoreLimit();
+		//_privateBuy = _activeChar.getPrivateBuyStoreLimit();
+		//_freight = _activeChar.getFreightLimit();
+		//_receipeD = _activeChar.getDwarfRecipeLimit();
+		//_recipe = _activeChar.getCommonRecipeLimit();
+	//}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x2f);
-
-		writeD(_inventory);
-		writeD(_warehouse);
-		writeD(_freight);
-		writeD(_privateSell);
-		writeD(_privateBuy);
-		writeD(_receipeD);
-		writeD(_recipe);
+		//writeC(0xfe);
+		readH();//writeH(0x2f);
+		int inventory = readD();//writeD(_inventory);
+		int ware = readD();//writeD(_warehouse);
+		int freight = readD();//writeD(_freight);
+		int sell = readD();//writeD(_privateSell);
+		int buy = readD();//writeD(_privateBuy);
+		int recipeD = readD();//writeD(_receipeD);
+		int recipe = readD();//writeD(_recipe);
 
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_2E_EXSTORAGEMAXCOUNT;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_2E_EXSTORAGEMAXCOUNT;
+	//}
 
 }

@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 /**
  * @author Maktakien
@@ -23,40 +23,40 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 public class StopMoveInVehicle  extends L2GameServerPacket
 {
 
-	private L2PcInstance _activeChar;
-	private int _boatId;
+	//private L2PcInstance _activeChar;
+	//private int _boatId;
 	/**
 	 * @param player
 	 * @param boatid
 	 */
-	public StopMoveInVehicle(L2PcInstance player, int boatid)
-	{
-		_activeChar = player;
-		_boatId = boatid;
-	}
+	//public StopMoveInVehicle(L2PcInstance player, int boatid)
+	//{
+		//_activeChar = player;
+		//_boatId = boatid;
+	//}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0x7f);
-		writeD(_activeChar.getObjectId());
-		writeD(_boatId);
-		writeD(_activeChar.getInBoatPosition().getX());
-		writeD(_activeChar.getInBoatPosition().getY());
-		writeD(_activeChar.getInBoatPosition().getZ());
-		writeD(_activeChar.getPosition().getHeading());
+		//writeC(0x7f);
+		int objId = readD();//writeD(_activeChar.getObjectId());
+		int boat = readD();//writeD(_boatId);
+		int x = readD();//writeD(_activeChar.getInBoatPosition().getX());
+		int y = readD();//writeD(_activeChar.getInBoatPosition().getY());
+		int z = readD();//writeD(_activeChar.getInBoatPosition().getZ());
+		int h = readD();//writeD(_activeChar.getPosition().getHeading());
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return "[S] 7f StopMoveInVehicle";
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return "[S] 7f StopMoveInVehicle";
+	//}
 
 }

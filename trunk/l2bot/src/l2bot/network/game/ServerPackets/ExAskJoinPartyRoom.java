@@ -20,31 +20,31 @@ package l2bot.network.game.ServerPackets;
  */
 public class ExAskJoinPartyRoom extends L2GameServerPacket
 {
-	private static final String _S__FE_34_EXASKJOINPARTYROOM = "[S] FE:35 ExAskJoinPartyRoom";
-	private String _charName;
+	//private static final String _S__FE_34_EXASKJOINPARTYROOM = "[S] FE:35 ExAskJoinPartyRoom";
+	//private String _charName;
 
 
-	public ExAskJoinPartyRoom(String charName)
-	{
-		_charName = charName;
-	}
+	//public ExAskJoinPartyRoom(String charName)
+	//{
+		//_charName = charName;
+	//}
 
 
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xFE);
-		writeH(0x35);
-		writeS(_charName);
+		//writeC(0xFE);
+		readH();//writeH(0x35);
+		String charname = readS();//writeS(_charName);
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_34_EXASKJOINPARTYROOM;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_34_EXASKJOINPARTYROOM;
+	//}
 
 }

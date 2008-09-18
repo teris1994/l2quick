@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2ClanMember;
+//import net.sf.l2j.gameserver.model.L2ClanMember;
 
 /**
  * Format : (ch) dSd
@@ -22,38 +22,37 @@ import net.sf.l2j.gameserver.model.L2ClanMember;
  */
 public class PledgeReceivePowerInfo extends L2GameServerPacket
 {
-	private static final String _S__FE_3C_PLEDGERECEIVEPOWERINFO = "[S] FE:3D PledgeReceivePowerInfo";
-	private L2ClanMember _member;
+	//private static final String _S__FE_3C_PLEDGERECEIVEPOWERINFO = "[S] FE:3D PledgeReceivePowerInfo";
+	//private L2ClanMember _member;
 
 	/**
 	 * @param member
 	 */
-	public PledgeReceivePowerInfo(L2ClanMember member)
-	{
-		_member = member;
-	}
+	//public PledgeReceivePowerInfo(L2ClanMember member)
+	//{
+		//_member = member;
+	//}
 
 	/**
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x3d);
-
-		writeD(_member.getPowerGrade()); //power grade
-		writeS(_member.getName());
-		writeD(_member.getClan().getRankPrivs(_member.getPowerGrade())); //privileges
+		//writeC(0xfe);
+		readH();//writeH(0x3d);
+		int power = readD();//writeD(_member.getPowerGrade()); //power grade
+		String name = readS();//writeS(_member.getName());
+		//writeD(_member.getClan().getRankPrivs(_member.getPowerGrade())); //privileges
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_3C_PLEDGERECEIVEPOWERINFO;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_3C_PLEDGERECEIVEPOWERINFO;
+	//}
 
 }

@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Object;
+//import net.sf.l2j.gameserver.model.L2Object;
 
 /**
  * sample
@@ -26,28 +26,28 @@ import net.sf.l2j.gameserver.model.L2Object;
  */
 public final class Revive extends L2GameServerPacket
 {
-	private static final String _S__0C_REVIVE = "[S] 01 Revive";
-	private int _objectId;
+	//private static final String _S__0C_REVIVE = "[S] 01 Revive";
+	//private int _objectId;
 
-	public Revive(L2Object obj)
-	{
-		_objectId = obj.getObjectId();
-	}
+	//public Revive(L2Object obj)
+	//{
+		//_objectId = obj.getObjectId();
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x01);
-		writeD(_objectId);
+		//writeC(0x01);
+		int objId = readD();//writeD(_objectId);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__0C_REVIVE;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__0C_REVIVE;
+	//}
 
 }

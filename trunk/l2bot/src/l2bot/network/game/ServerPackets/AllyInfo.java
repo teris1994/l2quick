@@ -34,17 +34,16 @@ public class AllyInfo extends L2GameServerPacket               //Esto no es un p
 	//	_cha = cha;
 	//}
 
-	//@Override
-	//protected final void writeImpl()
-	//{
-	    /*L2PcInstance activeChar = getClient().getActiveChar();
-	    if (activeChar == null) return;
-
-	    if (activeChar.getAllyId() == 0)
-	    {
-	        _cha.sendPacket(new SystemMessage(SystemMessageId.NO_CURRENT_ALLIANCES));
-            return;
-	    }*/
+	@Override
+	public void readP()
+	{
+	    //L2PcInstance activeChar = getClient().getActiveChar();
+	    //if (activeChar == null) return;
+	    //if (activeChar.getAllyId() == 0)
+	    //{
+	        //_cha.sendPacket(new SystemMessage(SystemMessageId.NO_CURRENT_ALLIANCES));
+            //return;
+	    //}
 
 		//======<AllyInfo>======
 	        // SystemMessage sm = new SystemMessage(SystemMessageId.ALLIANCE_INFO_HEAD);
@@ -101,7 +100,7 @@ public class AllyInfo extends L2GameServerPacket               //Esto no es un p
 		}
 		//=========================
 		sm = new SystemMessage(SystemMessageId.CLAN_INFO_FOOT);
-		_cha.sendPacket(sm);
+		_cha.sendPacket(sm);*/
 	}
 
 	/* (non-Javadoc)

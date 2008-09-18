@@ -20,62 +20,62 @@ package l2bot.network.game.ServerPackets;
  */
 public final class ExBasicActionList extends L2GameServerPacket
 {
-    private static final String _S__FE_5E_EXBASICACTIONLIST = "[S] FE:5F ExBasicActionList";
+    //private static final String _S__FE_5E_EXBASICACTIONLIST = "[S] FE:5F ExBasicActionList";
     
-    private final int[] _actionIds;
+    //private final int[] _actionIds;
     
-    public static final ExBasicActionList DEFAULT_ACTION_LIST = new ExBasicActionList();
+    //public static final ExBasicActionList DEFAULT_ACTION_LIST = new ExBasicActionList();
     
-    private ExBasicActionList()
-    {
-        this(ExBasicActionList.getDefaultActionList());
-    }
+    //private ExBasicActionList()
+    //{
+        //this(ExBasicActionList.getDefaultActionList());
+    //}
     
-    public static int[] getDefaultActionList()
-    {
-        int count1 = 63; // 0 <-> (count1 - 1)
-        int count2 = 61; // 1000 <-> (1000 + count2 - 1)
-        int[] actionIds = new int[count1 + count2];
-        
-        int index = 0;
-        for (int i = 0; i < count1; i++)
-        {
-            actionIds[index++] = i;
-        }
-        for (int i = 0; i < count2; i++)
-        {
-            actionIds[index++] = 1000 + i;
-        }
-        return actionIds;
-    }
-    
-    public ExBasicActionList(int... actionIds)
-    {
-        _actionIds = actionIds;
-    }
-    
-    
-    /**
-     * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#getType()
-     */
-    @Override
-    public String getType()
-    {
-        return _S__FE_5E_EXBASICACTIONLIST;
-    }
+    //public static int[] getDefaultActionList()
+    //{
+        //int count1 = 63; // 0 <-> (count1 - 1)
+        //int count2 = 61; // 1000 <-> (1000 + count2 - 1)
+        //int[] actionIds = new int[count1 + count2];
+//        
+        //int index = 0;
+        //for (int i = 0; i < count1; i++)
+        //{
+            //actionIds[index++] = i;
+        //}
+        //for (int i = 0; i < count2; i++)
+        //{
+            //actionIds[index++] = 1000 + i;
+        //}
+        //return actionIds;
+    //}
+//    
+    //public ExBasicActionList(int... actionIds)
+    //{
+        //_actionIds = actionIds;
+    //}
+//    
+//    
+    ///**
+     //* @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#getType()
+     //*/
+    //@Override
+    //public String getType()
+    //{
+        //return _S__FE_5E_EXBASICACTIONLIST;
+    //}
 
     /**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#writeImpl()
      */
     @Override
-    protected void writeImpl()
+    public void readP()
     {
-        writeC(0xfe);
-        writeH(0x5f);
-        writeD(_actionIds.length);
-        for (int i = 0; i < _actionIds.length; i++)
+        //writeC(0xfe);
+        readH();//writeH(0x5f);
+        int s = readD();//writeD(_actionIds.length);
+        for (int i=0;i<s;i++)
         {
-            writeD(_actionIds[i]);
+            int id = readD();//writeD(_actionIds[i]);
         }
     }
     

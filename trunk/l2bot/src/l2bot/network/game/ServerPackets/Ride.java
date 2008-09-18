@@ -14,83 +14,83 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 public final class Ride extends L2GameServerPacket
 {
-    private static final String _S__8c_Ride = "[S] 8c Ride";
-    public static final int ACTION_MOUNT = 1;
-    public static final int ACTION_DISMOUNT = 0;
-    private final int _id;
-    private final int _bRide;
-    private final int _rideType;
-    private final int _rideClassID;
-    private final int _x, _y, _z;
+    //private static final String _S__8c_Ride = "[S] 8c Ride";
+    //public static final int ACTION_MOUNT = 1;
+    //public static final int ACTION_DISMOUNT = 0;
+    //private final int _id;
+    //private final int _bRide;
+    //private final int _rideType;
+    //private final int _rideClassID;
+    //private final int _x, _y, _z;
 
-    public Ride(L2PcInstance cha, boolean mount, int rideClassId)
-    {
-        _id = cha.getObjectId();
-        _bRide = mount ? 1 : 0;
-        _rideClassID = rideClassId + 1000000; // npcID
-
-        _x = cha.getX();
-        _y = cha.getY();
-        _z = cha.getZ();
+    //public Ride(L2PcInstance cha, boolean mount, int rideClassId)
+    //{
+        //_id = cha.getObjectId();
+        //_bRide = mount ? 1 : 0;
+        //_rideClassID = rideClassId + 1000000; // npcID
+//
+        //_x = cha.getX();
+        //_y = cha.getY();
+        //_z = cha.getZ();
         
-        switch(rideClassId)
-        {
-            case 0: // dismount
-                _rideType = 0;
-                break;
-            case 12526: // Wind
-            case 12527: // Star
-            case 12528: // Twilight
-                _rideType = 1;
-                break;
-            case 12621: // Wyvern
-                _rideType = 2;
-                break;	
-            case 16037: // Great Snow Wolf    
-            case 16041: // Fenrir Wolf	
-            case 16042: // White Fenrir Wolf	
-                _rideType = 3;
-                break;
-            default:
-                throw new IllegalArgumentException("Unsupported mount NpcId: "+rideClassId);
-        }
-    }
+        //switch(rideClassId)
+        //{
+            //case 0: // dismount
+                //_rideType = 0;
+                //break;
+            //case 12526: // Wind
+            //case 12527: // Star
+            //case 12528: // Twilight
+                //_rideType = 1;
+                //break;
+            //case 12621: // Wyvern
+                //_rideType = 2;
+                //break;	
+            //case 16037: // Great Snow Wolf    
+            //case 16041: // Fenrir Wolf	
+            //case 16042: // White Fenrir Wolf	
+                //_rideType = 3;
+                //break;
+            //default:
+                //throw new IllegalArgumentException("Unsupported mount NpcId: "+rideClassId);
+        //}
+    //}
+
+    //@Override
+    //public void runImpl()
+    //{
+//
+    //}
+//
+    //public int getMountType()
+    //{
+        //return _rideType;
+    //}
 
     @Override
-    public void runImpl()
+	public void readP()
     {
 
-    }
-
-    public int getMountType()
-    {
-        return _rideType;
-    }
-
-    @Override
-	protected final void writeImpl()
-    {
-
-        writeC(0x8c);
-        writeD(_id);
-        writeD(_bRide);
-        writeD(_rideType);
-        writeD(_rideClassID);
-        writeD(_x);
-        writeD(_y);
-        writeD(_z);
+        //writeC(0x8c);
+        int id = readD();//writeD(_id);
+        int ride = readD();//writeD(_bRide);
+        int type = readD();//writeD(_rideType);
+        int classId = readD();//writeD(_rideClassID);
+        int x = readD();//writeD(_x);
+        int y = readD();//writeD(_y);
+        int z = readD();//writeD(_z);
     }
 
     /* (non-Javadoc)
      * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
      */
-    @Override
-	public String getType()
-    {
-        return _S__8c_Ride;
-    }
+    //@Override
+	//public String getType()
+    //{
+        //return _S__8c_Ride;
+    //}
 }

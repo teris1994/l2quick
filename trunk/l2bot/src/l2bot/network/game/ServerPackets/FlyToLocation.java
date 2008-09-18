@@ -17,8 +17,8 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Character;
-import net.sf.l2j.gameserver.model.L2Object;
+//import net.sf.l2j.gameserver.model.L2Character;
+//import net.sf.l2j.gameserver.model.L2Object;
 
 /**
  *
@@ -26,9 +26,9 @@ import net.sf.l2j.gameserver.model.L2Object;
  */
 public final class FlyToLocation extends L2GameServerPacket
 {
-    private final L2Character _cha;
-    private final int _destX, _destY, _destZ;
-    private final FlyType _type;
+    //private final L2Character _cha;
+    //private final int _destX, _destY, _destZ;
+    //private final FlyType _type;
     
     public enum FlyType
     {
@@ -38,44 +38,44 @@ public final class FlyToLocation extends L2GameServerPacket
         CHARGE;
     }
     
-    public FlyToLocation(L2Character cha, int destX, int destY, int destZ, FlyType type)
-    {
-        _cha = cha;
-        _destX = destX;
-        _destY = destY;
-        _destZ = destZ;
-        _type = type;
-    }
+    //public FlyToLocation(L2Character cha, int destX, int destY, int destZ, FlyType type)
+    //{
+        //_cha = cha;
+        //_destX = destX;
+        //_destY = destY;
+        //_destZ = destZ;
+        //_type = type;
+    //}
     
-    public FlyToLocation(L2Character cha, L2Object dest, FlyType type)
-    {
-        this(cha, dest.getX(), dest.getY(), dest.getZ(), type);
-    }
+    //public FlyToLocation(L2Character cha, L2Object dest, FlyType type)
+    //{
+        //this(cha, dest.getX(), dest.getY(), dest.getZ(), type);
+    //}
     
     /**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#getType()
      */
-    @Override
-    public String getType()
-    {
-        return "[S] 0xd4 FlyToLocation";
-    }
+    //@Override
+    //public String getType()
+    //{
+        //return "[S] 0xd4 FlyToLocation";
+    //}
 
     /**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#writeImpl()
      */
     @Override
-    protected void writeImpl()
+    public void readP()
     {
-        writeC(0xd4);
-        writeD(_cha.getObjectId());
-        writeD(_destX);
-        writeD(_destY);
-        writeD(_destZ);
-        writeD(_cha.getX());
-        writeD(_cha.getY());
-        writeD(_cha.getZ());
-        writeD(_type.ordinal());
+        //writeC(0xd4);
+        int objId = readD();//writeD(_cha.getObjectId());
+        int x = readD();//writeD(_destX);
+        int y = readD();//writeD(_destY);
+        int z = readD();//writeD(_destZ);
+        int x0 = readD();//writeD(_cha.getX());
+        int y0 = readD();//writeD(_cha.getY());
+        int z0 = readD();//writeD(_cha.getZ());
+        FlyType type = FlyType.values()[readD()];//writeD(_type.ordinal());
     }
     
 }

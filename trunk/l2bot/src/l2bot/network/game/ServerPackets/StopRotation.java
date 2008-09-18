@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Character;
+//import net.sf.l2j.gameserver.model.L2Character;
 
 /**
  * This class ...
@@ -23,30 +23,30 @@ import net.sf.l2j.gameserver.model.L2Character;
  */
 public class StopRotation extends L2GameServerPacket
 {
-	private static final String _S__78_STOPROTATION = "[S] 61 StopRotation";
-	private int _charObjId;
-	private int _degree;
+	//private static final String _S__78_STOPROTATION = "[S] 61 StopRotation";
+	//private int _charObjId;
+	//private int _degree;
 
-	public StopRotation(L2Character player, int degree)
-	{
-		_charObjId = player.getObjectId();
-		_degree = degree;
-	}
+	//public StopRotation(L2Character player, int degree)
+	//{
+		//_charObjId = player.getObjectId();
+		//_degree = degree;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x61);
-		writeD(_charObjId);
-		writeD(_degree);
+		//writeC(0x61);
+		int objId = readD();//writeD(_charObjId);
+		int degree = readD();//writeD(_degree);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__78_STOPROTATION;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__78_STOPROTATION;
+	//}
 }

@@ -20,30 +20,30 @@ package l2bot.network.game.ServerPackets;
  */
 public class ShowXMasSeal extends L2GameServerPacket
 {
-	private static final String _S__F2_SHOWXMASSEAL = "[S] f8 ShowXMasSeal";
-	private int _item;
+	//private static final String _S__F2_SHOWXMASSEAL = "[S] f8 ShowXMasSeal";
+	//private int _item;
 
-	public ShowXMasSeal(int item)
-	{
-		_item = item;
-	}
+	//public ShowXMasSeal(int item)
+	//{
+		//_item = item;
+	//}
 
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xf8);
+		//writeC(0xf8);
 
-		writeD(_item);
+		int item = readD();//writeD(_item);
 	}
 
 
 	/**
 	 * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__F2_SHOWXMASSEAL;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__F2_SHOWXMASSEAL;
+	//}
 
 }

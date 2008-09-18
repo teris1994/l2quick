@@ -21,25 +21,25 @@ package l2bot.network.game.ServerPackets;
  */
 public final class MagicSkillCanceld extends L2GameServerPacket
 {
-	private static final String _S__5B_MAGICSKILLCANCELD = "[S] 49 MagicSkillCanceld";
+	//private static final String _S__5B_MAGICSKILLCANCELD = "[S] 49 MagicSkillCanceld";
 
-	private int _objectId;
+	//private int _objectId;
 
-	public MagicSkillCanceld (int objectId)
-	{
-		_objectId = objectId;
-	}
-
-	@Override
-	protected final void writeImpl()
-	{
-		writeC(0x49);
-		writeD(_objectId);
-	}
+	//public MagicSkillCanceld (int objectId)
+	//{
+		//_objectId = objectId;
+	//}
 
 	@Override
-	public String getType()
+	public void readP()
 	{
-		return _S__5B_MAGICSKILLCANCELD;
+		//writeC(0x49);
+		int objId = readD();//writeD(_objectId);
 	}
+
+	//@Override
+	//public String getType()
+	//{
+		//return _S__5B_MAGICSKILLCANCELD;
+	//}
 }

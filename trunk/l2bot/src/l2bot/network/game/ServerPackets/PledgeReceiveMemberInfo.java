@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2ClanMember;
+//import net.sf.l2j.gameserver.model.L2ClanMember;
 
 /**
  *
@@ -22,48 +22,45 @@ import net.sf.l2j.gameserver.model.L2ClanMember;
  */
 public class PledgeReceiveMemberInfo extends L2GameServerPacket
 {
-	private static final String _S__FE_3D_PLEDGERECEIVEMEMBERINFO = "[S] FE:3e PledgeReceiveMemberInfo";
-	private L2ClanMember _member;
+	//private static final String _S__FE_3D_PLEDGERECEIVEMEMBERINFO = "[S] FE:3e PledgeReceiveMemberInfo";
+	//private L2ClanMember _member;
 
 	/**
 	 * @param member
 	 */
-	public PledgeReceiveMemberInfo(L2ClanMember member)
-	{
-		_member = member;
-	}
+	//public PledgeReceiveMemberInfo(L2ClanMember member)
+	//{
+		//_member = member;
+	//}
 
 	/**
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x3e);
-
-		writeD(_member.getPledgeType());
-		writeS(_member.getName());
-		writeS(_member.getTitle()); // title
-		writeD(_member.getPowerGrade()); // power
-
-		//clan or subpledge name
-		if(_member.getPledgeType() != 0)
-		{
-			writeS((_member.getClan().getSubPledge(_member.getPledgeType())).getName());
-		}
-		else writeS(_member.getClan().getName());
-
-		writeS(_member.getApprenticeOrSponsorName()); // name of this member's apprentice/sponsor
+		//writeC(0xfe);
+		readH();//writeH(0x3e);
+		int type = readD();//writeD(_member.getPledgeType());
+		String name = readS();//writeS(_member.getName());
+		String title = readS();//writeS(_member.getTitle()); // title
+		int power = readD();//writeD(_member.getPowerGrade()); // power
+		////clan or subpledge name
+		//if(_member.getPledgeType() != 0)
+		//{
+			//writeS((_member.getClan().getSubPledge(_member.getPledgeType())).getName());
+		//}
+		String unk = readS(); //else writeS(_member.getClan().getName());
+		String productor = readS();//writeS(_member.getApprenticeOrSponsorName()); // name of this member's apprentice/sponsor
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_3D_PLEDGERECEIVEMEMBERINFO;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_3D_PLEDGERECEIVEMEMBERINFO;
+	//}
 
 }

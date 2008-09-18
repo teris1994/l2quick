@@ -24,31 +24,31 @@ public final class AutoAttackStart extends L2GameServerPacket
 {
 	// dh
 
-	private static final String _S__3B_AUTOATTACKSTART = "[S] 25 AutoAttackStart";
-	private int _targetObjId;
+	//private static final String _S__3B_AUTOATTACKSTART = "[S] 25 AutoAttackStart";
+	//private int _targetObjId;
 
 	/**
 	 * @param _characters
 	 */
-	public AutoAttackStart()
-	{
-		_targetObjId = targetId;
-	}
+	//public AutoAttackStart()
+	//{
+		//_targetObjId = targetId;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	       public  void readP()
 	{
-		writeC(0x25);
-		writeD(_targetObjId);
+		//writeC(0x25);
+		int target = readD();//writeD(_targetObjId);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__3B_AUTOATTACKSTART;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__3B_AUTOATTACKSTART;
+	//}
 
 }

@@ -22,21 +22,21 @@ package l2bot.network.game.ServerPackets;
  */
 public class CharCreateOk extends L2GameServerPacket
 {
-	private static final String _S__25_CHARCREATEOK = "[S] 0f CharCreateOk";
+	//private static final String _S__25_CHARCREATEOK = "[S] 0f CharCreateOk";
 
 	@Override
-	protected final void writeImpl()
+	public  void readP()
 	{
-		writeC(0x0f);
-		writeD(0x01);
+		//writeC(0x0f);
+		//writeD(0x01);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__25_CHARCREATEOK;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__25_CHARCREATEOK;
+	//}
 }

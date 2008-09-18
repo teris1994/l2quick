@@ -14,11 +14,11 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import java.util.Map;
+//import java.util.Map;
 
-import net.sf.l2j.gameserver.datatables.ClanTable;
-import net.sf.l2j.gameserver.instancemanager.ClanHallManager;
-import net.sf.l2j.gameserver.model.entity.ClanHall;
+//import net.sf.l2j.gameserver.datatables.ClanTable;
+//import net.sf.l2j.gameserver.instancemanager.ClanHallManager;
+//import net.sf.l2j.gameserver.model.entity.ClanHall;
 
 /**
  *
@@ -30,28 +30,29 @@ public class ExShowAgitInfo extends L2GameServerPacket
     /**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#getType()
      */
-    @Override
-    public String getType()
-    {
-        return "[S] FE:16 ExShowAgitInfo";
-    }
+    //@Override
+    //public String getType()
+    //{
+        //return "[S] FE:16 ExShowAgitInfo";
+    //}
 
     /**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#writeImpl()
      */
     @Override
-    protected void writeImpl()
+    public void readP()
     {
-        writeC(0xfe);
-        writeH(0x16);
-        Map<Integer, ClanHall> clannhalls = ClanHallManager.getInstance().getAllClanHalls();
-        writeD(clannhalls.size());
-        for (ClanHall ch : clannhalls.values())
+        //writeC(0xfe);
+        readH();//writeH(0x16);
+        //Map<Integer, ClanHall> clannhalls = ClanHallManager.getInstance().getAllClanHalls();
+        int s = readD();//writeD(clannhalls.size());
+        //for (ClanHall ch : clannhalls.values())
+        for (int i = 0; i <s; i++) 
         {
-            writeD(ch.getId());
-            writeS(ch.getOwnerId() <= 0 ? "" : ClanTable.getInstance().getClan(ch.getOwnerId()).getName()); // owner clan name
-            writeS(ch.getOwnerId() <= 0 ? "" : ClanTable.getInstance().getClan(ch.getOwnerId()).getLeaderName()); // leader name
-            writeD(ch.getGrade()> 0 ? 0x00 : 0x01); // 0 - auction  1 - war clanhall  2 - ETC (rainbow spring clanhall)
+            int id = readD();//writeD(ch.getId());
+            String clan = readS();//writeS(ch.getOwnerId() <= 0 ? "" : ClanTable.getInstance().getClan(ch.getOwnerId()).getName()); // owner clan name
+            String leader = readS();//writeS(ch.getOwnerId() <= 0 ? "" : ClanTable.getInstance().getClan(ch.getOwnerId()).getLeaderName()); // leader name
+            int grade = readD();//writeD(ch.getGrade()> 0 ? 0x00 : 0x01); // 0 - auction  1 - war clanhall  2 - ETC (rainbow spring clanhall)
         }
     }
     

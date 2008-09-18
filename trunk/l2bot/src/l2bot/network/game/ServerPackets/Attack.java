@@ -14,8 +14,9 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Character;
-import net.sf.l2j.gameserver.model.L2Object;
+import javolution.util.FastList;
+//import net.sf.l2j.gameserver.model.L2Character;
+//import net.sf.l2j.gameserver.model.L2Object;
 
 
 /**
@@ -36,97 +37,114 @@ public class Attack extends L2GameServerPacket
     	protected int _damage;
     	protected int _flags;
 
-        Hit(L2Object target, int damage, boolean miss, boolean crit, boolean shld)
+        Hit(int objid, int damage, int flags)
         {
-            _targetId = target.getObjectId();
+            _targetId = objid;
             _damage = damage;
-            if (soulshot) _flags |= 0x10 | _grade;
+            /*if (soulshot) _flags |= 0x10 | _grade;
             if (crit)      _flags |= 0x20;
             if (shld)      _flags |= 0x40;
-            if (miss)      _flags |= 0x80;
+            if (miss)      _flags |= 0x80;*/
+            
+            _flags = flags;
 
         }
     }
 
 	// dh
 
-	private static final String _S__06_ATTACK = "[S] 33 Attack";
-	protected final int _attackerObjId;
-	public final boolean soulshot;
-    protected int _grade;
-	private int _x;
-	private int _y;
-	private int _z;
-	private Hit[] _hits;
+	//private static final String _S__06_ATTACK = "[S] 33 Attack";
+	//protected final int _attackerObjId;
+	//public final boolean soulshot;
+    //protected int _grade;
+	//private int _x;
+	//private int _y;
+	//private int _z;
+	//private Hit[] _hits;
 
 	/**
 	 * @param attacker the attacker L2Character
 	 * @param ss true if useing SoulShots
 	 */
-	public Attack()
-	{
-		_attackerObjId = attacker.getObjectId();
-		soulshot = ss;
-        _grade = grade;
-		_x = attacker.getX();
-		_y = attacker.getY();
-		_z = attacker.getZ();
-		_hits = new Hit[0];
-	}
-
-	/**
-	 * Add this hit (target, damage, miss, critical, shield) to the Server-Client packet Attack.<BR><BR>
-	 */
-	public void addHit(L2Object target, int damage, boolean miss, boolean crit, boolean shld)
-	{
-		// Get the last position in the hits table
-		int pos = _hits.length;
-
-		// Create a new Hit object
-		Hit[] tmp = new Hit[pos+1];
-
-		// Add the new Hit object to hits table
-		for (int i=0; i < _hits.length; i++)
-			tmp[i] = _hits[i];
-		tmp[pos] = new Hit(target, damage, miss, crit, shld);
-		_hits = tmp;
-	}
+	//public Attack()
+	//{
+		//_attackerObjId = attacker.getObjectId();
+		//soulshot = ss;
+        //_grade = grade;
+		//_x = attacker.getX();
+		//_y = attacker.getY();
+		//_z = attacker.getZ();
+		//_hits = new Hit[0];
+	//}
+//
+	///**
+	 //* Add this hit (target, damage, miss, critical, shield) to the Server-Client packet Attack.<BR><BR>
+	 //*/
+	//public void addHit(L2Object target, int damage, boolean miss, boolean crit, boolean shld)
+	//{
+		//// Get the last position in the hits table
+		//int pos = _hits.length;
+//
+		//// Create a new Hit object
+		//Hit[] tmp = new Hit[pos+1];
+//
+		//// Add the new Hit object to hits table
+		//for (int i=0; i < _hits.length; i++)
+			//tmp[i] = _hits[i];
+		//tmp[pos] = new Hit(target, damage, miss, crit, shld);
+		//_hits = tmp;
+	//}
 
 	/**
 	 * Return True if the Server-Client packet Attack conatins at least 1 hit.<BR><BR>
 	 */
-	public boolean hasHits()
-	{
-		return _hits.length > 0;
-	}
+	//public boolean hasHits()
+	//{
+		//return _hits.length > 0;
+	//}
 
 	@Override
-	protected final void writeImpl()
+        public void readP()
 	{
-		writeC(0x33);
-
-		writeD(_attackerObjId);
-		writeD(_hits[0]._targetId);
-		writeD(_hits[0]._damage);
-		writeC(_hits[0]._flags);
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
-		writeH(_hits.length-1);
-		for (int i=1; i < _hits.length; i++)
-		{
-			writeD(_hits[i]._targetId);
-			writeD(_hits[i]._damage);
-			writeC(_hits[i]._flags);
-		}
+		//writeC(0x33);
+                FastList<Hit> hits = new FastList<Hit>();
+            
+		int objid = readD();//writeD(_attackerObjId);
+		int targetId = readD();//writeD(_hits[0]._targetId);
+                
+                hits.add(new Hit(targetId,readD(),readC()));
+                
+		//writeD(_hits[0]._damage);
+		//writeC(_hits[0]._flags);
+                
+                int x = readD();
+                int y = readD();
+                int z = readD();
+		//writeD(_x);
+		//writeD(_y);
+		//writeD(_z);
+                
+		int s = readH();//writeH(_hits.length-1);
+                
+                for (int i=0;i<s;i++){
+                    hits.add(new Hit(readD(),readD(),readC()));
+                }
+                 
+                
+		//for (int i=1; i < _hits.length; i++)
+		//{
+			//writeD(_hits[i]._targetId);
+			//writeD(_hits[i]._damage);
+			//writeC(_hits[i]._flags);
+		//}
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__06_ATTACK;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__06_ATTACK;
+	//}
 }

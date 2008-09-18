@@ -15,7 +15,7 @@
 
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Macro;
+//import net.sf.l2j.gameserver.model.L2Macro;
 
 /**
  * packet type id 0xe7
@@ -33,50 +33,48 @@ import net.sf.l2j.gameserver.model.L2Macro;
  */
 public class SendMacroList extends L2GameServerPacket
 {
-    private static final String _S__E7_SENDMACROLIST = "[S] E8 SendMacroList";
+    //private static final String _S__E7_SENDMACROLIST = "[S] E8 SendMacroList";
     
-    private final int _rev;
+    //private final int _rev;
     
-    private final int _count;
+    //private final int _count;
     
-    private final L2Macro _macro;
+    //private final L2Macro _macro;
     
-    public SendMacroList(int rev, int count, L2Macro macro)
-    {
-        _rev = rev;
-        _count = count;
-        _macro = macro;
-    }
+    //public SendMacroList(int rev, int count, L2Macro macro)
+    //{
+        //_rev = rev;
+        //_count = count;
+        //_macro = macro;
+    //}
     
     @Override
-    protected final void writeImpl()
+    public void readP()
     {
-        writeC(0xE8);
+        //writeC(0xE8);  
+        int rev = readD();//writeD(_rev); // macro change revision (changes after each macro edition)
+        readC();//writeC(0); // unknown
+        int s = readD();//writeC(_count); // count of Macros
+        boolean cont = readC() == 1;//writeC(_macro != null ? 1 : 0); // unknown
         
-        writeD(_rev); // macro change revision (changes after each macro
-                        // edition)
-        writeC(0); // unknown
-        writeC(_count); // count of Macros
-        writeC(_macro != null ? 1 : 0); // unknown
-        
-        if (_macro != null)
+        if(cont)//if (_macro != null)
         {
-            writeD(_macro.id); // Macro ID
-            writeS(_macro.name); // Macro Name
-            writeS(_macro.descr); // Desc
-            writeS(_macro.acronym); // acronym
-            writeC(_macro.icon); // icon
+            int id = readD();//writeD(_macro.id); // Macro ID
+            String name = readS();//writeS(_macro.name); // Macro Name
+            String descr = readS();//writeS(_macro.descr); // Desc
+            String acro = readS();//writeS(_macro.acronym); // acronym
+            int icon = readC();//writeC(_macro.icon); // icon
             
-            writeC(_macro.commands.length); // count
-            
-            for (int i = 0; i < _macro.commands.length; i++)
+            int s2 = readC();//writeC(_macro.commands.length); // count
+      
+            for (int i = 0; i < s2; i++)
             {
-                L2Macro.L2MacroCmd cmd = _macro.commands[i];
-                writeC(i + 1); // i of count
-                writeC(cmd.type); // type 1 = skill, 3 = action, 4 = shortcut
-                writeD(cmd.d1); // skill id
-                writeC(cmd.d2); // shortcut id
-                writeS(cmd.cmd); // command name
+                //L2Macro.L2MacroCmd cmd = _macro.commands[i];
+                int cid = readC();//writeC(i + 1); // i of count
+                int type = readC();//writeC(cmd.type); // type 1 = skill, 3 = action, 4 = shortcut
+                int skill = readD();//writeD(cmd.d1); // skill id
+                int shortcut = readC();//writeC(cmd.d2); // shortcut id
+                String cmd = readS();//writeS(cmd.cmd); // command name
             }
         }
         
@@ -109,10 +107,10 @@ public class SendMacroList extends L2GameServerPacket
     /* (non-Javadoc)
      * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
      */
-    @Override
-    public String getType()
-    {
-        return _S__E7_SENDMACROLIST;
-    }
+    //@Override
+    //public String getType()
+    //{
+        //return _S__E7_SENDMACROLIST;
+    //}
     
 }

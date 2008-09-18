@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2ItemInstance;
+//import net.sf.l2j.gameserver.model.L2ItemInstance;
 
 /**
  *
@@ -23,50 +23,50 @@ import net.sf.l2j.gameserver.model.L2ItemInstance;
  */
 public class PackageSendableList extends L2GameServerPacket
 {
-	private static final String _S__C3_PACKAGESENDABLELIST = "[S] d2 PackageSendableList";
-	private L2ItemInstance[] _items;
-	private int _playerObjId;
+	//private static final String _S__C3_PACKAGESENDABLELIST = "[S] d2 PackageSendableList";
+	//private L2ItemInstance[] _items;
+	//private int _playerObjId;
 
-	public PackageSendableList(L2ItemInstance[] items, int playerObjId)
-	{
-		_items = items;
-		_playerObjId = playerObjId;
-	}
+	//public PackageSendableList(L2ItemInstance[] items, int playerObjId)
+	//{
+		//_items = items;
+		//_playerObjId = playerObjId;
+	//}
 
 	/**
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected
-	void writeImpl()
+	public void readP()
 	{
-		writeC(0xd2);
-
-		writeD(_playerObjId);
-		writeD(getClient().getActiveChar().getAdena());
-		writeD(_items.length);
-		for(L2ItemInstance item : _items) // format inside the for taken from SellList part use should be about the same
+		//writeC(0xd2);
+//
+		int objid = readD();//writeD(_playerObjId);
+		int adena = readD();//writeD(getClient().getActiveChar().getAdena());
+		int s = readD();//writeD(_items.length);
+                for (int i = 0; i < s; i++) 
+		//for(L2ItemInstance item : _items) // format inside the for taken from SellList part use should be about the same
 		{
-			writeH(item.getItem().getType1());
-			writeD(item.getObjectId());
-			writeD(item.getItemId());
-			writeD(item.getCount());
-			writeH(item.getItem().getType2());
-			writeH(item.getCustomType1());
-			writeD(item.getItem().getBodyPart());
-			writeH(item.getEnchantLevel());
-			writeH(item.getCustomType2());
-			writeH(0x00);
-			writeD(item.getObjectId()); // some item identifier later used by client to answer (see RequestPackageSend) not item id nor object id maybe some freight system id??
-			//T1
-			writeD(item.getAttackAttrElement()); //element type 
-			writeD(item.getAttackAttrElementVal()); //element val 
-			writeD(item.getDefAttrFire()); //fire element
-			writeD(item.getDefAttrWater()); //water element
-			writeD(item.getDefAttrWind()); //wind element
-			writeD(item.getDefAttrEarth()); //earth element
-			writeD(item.getDefAttrHoly()); //holy element
-			writeD(item.getDefAttrUnholy()); //unholy element
+			readH();//writeH(item.getItem().getType1());
+			readD();//writeD(item.getObjectId());
+			readD();//writeD(item.getItemId());
+			readD();//writeD(item.getCount());
+			readH();//writeH(item.getItem().getType2());
+			readH();//writeH(item.getCustomType1());
+			readD();//writeD(item.getItem().getBodyPart());
+			readH();//writeH(item.getEnchantLevel());
+			readH();//writeH(item.getCustomType2());
+			readH();//writeH(0x00);
+			readD();//writeD(item.getObjectId()); // some item identifier later used by client to answer (see RequestPackageSend) not item id nor object id maybe some freight system id??
+			////T1
+			readD();//writeD(item.getAttackAttrElement()); //element type 
+			readD();//writeD(item.getAttackAttrElementVal()); //element val 
+			readD();//writeD(item.getDefAttrFire()); //fire element
+			readD();//writeD(item.getDefAttrWater()); //water element
+			readD();//writeD(item.getDefAttrWind()); //wind element
+			readD();//writeD(item.getDefAttrEarth()); //earth element
+			readD();//writeD(item.getDefAttrHoly()); //holy element
+			readD();//writeD(item.getDefAttrUnholy()); //unholy element
 		}
 
 	}
@@ -74,10 +74,10 @@ public class PackageSendableList extends L2GameServerPacket
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__C3_PACKAGESENDABLELIST;
-	}
+	///@Override
+	//public String getType()
+	//{
+		//return _S__C3_PACKAGESENDABLELIST;
+	//}
 
 }

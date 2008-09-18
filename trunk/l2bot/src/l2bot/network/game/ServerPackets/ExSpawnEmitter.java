@@ -14,8 +14,8 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.actor.instance.L2NpcInstance;
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2NpcInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 /**
  *
@@ -23,41 +23,41 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
  */
 public class ExSpawnEmitter extends L2GameServerPacket
 {
-    private final int _playerObjectId;
-    private final int _npcObjectId;
+    //private final int _playerObjectId;
+    //private final int _npcObjectId;
     
-    public ExSpawnEmitter(int playerObjectId, int npcObjectId)
-    {
-        _playerObjectId = playerObjectId;
-        _npcObjectId = npcObjectId;
-    }
-    
-    public ExSpawnEmitter(L2PcInstance player, L2NpcInstance npc)
-    {
-        this(player.getObjectId(), npc.getObjectId());
-    }
+    //public ExSpawnEmitter(int playerObjectId, int npcObjectId)
+    //{
+        //_playerObjectId = playerObjectId;
+        //_npcObjectId = npcObjectId;
+    //}
+//    
+    //public ExSpawnEmitter(L2PcInstance player, L2NpcInstance npc)
+    //{
+        //this(player.getObjectId(), npc.getObjectId());
+    //}
     
     /**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#getType()
      */
-    @Override
-    public String getType()
-    {
-        return "[S] FE:5D ExSpawnEmitter";
-    }
+    //@Override
+    //public String getType()
+    //{
+        //return "[S] FE:5D ExSpawnEmitter";
+    //}
 
     /**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#writeImpl()
      */
     @Override
-    protected void writeImpl()
+    public void readP()
     {
-        writeC(0xfe);
-        writeH(0x5d);
+        //writeC(0xfe);
+        readH();//writeH(0x5d);
         
-        writeD(_npcObjectId);
-        writeD(_playerObjectId);
-        writeD(0x00); // ?
+        int npc = readD();//writeD(_npcObjectId);
+        int player = readD();//writeD(_playerObjectId);
+        //writeD(0x00); // ?
     }
     
 }

@@ -21,20 +21,20 @@ package l2bot.network.game.ServerPackets;
  */
 public class SunRise extends L2GameServerPacket
 {
-	private static final String _S__28_SUNRISE = "[S] 12 SunRise";
+	//private static final String _S__28_SUNRISE = "[S] 12 SunRise";
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x12);
+		//writeC(0x12);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__28_SUNRISE;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__28_SUNRISE;
+	//}
 }

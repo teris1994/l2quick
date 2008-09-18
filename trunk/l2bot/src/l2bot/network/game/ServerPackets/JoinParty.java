@@ -31,33 +31,33 @@ package l2bot.network.game.ServerPackets;
  */
 public final class JoinParty extends L2GameServerPacket
 {
-	private static final String _S__4C_JOINPARTY = "[S] 3a JoinParty";
+	//private static final String _S__4C_JOINPARTY = "[S] 3a JoinParty";
 	//private static Logger _log = Logger.getLogger(JoinParty.class.getName());
 
-	private int _response;
+	//private int _response;
 
 	/**
 	 * @param int
 	 */
-	public JoinParty(int response)
-	{
-		_response = response;
-	}
+	//public JoinParty(int response)
+	//{
+		//_response = response;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x3a);
-		writeD(_response);
+		//writeC(0x3a);
+		int res = readD();//writeD(_response);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__4C_JOINPARTY;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__4C_JOINPARTY;
+	//}
 
 }

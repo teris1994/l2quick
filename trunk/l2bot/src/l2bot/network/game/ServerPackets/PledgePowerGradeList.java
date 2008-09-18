@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Clan.RankPrivs;
+//import net.sf.l2j.gameserver.model.L2Clan.RankPrivs;
 
 /**
  *
@@ -31,25 +31,25 @@ import net.sf.l2j.gameserver.model.L2Clan.RankPrivs;
  */
 public class PledgePowerGradeList extends L2GameServerPacket
 {
-	private static final String _S__FE_3B_PLEDGEPOWERGRADELIST = "[S] FE:3c PledgePowerGradeList";
-    private RankPrivs[] _privs;
+	//private static final String _S__FE_3B_PLEDGEPOWERGRADELIST = "[S] FE:3c PledgePowerGradeList";
+    //private RankPrivs[] _privs;
 
-	public PledgePowerGradeList(RankPrivs[] privs)
-	{
-        _privs = privs;
-	}
+	//public PledgePowerGradeList(RankPrivs[] privs)
+	//{
+        //_privs = privs;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-        writeC(0xFE);
-        writeH(0x3c);
-        writeD(_privs.length);
-        for (int i =0; i<_privs.length; i++)
+        //writeC(0xFE);
+        readH();//writeH(0x3c);
+        int s = readD();//writeD(_privs.length);
+        for (int i =0; i<s; i++)
         {
-            writeD(_privs[i].getRank());
-            writeD(_privs[i].getParty());
-            //_log.warning("rank: "+_privs[i].getRank()+" party: "+_privs[i].getParty());
+            int rank = readD();//writeD(_privs[i].getRank());
+            int party = readD();//writeD(_privs[i].getParty());
+            ////_log.warning("rank: "+_privs[i].getRank()+" party: "+_privs[i].getParty());
         }
 
 	}
@@ -57,10 +57,10 @@ public class PledgePowerGradeList extends L2GameServerPacket
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_3B_PLEDGEPOWERGRADELIST;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_3B_PLEDGEPOWERGRADELIST;
+	//}
 
 }

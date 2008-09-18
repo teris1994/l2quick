@@ -14,10 +14,10 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import java.util.List;
+//import java.util.List;
 
-import javolution.util.FastList;
-import net.sf.l2j.gameserver.templates.L2PcTemplate;
+//import javolution.util.FastList;
+////import net.sf.l2j.gameserver.templates.L2PcTemplate;
 
 /**
  * This class ...
@@ -27,56 +27,56 @@ import net.sf.l2j.gameserver.templates.L2PcTemplate;
 public class NewCharacterSuccess extends L2GameServerPacket
 {
 	// dddddddddddddddddddd
-	private static final String _S__23_CHARTEMPLATES = "[S] 0d CharTemplates";
-	private List<L2PcTemplate> _chars = new FastList<L2PcTemplate>();
+	//private static final String _S__23_CHARTEMPLATES = "[S] 0d CharTemplates";
+	//private List<L2PcTemplate> _chars = new FastList<L2PcTemplate>();
 
-    public NewCharacterSuccess()
-    {
+    //public NewCharacterSuccess()
+    //{
         
-    }
+    //}
     
-	public void addChar(L2PcTemplate template)
-	{
-		_chars.add(template);
-	}
+	//public void addChar(L2PcTemplate template)
+	//{
+		//_chars.add(template);
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x0d);
-		writeD(_chars.size());
-
-		for (L2PcTemplate temp : _chars)
-		{
-			writeD(temp.race.ordinal());
-			writeD(temp.classId.getId());
-			writeD(0x46);
-			writeD(temp.baseSTR);
-			writeD(0x0a);
-			writeD(0x46);
-			writeD(temp.baseDEX);
-			writeD(0x0a);
-			writeD(0x46);
-			writeD(temp.baseCON);
-			writeD(0x0a);
-			writeD(0x46);
-			writeD(temp.baseINT);
-			writeD(0x0a);
-			writeD(0x46);
-			writeD(temp.baseWIT);
-			writeD(0x0a);
-			writeD(0x46);
-			writeD(temp.baseMEN);
-			writeD(0x0a);
-		}
+		//writeC(0x0d);
+		//writeD(_chars.size());
+//
+		//for (L2PcTemplate temp : _chars)
+		//{
+			//writeD(temp.race.ordinal());
+			//writeD(temp.classId.getId());
+			//writeD(0x46);
+			//writeD(temp.baseSTR);
+			//writeD(0x0a);
+			//writeD(0x46);
+			//writeD(temp.baseDEX);
+			//writeD(0x0a);
+			//writeD(0x46);
+			//writeD(temp.baseCON);
+			//writeD(0x0a);
+			//writeD(0x46);
+			//writeD(temp.baseINT);
+			//writeD(0x0a);
+			//writeD(0x46);
+			//writeD(temp.baseWIT);
+			//writeD(0x0a);
+			//writeD(0x46);
+			//writeD(temp.baseMEN);
+			//writeD(0x0a);
+		//}
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__23_CHARTEMPLATES;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__23_CHARTEMPLATES;
+	//}
 }

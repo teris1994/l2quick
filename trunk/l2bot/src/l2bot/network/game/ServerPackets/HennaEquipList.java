@@ -17,64 +17,64 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2HennaInstance;
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.L2HennaInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 public class HennaEquipList extends L2GameServerPacket
 {
-    private static final String _S__E2_HennaEquipList = "[S] ee HennaEquipList";
+    //private static final String _S__E2_HennaEquipList = "[S] ee HennaEquipList";
 
-    private L2PcInstance _player;
-    private L2HennaInstance[] _hennaEquipList;
+    //private L2PcInstance _player;
+    //private L2HennaInstance[] _hennaEquipList;
 
-    public HennaEquipList(L2PcInstance player,L2HennaInstance[] hennaEquipList)
-    {
-        _player = player;
-        _hennaEquipList = hennaEquipList;
-    }
+    //public HennaEquipList(L2PcInstance player,L2HennaInstance[] hennaEquipList)
+    //{
+        //_player = player;
+        //_hennaEquipList = hennaEquipList;
+    //}
 
 
     @Override
-	protected final void writeImpl()
+	public void readP()
     {
-        writeC(0xee);
-        writeD(_player.getAdena());          //activeChar current amount of aden
-        writeD(3);     //available equip slot
-        //writeD(10);    // total amount of symbol available which depends on difference classes
-        writeD(_hennaEquipList.length);
+        //writeC(0xee);
+        int adena = readD();//writeD(_player.getAdena());          //activeChar current amount of aden
+        int slots = readD();//writeD(3);     //available equip slot
+        int symbols = readD();//writeD(10);    // total amount of symbol available which depends on difference classes
+        int s = readD();//writeD(_hennaEquipList.length);
 
-        for (int i = 0; i < _hennaEquipList.length; i++)
+        for (int i = 0; i < s; i++)
         {
             /*
              * Player must have at least one dye in inventory
              * to be able to see the henna that can be applied with it.
              */
-            if ((_player.getInventory().getItemByItemId(_hennaEquipList[i].getItemIdDye())) != null)
-            {
-                writeD(_hennaEquipList[i].getSymbolId()); //symbolid
-                writeD(_hennaEquipList[i].getItemIdDye());       //itemid of dye
-                writeD(_hennaEquipList[i].getAmountDyeRequire());    //amount of dye require
-                writeD(_hennaEquipList[i].getPrice());    //amount of aden require
-                writeD(1);            //meet the requirement or not
-            }
-            else
-            {
-                writeD(0x00);
-                writeD(0x00);
-                writeD(0x00);
-                writeD(0x00);
-                writeD(0x00);
-            }
+            //if ((_player.getInventory().getItemByItemId(_hennaEquipList[i].getItemIdDye())) != null)
+            //{
+                int id = readD();//writeD(_hennaEquipList[i].getSymbolId()); //symbolid
+                int itemid = readD();//writeD(_hennaEquipList[i].getItemIdDye());       //itemid of dye
+                int count = readD();//writeD(_hennaEquipList[i].getAmountDyeRequire());    //amount of dye require
+                int price = readD();//writeD(_hennaEquipList[i].getPrice());    //amount of aden require
+                readD();//writeD(1);            //meet the requirement or not
+            //}
+            //else
+            //{
+                //writeD(0x00);
+                //writeD(0x00);
+                //writeD(0x00);
+                //writeD(0x00);
+                //writeD(0x00);
+            //}
         }
     }
 
     /* (non-Javadoc)
      * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
      */
-    @Override
-	public String getType()
-    {
-        return _S__E2_HennaEquipList;
-    }
+    //@Override
+	//public String getType()
+    //{
+        //return _S__E2_HennaEquipList;
+    //}
 
 }

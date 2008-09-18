@@ -32,34 +32,34 @@ package l2bot.network.game.ServerPackets;
  */
 public class FriendAddRequest extends L2GameServerPacket
 {
-	private static final String _S__7d_ASKJoinFriend_0X7d = "[S] 83 FriendAddRequest";
+	//private static final String _S__7d_ASKJoinFriend_0X7d = "[S] 83 FriendAddRequest";
 
-	private String _requestorName;
-
+	//private String _requestorName;
+///
 	/**
 	 * @param int objectId of the target
 	 * @param int
 	 */
-	public FriendAddRequest(String requestorName)
-	{
-		_requestorName = requestorName;
-	}
+	//public FriendAddRequest(String requestorName)
+	//{
+		//_requestorName = requestorName;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x83);
-		writeS(_requestorName);
-		writeD(0);
+		//writeC(0x83);
+		String req  = readS();//writeS(_requestorName);
+		//writeD(0);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__7d_ASKJoinFriend_0X7d;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__7d_ASKJoinFriend_0X7d;
+	//}
 
 }

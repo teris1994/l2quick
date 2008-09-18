@@ -24,35 +24,35 @@ package l2bot.network.game.ServerPackets;
  */
 public final class SetupGauge extends L2GameServerPacket
 {
-	private static final String _S__85_SETUPGAUGE = "[S] 6b SetupGauge";
-	public static final int BLUE = 0;
-	public static final int RED = 1;
-	public static final int CYAN = 2;
+	//private static final String _S__85_SETUPGAUGE = "[S] 6b SetupGauge";
+	//public static final int BLUE = 0;
+	//public static final int RED = 1;
+	//public static final int CYAN = 2;
 
-	private int _dat1;
-	private int _time;
+	//private int _dat1;
+	//private int _time;
 
-	public SetupGauge(int dat1, int time)
-	{
-		_dat1 = dat1;// color  0-blue   1-red  2-cyan  3-
-		_time = time;
-	}
+	//public SetupGauge(int dat1, int time)
+	//{
+		//_dat1 = dat1;// color  0-blue   1-red  2-cyan  3-
+		//_time = time;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x6b);
-		writeD(_dat1);
-		writeD(_time);
-		writeD(_time); //c2
+		//writeC(0x6b);
+		int color = readD();//writeD(_dat1);
+		int time = readD();//writeD(_time);
+		//writeD(_time); //c2
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__85_SETUPGAUGE;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__85_SETUPGAUGE;
+	//}
 }

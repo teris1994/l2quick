@@ -16,19 +16,19 @@ package l2bot.network.game.ServerPackets;
 
 public class NormalCamera extends L2GameServerPacket
 {
-    private static final String _S__C8_NORMALCAMERA = "[S] d7 NormalCamera";
+    //private static final String _S__C8_NORMALCAMERA = "[S] d7 NormalCamera";
 
-    public NormalCamera(){}
-
+    //public NormalCamera(){}
+//
     @Override
-	public void writeImpl()
+	public void readP()
     {
-        writeC(0xd7);
+        //writeC(0xd7);
     }
 
-    @Override
-	public String getType()
-    {
-        return _S__C8_NORMALCAMERA;
-    }
+    //@Override
+	//public String getType()
+    //{
+        //return _S__C8_NORMALCAMERA;
+    //}
 }

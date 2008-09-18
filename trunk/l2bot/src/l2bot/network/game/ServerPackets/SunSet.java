@@ -24,17 +24,17 @@ public class SunSet extends L2GameServerPacket
 	private static final String _S__29_SUNSET = "[S] 13 SunSet";
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x13);
+		//writeC(0x13);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__29_SUNSET;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__29_SUNSET;
+	//}
 }

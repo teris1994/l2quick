@@ -14,10 +14,8 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import java.util.List;
-
 import javolution.util.FastList;
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 
 /**
@@ -30,9 +28,9 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 public class ExOlympiadSpelledInfo extends L2GameServerPacket
 {
 	// chdd(dhd)
-	private static final String _S__FE_2A_OLYMPIADSPELLEDINFO = "[S] FE:7b ExOlympiadSpelledInfo";
-	private L2PcInstance _player;
-	private List<Effect> _effects;
+///	private static final String _S__FE_2A_OLYMPIADSPELLEDINFO = "[S] FE:7b ExOlympiadSpelledInfo";
+	//private L2PcInstance _player;
+	///private List<Effect> _effects;
 
 
 	private class Effect
@@ -49,40 +47,43 @@ public class ExOlympiadSpelledInfo extends L2GameServerPacket
 		}
 	}
 
-	public ExOlympiadSpelledInfo(L2PcInstance player)
-	{
-		_effects = new FastList<Effect>();
-        _player = player;
-	}
-
-	public void addEffect(int skillId, int dat, int duration)
-	{
-		_effects.add(new Effect(skillId, dat, duration));
-	}
-
+	//public ExOlympiadSpelledInfo(L2PcInstance player)
+	//{
+		//_effects = new FastList<Effect>();
+        //_player = player;
+	//}
+//
+	//public void addEffect(int skillId, int dat, int duration)
+	//{
+		//_effects.add(new Effect(skillId, dat, duration));
+	//}
+//
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-        if (_player == null)
-            return;
-		writeC(0xfe);
-		writeH(0x7b);
-		writeD(_player.getObjectId());
-		writeD(_effects.size());
-        for (Effect temp : _effects)
-        {
-        	writeD(temp._skillId);
-        	writeH(temp._dat);
-        	writeD(temp._duration/1000);
-        }
+        //if (_player == null)
+            //return;
+		//writeC(0xfe);
+		readH();//writeH(0x7b);
+		int objId = readD();//writeD(_player.getObjectId());
+		int s = readD();//writeD(_effects.size());
+                FastList<Effect> effects = new FastList<Effect>();
+        //for (Effect temp : _effects)
+            for (int i = 0; i < s; i++) 
+            {
+                    effects.add(new Effect(readD(),readH(),readD()));    
+                    //writeD(temp._skillId);
+                    //writeH(temp._dat);
+                    //writeD(temp._duration/1000);
+            }
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_2A_OLYMPIADSPELLEDINFO;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_2A_OLYMPIADSPELLEDINFO;
+	//}
 }

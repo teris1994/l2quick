@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.TradeList;
+//import net.sf.l2j.gameserver.model.TradeList;
 
 /**
  * This class ...
@@ -24,52 +24,52 @@ import net.sf.l2j.gameserver.model.TradeList;
  */
 public final class TradeOtherAdd extends L2GameServerPacket
 {
-	private static final String _S__31_TRADEOTHERADD = "[S] 1b TradeOtherAdd";
-	private TradeList.TradeItem _item;
+	//private static final String _S__31_TRADEOTHERADD = "[S] 1b TradeOtherAdd";
+	//private TradeList.TradeItem _item;
 
-	public TradeOtherAdd(TradeList.TradeItem item)
-	{
-		_item = item;
-	}
+	//public TradeOtherAdd(TradeList.TradeItem item)
+	//{
+		//_item = item;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x1b);
+		//writeC(0x1b);
 
-		writeH(1);  // item count
+		readH();//writeH(1);  // item count
 
-		writeH(_item.getItem().getType1()); // item type1
-		writeD(_item.getObjectId());
-		writeD(_item.getItem().getItemId());
-		writeD(_item.getCount());
-		writeH(_item.getItem().getType2());	// item type2
-		writeH(0x00);	// ?
+		int type1 = readH();//writeH(_item.getItem().getType1()); // item type1
+		int objId = readD();//writeD(_item.getObjectId());
+		int itemid = readD();//writeD(_item.getItem().getItemId());
+		int count = readD();//writeD(_item.getCount());
+		int type2 = readH();//writeH(_item.getItem().getType2());	// item type2
+		readH();//writeH(0x00);	// ?
 
-		writeD(_item.getItem().getBodyPart());	// rev 415  slot    0006-lr.ear  0008-neck  0030-lr.finger  0040-head  0080-??  0100-l.hand  0200-gloves  0400-chest  0800-pants  1000-feet  2000-??  4000-r.hand  8000-r.hand
-		writeH(_item.getEnchant());	// enchant level
-		writeH(0x00);	// ?
-		writeH(0x00);
+		int part = readD();//writeD(_item.getItem().getBodyPart());	// rev 415  slot    0006-lr.ear  0008-neck  0030-lr.finger  0040-head  0080-??  0100-l.hand  0200-gloves  0400-chest  0800-pants  1000-feet  2000-??  4000-r.hand  8000-r.hand
+		int enchant = readH();//writeH(_item.getEnchant());	// enchant level
+		readH();//writeH(0x00);	// ?
+		readH();//writeH(0x00);
 		
 		// T1
-        writeD(_item.getAttackAttrElement());
-        writeD(_item.getAttackAttrElementVal());
-        writeD(_item.getDefAttrFire());
-        writeD(_item.getDefAttrWater());
-        writeD(_item.getDefAttrWind());
-        writeD(_item.getDefAttrEarth());
-        writeD(_item.getDefAttrHoly());
-        writeD(_item.getDefAttrUnholy());
+                readD();//writeD(_item.getAttackAttrElement());
+                readD();//writeD(_item.getAttackAttrElementVal());
+                readD();//writeD(_item.getDefAttrFire());
+                readD();//writeD(_item.getDefAttrWater());
+                readD();//writeD(_item.getDefAttrWind());
+                readD();//writeD(_item.getDefAttrEarth());
+                readD();//writeD(_item.getDefAttrHoly());
+                readD();//writeD(_item.getDefAttrUnholy());
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__31_TRADEOTHERADD;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__31_TRADEOTHERADD;
+	//}
 }
 
 

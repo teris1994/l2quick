@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Character;
+//import net.sf.l2j.gameserver.model.L2Character;
 
 /**
  * Format (ch)dddcc
@@ -23,45 +23,45 @@ import net.sf.l2j.gameserver.model.L2Character;
  */
 public class ExFishingStartCombat extends L2GameServerPacket
 {
-	private static final String _S__FE_15_EXFISHINGSTARTCOMBAT = "[S] FE:27 ExFishingStartCombat";
-	private L2Character _activeChar;
-	private int _time,_hp;
-	private int _lureType, _deceptiveMode, _mode;
+	//private static final String _S__FE_15_EXFISHINGSTARTCOMBAT = "[S] FE:27 ExFishingStartCombat";
+	//private L2Character _activeChar;
+	//private int _time,_hp;
+	//private int _lureType, _deceptiveMode, _mode;
 
-	public ExFishingStartCombat(L2Character character, int time, int hp, int mode, int lureType, int deceptiveMode)
-	{
-		_activeChar = character;
-		_time = time;
-		_hp = hp;
-		_mode = mode;
-		_lureType = lureType;
-		_deceptiveMode = deceptiveMode;
-	}
+	//public ExFishingStartCombat(L2Character character, int time, int hp, int mode, int lureType, int deceptiveMode)
+	//{
+		//_activeChar = character;
+		//_time = time;
+		//_hp = hp;
+		//_mode = mode;
+		//_lureType = lureType;
+		//_deceptiveMode = deceptiveMode;
+	//}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x27);
+		//writeC(0xfe);
+		readH();//writeH(0x27);
 
-		writeD(_activeChar.getObjectId());
-		writeD(_time);
-		writeD(_hp);
-		writeC(_mode); // mode: 0 = resting, 1 = fighting
-		writeC(_lureType); // 0 = newbie lure, 1 = normal lure, 2 = night lure
-		writeC(_deceptiveMode); // Fish Deceptive Mode: 0 = no, 1 = yes
+		int objId = readD();//writeD(_activeChar.getObjectId());
+		int time = readD();//writeD(_time);
+		int hp = readD();//writeD(_hp);
+		int mode = readC();//writeC(_mode); // mode: 0 = resting, 1 = fighting
+		int lure = readC();//writeC(_lureType); // 0 = newbie lure, 1 = normal lure, 2 = night lure
+		boolean deceptive = readC() != 0;//writeC(_deceptiveMode); // Fish Deceptive Mode: 0 = no, 1 = yes
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_15_EXFISHINGSTARTCOMBAT;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_15_EXFISHINGSTARTCOMBAT;
+	//}
 
 }

@@ -14,8 +14,8 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2ItemInstance;
-import net.sf.l2j.gameserver.model.L2Object;
+//import net.sf.l2j.gameserver.model.L2ItemInstance;
+//import net.sf.l2j.gameserver.model.L2Object;
 
 /**
  * 15
@@ -33,56 +33,56 @@ import net.sf.l2j.gameserver.model.L2Object;
  */
 public final class SpawnItem extends L2GameServerPacket
 {
-	private static final String _S__15_SPAWNITEM = "[S] 05 SpawnItem";
-	private int _objectId;
-	private int _itemId;
-	private int _x, _y, _z;
-	private int _stackable, _count;
+	//private static final String _S__15_SPAWNITEM = "[S] 05 SpawnItem";
+	//private int _objectId;
+	//private int _itemId;
+	//private int _x, _y, _z;
+	//private int _stackable, _count;
 
-	public SpawnItem(L2Object obj)
-	{
-		_objectId = obj.getObjectId();
-		_x = obj.getX();
-		_y = obj.getY();
-		_z = obj.getZ();
-        
-        if (obj instanceof L2ItemInstance)
-        {
-            L2ItemInstance item = (L2ItemInstance) obj;
-            _itemId = item.getItemId();
-            _stackable = item.isStackable() ? 0x01 : 0x00;
-            _count = item.getCount();
-        }
-        else
-        {
-            _itemId = obj.getPoly().getPolyId();
-            _stackable = 0;
-            _count = 1;
-        }
-	}
+	//public SpawnItem(L2Object obj)
+	//{
+		//_objectId = obj.getObjectId();
+		//_x = obj.getX();
+		//_y = obj.getY();
+		//_z = obj.getZ();
+//        
+        //if (obj instanceof L2ItemInstance)
+        //{
+            //L2ItemInstance item = (L2ItemInstance) obj;
+            //_itemId = item.getItemId();
+            //_stackable = item.isStackable() ? 0x01 : 0x00;
+            //_count = item.getCount();
+        //}
+        //else
+        //{
+            //_itemId = obj.getPoly().getPolyId();
+            //_stackable = 0;
+            //_count = 1;
+        //}
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x05);
-		writeD(_objectId);
-		writeD(_itemId);
+		//writeC(0x05);
+		int objId = readD();//writeD(_objectId);
+		int item = readD();//writeD(_itemId);
 
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
-		// only show item count if it is a stackable item
-		writeD(_stackable);
-		writeD(_count);
-		writeD(0x00); //c2
+		int x = readD();//writeD(_x);
+		int y = readD();//writeD(_y);
+		int z = readD();//writeD(_z);
+		//// only show item count if it is a stackable item
+		boolean stackable = readD() != 0;//writeD(_stackable);
+		int count = readD();//writeD(_count);
+		//writeD(0x00); //c2
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__15_SPAWNITEM;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__15_SPAWNITEM;
+	//}
 }

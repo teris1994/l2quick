@@ -20,25 +20,25 @@ package l2bot.network.game.ServerPackets;
  */
 public class ExShowAdventurerGuideBook extends L2GameServerPacket
 {
-	private static final String _S__FE_37_EXSHOWADVENTURERGUIDEBOOK = "[S] FE:38 ExShowAdventurerGuideBook";
+	//private static final String _S__FE_37_EXSHOWADVENTURERGUIDEBOOK = "[S] FE:38 ExShowAdventurerGuideBook";
 
 	/**
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xFE);
-		writeH(0x38);
+		//writeC(0xFE);
+		//writeH(0x38);
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_37_EXSHOWADVENTURERGUIDEBOOK;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_37_EXSHOWADVENTURERGUIDEBOOK;
+	//}
 
 }

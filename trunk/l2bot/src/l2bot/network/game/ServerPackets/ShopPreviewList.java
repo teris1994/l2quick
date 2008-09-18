@@ -14,82 +14,83 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import java.util.Collection;
+//import java.util.Collection;
 
-import net.sf.l2j.Config;
-import net.sf.l2j.gameserver.model.L2TradeList;
-import net.sf.l2j.gameserver.model.L2TradeList.L2TradeItem;
-import net.sf.l2j.gameserver.templates.L2Item;
+//import net.sf.l2j.Config;
+//import net.sf.l2j.gameserver.model.L2TradeList;
+//import net.sf.l2j.gameserver.model.L2TradeList.L2TradeItem;
+//import net.sf.l2j.gameserver.templates.L2Item;
 
 public class ShopPreviewList extends L2GameServerPacket
 {
-	private static final String _S__EF_WEARLIST = "[S] f5 WearList";
-	private int _listId;
-    private Collection<L2TradeItem> _list;
-	private int _money;
-	private int _expertise;
+	//private static final String _S__EF_WEARLIST = "[S] f5 WearList";
+	//private int _listId;
+    //private Collection<L2TradeItem> _list;
+	//private int _money;
+	//private int _expertise;
 
-	public ShopPreviewList(L2TradeList list, int currentMoney, int expertiseIndex)
-	{
-		_listId = list.getListId();
-		_list = list.getItems();
-		_money = currentMoney;
-		_expertise = expertiseIndex;
-	}
+	//public ShopPreviewList(L2TradeList list, int currentMoney, int expertiseIndex)
+	//{
+		//_listId = list.getListId();
+		//_list = list.getItems();
+		//_money = currentMoney;
+		//_expertise = expertiseIndex;
+	//}
 
-	public ShopPreviewList(Collection<L2TradeItem> lst, int listId, int currentMoney)
-	{
-		_listId = listId;
-		_list = lst;
-		_money = currentMoney;
-	}
+	//public ShopPreviewList(Collection<L2TradeItem> lst, int listId, int currentMoney)
+	//{
+		//_listId = listId;
+		//_list = lst;
+		//_money = currentMoney;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0xf5);
-		writeC(0xc0);	// ?
-		writeC(0x13);	// ?
-		writeC(0x00);	// ?
-		writeC(0x00);	// ?
-		writeD(_money);		// current money
-		writeD(_listId);
+		//writeC(0xf5);
+		readC();//writeC(0xc0);	// ?
+		readC();//writeC(0x13);	// ?
+		readC();//writeC(0x00);	// ?
+		readC();//writeC(0x00);	// ?
+		int adena = readD();//writeD(_money);		// current money
+		int list = readD();//writeD(_listId);
 
-		int newlength = 0;
-		for (L2TradeItem item : _list)
-        {
-		    if (item.getTemplate().getCrystalType() <= _expertise && item.getTemplate().isEquipable())
-			newlength++;
-		}
-		writeH(newlength);
-
-		for (L2TradeItem item : _list)
+		//int newlength = 0;
+		//for (L2TradeItem item : _list)
+        //{
+		    //if (item.getTemplate().getCrystalType() <= _expertise && item.getTemplate().isEquipable())
+			//newlength++;
+		//}
+		int s = readH();//writeH(newlength);
+//
+		//for (L2TradeItem item : _list)
+                for (int i = 0; i < s; i++) 
 		{
-		    if (item.getTemplate().getCrystalType() <= _expertise && item.getTemplate().isEquipable())
-		    {
-		        writeD(item.getItemId());
-		        writeH(item.getTemplate().getType2());	// item type2
-		        
-		        if (item.getTemplate().getType1() != L2Item.TYPE1_ITEM_QUESTITEM_ADENA)
-		        {
-		            writeH(item.getTemplate().getBodyPart());	// rev 415  slot    0006-lr.ear  0008-neck  0030-lr.finger  0040-head  0080-??  0100-l.hand  0200-gloves  0400-chest  0800-pants  1000-feet  2000-??  4000-r.hand  8000-r.hand
-		        }
-		        else
-		        {
-		            writeH(0x00);	// rev 415  slot    0006-lr.ear  0008-neck  0030-lr.finger  0040-head  0080-??  0100-l.hand  0200-gloves  0400-chest  0800-pants  1000-feet  2000-??  4000-r.hand  8000-r.hand
-		        }
-		        
-		        writeD(Config.WEAR_PRICE);
-		    }
+		    //if (item.getTemplate().getCrystalType() <= _expertise && item.getTemplate().isEquipable())
+		    //{
+		        int id = readD();//writeD(item.getItemId());
+		        int type = readH();//writeH(item.getTemplate().getType2());	// item type2
+//		        
+		        //if (item.getTemplate().getType1() != L2Item.TYPE1_ITEM_QUESTITEM_ADENA)
+		        //{
+		            int slot = readH();//writeH(item.getTemplate().getBodyPart());	// rev 415  slot    0006-lr.ear  0008-neck  0030-lr.finger  0040-head  0080-??  0100-l.hand  0200-gloves  0400-chest  0800-pants  1000-feet  2000-??  4000-r.hand  8000-r.hand
+		        //}
+		        //else
+		        //{
+		            //writeH(0x00);	// rev 415  slot    0006-lr.ear  0008-neck  0030-lr.finger  0040-head  0080-??  0100-l.hand  0200-gloves  0400-chest  0800-pants  1000-feet  2000-??  4000-r.hand  8000-r.hand
+		        //}
+//		        
+		        int price = readD();//writeD(Config.WEAR_PRICE);
+		    //}
 		}
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__EF_WEARLIST;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__EF_WEARLIST;
+	////}
 }

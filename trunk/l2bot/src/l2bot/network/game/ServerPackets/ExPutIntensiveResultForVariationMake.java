@@ -20,45 +20,45 @@ package l2bot.network.game.ServerPackets;
  */
 public class ExPutIntensiveResultForVariationMake extends L2GameServerPacket
 {
-	private static final String _S__FE_53_EXCONFIRMVARIATIONREFINER = "[S] FE:54 ExPutIntensiveResultForVariationMake";
+	//private static final String _S__FE_53_EXCONFIRMVARIATIONREFINER = "[S] FE:54 ExPutIntensiveResultForVariationMake";
 
-	private int _refinerItemObjId;
-	private int _lifestoneItemId;
-	private int _gemstoneItemId;
-	private int _gemstoneCount;
-	private int _unk2;
+	//private int _refinerItemObjId;
+	//private int _lifestoneItemId;
+	//private int _gemstoneItemId;
+	//private int _gemstoneCount;
+	//private int _unk2;
 
-	public ExPutIntensiveResultForVariationMake(int refinerItemObjId, int lifeStoneId, int gemstoneItemId, int gemstoneCount)
-	{
-		_refinerItemObjId = refinerItemObjId;
-		_lifestoneItemId = lifeStoneId;
-		_gemstoneItemId = gemstoneItemId;
-		_gemstoneCount = gemstoneCount;
-		_unk2 = 1;
-	}
+	//public ExPutIntensiveResultForVariationMake(int refinerItemObjId, int lifeStoneId, int gemstoneItemId, int gemstoneCount)
+	//{
+		//_refinerItemObjId = refinerItemObjId;
+		//_lifestoneItemId = lifeStoneId;
+		//_gemstoneItemId = gemstoneItemId;
+		//_gemstoneCount = gemstoneCount;
+		//_unk2 = 1;
+	//}
 
 	/**
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x54);
-		writeD(_refinerItemObjId);
-		writeD(_lifestoneItemId);
-		writeD(_gemstoneItemId);
-		writeD(_gemstoneCount);
-		writeD(_unk2);
+		//writeC(0xfe);
+		readH();//writeH(0x54);
+		int objId = readD();//writeD(_refinerItemObjId);
+		int lifestone = readD();//writeD(_lifestoneItemId);
+		int gemstone = readD();//writeD(_gemstoneItemId);
+		int gemstoneC = readD();//writeD(_gemstoneCount);
+		readD();//writeD(_unk2);
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_53_EXCONFIRMVARIATIONREFINER;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_53_EXCONFIRMVARIATIONREFINER;
+	//}
 
 }

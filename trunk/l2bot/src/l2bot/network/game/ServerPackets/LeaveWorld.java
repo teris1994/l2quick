@@ -20,21 +20,21 @@ package l2bot.network.game.ServerPackets;
  */
 public final class LeaveWorld extends L2GameServerPacket
 {
-	private static final String _S__96_LEAVEWORLD = "[S] 84 LeaveWorld";
+	//private static final String _S__96_LEAVEWORLD = "[S] 84 LeaveWorld";
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0x84);
+		//writeC(0x84);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__96_LEAVEWORLD;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__96_LEAVEWORLD;
+	//}
 
 }

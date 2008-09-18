@@ -14,8 +14,8 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Clan;
-import net.sf.l2j.gameserver.model.L2Clan.SubPledge;
+//import net.sf.l2j.gameserver.model.L2Clan;
+//import net.sf.l2j.gameserver.model.L2Clan.SubPledge;
 
 /**
  *
@@ -23,49 +23,49 @@ import net.sf.l2j.gameserver.model.L2Clan.SubPledge;
  */
 public class PledgeReceiveSubPledgeCreated extends L2GameServerPacket
 {
-	private static final String _S__FE_3F_PLEDGERECEIVESUBPLEDGECREATED = "[S] FE:40 PledgeReceiveSubPledgeCreated";
-	private SubPledge _subPledge;
-	private L2Clan _clan;
+	//private static final String _S__FE_3F_PLEDGERECEIVESUBPLEDGECREATED = "[S] FE:40 PledgeReceiveSubPledgeCreated";
+	//private SubPledge _subPledge;
+	//private L2Clan _clan;
 
 	/**
 	 * @param member
 	 */
-	public PledgeReceiveSubPledgeCreated(SubPledge subPledge, L2Clan clan)
-	{
-		_subPledge = subPledge;
-		_clan = clan;
-	}
+	//public PledgeReceiveSubPledgeCreated(SubPledge subPledge, L2Clan clan)
+	//{
+		//_subPledge = subPledge;
+		//_clan = clan;
+	//}
 
 	/**
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x40);
+		//writeC(0xfe);
+		readH();//writeH(0x40);
 
-		writeD(0x01);
-        writeD(_subPledge.getId());
-        writeS(_subPledge.getName());
-        writeS(getLeaderName());
+		readD();//writeD(0x01);
+                int id = readD();//writeD(_subPledge.getId());
+                String name = readS();//writeS(_subPledge.getName());
+                String leader = readS();//writeS(getLeaderName());
 	}
 	
-	private String getLeaderName()
-	{
-		if (_subPledge.getId() == L2Clan.SUBUNIT_ACADEMY || _subPledge.getLeaderId() == 0)
-			return "";
-		else
-			return _clan.getClanMember(_subPledge.getLeaderId()).getName(); 
-	}
+	//private String getLeaderName()
+	//{
+		//if (_subPledge.getId() == L2Clan.SUBUNIT_ACADEMY || _subPledge.getLeaderId() == 0)
+			//return "";
+		//else
+			//return _clan.getClanMember(_subPledge.getLeaderId()).getName(); 
+	//}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_3F_PLEDGERECEIVESUBPLEDGECREATED;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_3F_PLEDGERECEIVESUBPLEDGECREATED;
+	//}
 
 }

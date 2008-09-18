@@ -14,9 +14,9 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
-import net.sf.l2j.gameserver.model.quest.Quest;
-import net.sf.l2j.gameserver.model.quest.QuestState;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.quest.Quest;
+//import net.sf.l2j.gameserver.model.quest.QuestState;
 
 
 /**
@@ -38,27 +38,27 @@ import net.sf.l2j.gameserver.model.quest.QuestState;
  */
 public class QuestList extends L2GameServerPacket
 {
-	private static final String _S__98_QUESTLIST = "[S] 86 QuestList";
-	private Quest[] _quests;
-    private L2PcInstance _activeChar;
+	//private static final String _S__98_QUESTLIST = "[S] 86 QuestList";
+	//private Quest[] _quests;
+    //private L2PcInstance _activeChar;
 
-	public QuestList()
-	{
+	//public QuestList()
+	//{
 
-	}
+	//}
+
+	//@Override
+	//public void runImpl()
+	//{
+		//if (getClient() != null && getClient().getActiveChar() != null)
+        //{
+            //_activeChar = getClient().getActiveChar();
+            //_quests = _activeChar.getAllActiveQuests();
+        //}
+	//}
 
 	@Override
-	public void runImpl()
-	{
-		if (getClient() != null && getClient().getActiveChar() != null)
-        {
-            _activeChar = getClient().getActiveChar();
-            _quests = _activeChar.getAllActiveQuests();
-        }
-	}
-
-	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
 	    /**
 	     * This text was wrote by XaKa
@@ -91,41 +91,41 @@ public class QuestList extends L2GameServerPacket
 	     * the 10th but the 6th and 9th are not to be shown at all (not completed, either).
 	     */
         
-		writeC(0x86);
-		if (_quests != null)
-		{
-		    writeH(_quests.length);
-		    for (Quest q : _quests)
-		    {
-		        writeD(q.getQuestIntId());
-		        QuestState qs = _activeChar.getQuestState(q.getName());
-		        if(qs == null)
-		        {
-		            writeD(0);
-		            continue;
-		        }
-		        
-		        int states = qs.getInt("__compltdStateFlags");
-		        if (states != 0 )
-		            writeD(states);
-		        else
-		            writeD(qs.getInt("cond"));
-		    }
-		}
-        else
-        {
-            // write empty size
-            writeH(0x00);
-        }
-        writeB(new byte[128]);
+		//writeC(0x86);
+		//if (_quests != null)
+		//{
+		    //writeH(_quests.length);
+		    //for (Quest q : _quests)
+		    //{
+		        //writeD(q.getQuestIntId());
+		        //QuestState qs = _activeChar.getQuestState(q.getName());
+		        //if(qs == null)
+		        //{
+		            //writeD(0);
+		            //continue;
+		        //}
+//		        
+		        //int states = qs.getInt("__compltdStateFlags");
+		        //if (states != 0 )
+		            //writeD(states);
+		        //else
+		            //writeD(qs.getInt("cond"));
+		    //}
+		//}
+        //else
+        //{
+            //// write empty size
+            //writeH(0x00);
+        //}
+        //writeB(new byte[128]);
 	}
-
+//
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__98_QUESTLIST;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__98_QUESTLIST;
+	//}
 }

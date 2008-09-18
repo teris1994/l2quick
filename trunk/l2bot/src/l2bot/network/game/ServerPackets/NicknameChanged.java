@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 /**
  *
@@ -22,34 +22,34 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
  */
 public class NicknameChanged extends L2GameServerPacket
 {
-	private static final String _S__CC_TITLE_UPDATE = "[S] cc NicknameChanged";
-	private String _title;
-	private int _objectId;
+	//private static final String _S__CC_TITLE_UPDATE = "[S] cc NicknameChanged";
+	//private String _title;
+	//private int _objectId;
 
-	public NicknameChanged(L2PcInstance cha)
-	{
-		_objectId = cha.getObjectId();
-		_title = cha.getTitle();
-	}
+	//public NicknameChanged(L2PcInstance cha)
+	//{
+		//_objectId = cha.getObjectId();
+		//_title = cha.getTitle();
+	//}
 
 	/**
 	 * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xcc);
-		writeD(_objectId);
-		writeS(_title);
+		//writeC(0xcc);
+		int obj = readD();//writeD(_objectId);
+		String title = readS();//writeS(_title);
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__CC_TITLE_UPDATE;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__CC_TITLE_UPDATE;
+	//}
 
 }

@@ -20,23 +20,23 @@ package l2bot.network.game.ServerPackets;
  */
 public class ServerClose extends L2GameServerPacket
 {
-	private static final String _S__26_SERVERCLOSE = "[S] 20 ServerClose";
+	//private static final String _S__26_SERVERCLOSE = "[S] 20 ServerClose";
 
 	/**
 	 * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0x20);
+		//writeC(0x20);
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__26_SERVERCLOSE;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__26_SERVERCLOSE;
+	//}
 }

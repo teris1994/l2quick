@@ -13,7 +13,7 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package l2bot.network.game.ServerPackets;
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 /**
  * This class ...
@@ -23,46 +23,46 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 public final class CreatureSay extends L2GameServerPacket
 {
 	// ddSS
-	private static final String _S__4A_CREATURESAY = "[S] 4A CreatureSay";
-	private int _objectId;
-	private int _textType;
-	private String _charName;
-	private String _text;
+	//private static final String _S__4A_CREATURESAY = "[S] 4A CreatureSay";
+	///private int _objectId;
+	//private int _textType;
+	//private String _charName;
+	//private String _text;
 
 	/**
 	 * @param _characters
 	 */
-	public CreatureSay(int objectId, int messageType, String charName, String text)
-	{
-		_objectId = objectId;
-		_textType = messageType;
-		_charName = charName;
-		_text = text;
-	}
+	//public CreatureSay(int objectId, int messageType, String charName, String text)
+	//{
+		//_objectId = objectId;
+		//_textType = messageType;
+		//_charName = charName;
+		//_text = text;
+	//}
 
 	@Override
-	protected final void writeImpl()
+	   public void readP()
 	{
-		writeC(0x4a);
-		writeD(_objectId);
-		writeD(_textType);
-		writeS(_charName);
-		writeS(_text);
+		//writeC(0x4a);
+		int objId = readD();//writeD(_objectId);
+		int type = readD();//writeD(_textType);
+		String name = readS();//writeS(_charName);
+		String text = readS();//writeS(_text);
 
-		L2PcInstance _pci = getClient().getActiveChar();
-		if (_pci != null)
-		{
-			_pci.broadcastSnoop(_textType,_charName,_text);
-		}
+		//L2PcInstance _pci = getClient().getActiveChar();
+		//if (_pci != null)
+		//{
+			//_pci.broadcastSnoop(_textType,_charName,_text);
+		//}
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__4A_CREATURESAY;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__4A_CREATURESAY;
+	//}
 
 }

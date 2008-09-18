@@ -34,9 +34,9 @@ import javolution.util.FastList;
  */
 public class AcquireSkillInfo extends L2GameServerPacket
 {
-	private static final String _S__A4_AQUIRESKILLINFO = "[S] 91 AcquireSkillInfo";
-	private List<Req> _reqs;
-	private int _id, _level, _spCost, _mode;
+	//private static final String _S__A4_AQUIRESKILLINFO = "[S] 91 AcquireSkillInfo";
+	//private List<Req> _reqs;
+	//private int _id, _level, _spCost, _mode;
 
 	private class Req
 	{
@@ -53,8 +53,8 @@ public class AcquireSkillInfo extends L2GameServerPacket
 			unk = pUnk;
 		}
 	}
-
-	public AcquireSkillInfo(int id, int level, int spCost, int mode)
+        
+	public void readP()
 	{
 		//_reqs = new FastList<Req>();
 		//_id = id;
@@ -62,15 +62,14 @@ public class AcquireSkillInfo extends L2GameServerPacket
 		//_spCost = spCost;
 		//_mode = mode;
             	//writeC(0x91);
-		_id = readD();//writeD(_id);
-		_level = readD();//writeD(_level);
-		_spCost = readD();//writeD(_spCost);
-		_mode = readD();//writeD(_mode); //c4
-                _reqs = new FastList<Req>();
+		int id = readD();//writeD(_id);
+		int level = readD();//writeD(_level);
+		int spCost = readD();//writeD(_spCost);
+		int mode = readD();//writeD(_mode); //c4
+                FastList<Req> reqs = new FastList<Req>();
 		
                 for(int i = readD();i >0;i--){
-                 _reqs.add(new Req(readD(),readD(),readD(),readD()));   
-                    
+                  reqs.add(new Req(readD(),readD(),readD(),readD()));   
                 }
                 
 		//for (Req temp : _reqs)
@@ -89,7 +88,7 @@ public class AcquireSkillInfo extends L2GameServerPacket
 	}
 
 	//@Override
-	protected final void writeImpl()
+	public void readP()
 	{
 
 
@@ -97,9 +96,9 @@ public class AcquireSkillInfo extends L2GameServerPacket
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
 	//@Override
-	public String getType()
-	{
-		return _S__A4_AQUIRESKILLINFO;
-	}
+	//public String getType()
+	//{
+		//return _S__A4_AQUIRESKILLINFO;
+	//}
 
 }

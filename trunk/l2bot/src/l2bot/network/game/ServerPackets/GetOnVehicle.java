@@ -14,8 +14,8 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.actor.instance.L2BoatInstance;
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2BoatInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 /**
  * @author Maktakien
@@ -23,11 +23,11 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
  */
 public class GetOnVehicle extends L2GameServerPacket
 {
-	private int _x;
-	private int _y;
-	private int _z;
-	private L2PcInstance _activeChar;
-	private L2BoatInstance _boat;
+	//private int _x;
+	//private int _y;
+	//private int _z;
+	//private L2PcInstance _activeChar;
+	//private L2BoatInstance _boat;
 	/**
 	 * @param activeChar
 	 * @param boat
@@ -35,40 +35,40 @@ public class GetOnVehicle extends L2GameServerPacket
 	 * @param y
 	 * @param z
 	 */
-	public GetOnVehicle(L2PcInstance activeChar, L2BoatInstance boat, int x, int y, int z)
-	{
-		_activeChar = activeChar;
-		_boat = boat;
-		_x = x;
-		_y = y;
-		_z = z;
-
-		_activeChar.setBoat(_boat);
-		_activeChar.setInBoat(true);
-	}
-
+	//public GetOnVehicle(L2PcInstance activeChar, L2BoatInstance boat, int x, int y, int z)
+	//{
+		//_activeChar = activeChar;
+		//_boat = boat;
+		//_x = x;
+		//_y = y;
+		//_z = z;
+//
+		//_activeChar.setBoat(_boat);
+		//_activeChar.setInBoat(true);
+	//}
+//
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0x6e);
-		writeD(_activeChar.getObjectId());
-		writeD(_boat.getObjectId());
-        writeD(_x);
-        writeD(_y);
-        writeD(_z);
+		//writeC(0x6e);
+		int objid = readD();//writeD(_activeChar.getObjectId());
+		int boat = readD();//writeD(_boat.getObjectId());
+        int x= readD();//writeD(_x);
+        int y = readD();//writeD(_y);
+        int z = readD();//writeD(_z);
 
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return "[S] 6e GetOnVehicle";
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return "[S] 6e GetOnVehicle";
+	//}
 
 }

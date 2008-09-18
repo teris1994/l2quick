@@ -14,8 +14,8 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.datatables.ClanTable;
-import net.sf.l2j.gameserver.model.L2Clan;
+//import net.sf.l2j.gameserver.datatables.ClanTable;
+//import net.sf.l2j.gameserver.model.L2Clan;
 
 /**
  *
@@ -23,46 +23,46 @@ import net.sf.l2j.gameserver.model.L2Clan;
  */
 public class PledgeReceiveWarList extends L2GameServerPacket
 {
-	private static final String _S__FE_3E_PLEDGERECEIVEWARELIST = "[S] FE:3F PledgeReceiveWarList";
-	private L2Clan _clan;
-	private int _tab;
+	//private static final String _S__FE_3E_PLEDGERECEIVEWARELIST = "[S] FE:3F PledgeReceiveWarList";
+	//private L2Clan _clan;
+	//private int _tab;
 
-	public PledgeReceiveWarList(L2Clan clan, int tab)
-	{
-		_clan = clan;
-		_tab = tab;
-	}
+	//public PledgeReceiveWarList(L2Clan clan, int tab)
+	//{
+		//_clan = clan;
+		//_tab = tab;
+	//}
 
 	/**
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x3f);
+		//writeC(0xfe);
+		readD();//writeH(0x3f);
 
-		writeD(_tab); // type : 0 = Declared, 1 = Under Attack
-		writeD(0x00); // page
-		writeD(_tab == 0 ? _clan.getWarList().size() : _clan.getAttackerList().size());
-		for(Integer i : _tab == 0 ? _clan.getWarList() : _clan.getAttackerList())
+		int type = readD();//writeD(_tab); // type : 0 = Declared, 1 = Under Attack
+		readD();//writeD(0x00); // page
+		int s  = readD();//writeD(_tab == 0 ? _clan.getWarList().size() : _clan.getAttackerList().size());
+		//for(Integer i : _tab == 0 ? _clan.getWarList() : _clan.getAttackerList())
+                for (int i = 0; i < s; i++) 
 		{
-			L2Clan clan = ClanTable.getInstance().getClan(i);
-			if (clan == null) continue;
-
-			writeS(clan.getName());
-			writeD(_tab); //??
-			writeD(_tab); //??
+			//L2Clan clan = ClanTable.getInstance().getClan(i);
+			//if (clan == null) continue;
+			String name = readS();//writeS(clan.getName());
+			readD();//writeD(_tab); //??
+			readD();//writeD(_tab); //??
 		}
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_3E_PLEDGERECEIVEWARELIST;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_3E_PLEDGERECEIVEWARELIST;
+	//}
 
 }

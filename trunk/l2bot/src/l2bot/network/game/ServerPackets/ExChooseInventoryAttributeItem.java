@@ -19,22 +19,22 @@ package l2bot.network.game.ServerPackets;
  */
 public class ExChooseInventoryAttributeItem extends L2GameServerPacket
 {
-    private int _itemId;
+    //private int _itemId;
     
-    public ExChooseInventoryAttributeItem(int itemId)
-    {
-        _itemId = itemId;
-    }
+    //public ExChooseInventoryAttributeItem(int itemId)
+    //{
+        //_itemId = itemId;
+    //}
+    //@Override
+    //public String getType()
+    //{
+        //return "ExChooseInventoryAttributeItem";
+    //}
     @Override
-    public String getType()
+    public void readP()
     {
-        return "ExChooseInventoryAttributeItem";
-    }
-    @Override
-    protected void writeImpl()
-    {
-        writeC(0xfe);
-        writeH(0x62);
-        writeD(_itemId);
+        //writeC(0xfe);
+        //writeH(0x62);
+        //writeD(_itemId);
     }
 }

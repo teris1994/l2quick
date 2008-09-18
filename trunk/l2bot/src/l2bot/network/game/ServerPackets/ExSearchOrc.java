@@ -21,25 +21,25 @@ package l2bot.network.game.ServerPackets;
  */
 public class ExSearchOrc extends L2GameServerPacket
 {
-	private static final String _S__FE_44_EXORCMOVE = "[S] FE:45 ExSearchOrc";
+	//private static final String _S__FE_44_EXORCMOVE = "[S] FE:45 ExSearchOrc";
 
 	/**
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x45);
+		//writeC(0xfe);
+		//writeH(0x45);
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_44_EXORCMOVE;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_44_EXORCMOVE;
+	//}
 
 }

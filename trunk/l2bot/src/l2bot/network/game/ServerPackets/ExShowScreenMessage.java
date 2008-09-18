@@ -20,42 +20,43 @@ package l2bot.network.game.ServerPackets;
  */
 public class ExShowScreenMessage extends L2GameServerPacket
 {
-	private String _text;
-	private int _time;
+	//private String _text;
+	//private int _time;
 
-	public ExShowScreenMessage (String text, int time)
-	{
-		_text = text;
-		_time = time;
-	}
+	//public ExShowScreenMessage (String text, int time)
+	//{
+		//_text = text;
+		//_time = time;
+	//}
+
+	//@Override
+	//public String getType()
+	//{
+		//return "ExShowScreenMessage";
+	//}
 
 	@Override
-	public String getType()
+	public void readP()
 	{
-		return "ExShowScreenMessage";
-	}
+		//writeC(0xfe);
+		readH();//writeH(0x39);
+//
+		readD();//writeD(0x01);
+		readD();//writeD(-1);
+		readD();//writeD(0x02);
+		readD();//writeD(0x00);
+		readD();//writeD(0x00);
+		readD();//writeD(0x00);
+//
+		readD();//writeD(0);
+		readD();//writeD(0);
+//
+		int time = readD();//writeD(_time);
+//
+		readD();//writeD(1);
 
-	@Override
-	protected void writeImpl()
-	{
-		writeC(0xfe);
-		writeH(0x39);
-
-		writeD(0x01);
-		writeD(-1);
-		writeD(0x02);
-		writeD(0x00);
-		writeD(0x00);
-		writeD(0x00);
-
-		writeD(0);
-		writeD(0);
-
-		writeD(_time);
-
-		writeD(1);
-
-		writeS(_text);
+		
+                String text = readS();//writeS(_text);
 	}
 
 }

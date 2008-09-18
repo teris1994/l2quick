@@ -14,8 +14,8 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2HennaInstance;
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.L2HennaInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 /**
  *
@@ -23,55 +23,55 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
  */
 public class GMHennaInfo extends L2GameServerPacket
 {
-    private final L2PcInstance _activeChar;
-    private final L2HennaInstance[] _hennas = new L2HennaInstance[3];
-    private int _count;
+    //private final L2PcInstance _activeChar;
+    //private final L2HennaInstance[] _hennas = new L2HennaInstance[3];
+    //private int _count;
     
-    public GMHennaInfo(L2PcInstance activeChar)
-    {
-        _activeChar = activeChar;
-        
-        int j = 0;
-        for (int i = 0; i < 3; i++)
-        {
-            L2HennaInstance h = _activeChar.getHenna(i+1);
-            if (h != null)
-            {
-                _hennas[j++] = h;
-            }
-        }
-        _count = j;
-    }
-    
-    /**
-     * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#getType()
-     */
-    @Override
-    public String getType()
-    {
-        return "[S] 0xf0 GMHennaInfo";
-    }
+    //public GMHennaInfo(L2PcInstance activeChar)
+    //{
+        //_activeChar = activeChar;
+//        
+        //int j = 0;
+        //for (int i = 0; i < 3; i++)
+        //{
+            //L2HennaInstance h = _activeChar.getHenna(i+1);
+            //if (h != null)
+            //{
+                //_hennas[j++] = h;
+            //}
+        //}
+        //_count = j;
+    //}
+//    
+    ///**
+     //* @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#getType()
+    //*/
+    //@Override
+    //public String getType()
+    //{
+        //return "[S] 0xf0 GMHennaInfo";
+    //}
 
     /**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#writeImpl()
      */
     @Override
-    protected void writeImpl()
+    public void readP()
     {
-        writeC(0xf0);
+        //writeC(0xf0);
         
-        writeC(_activeChar.getHennaStatINT());
-        writeC(_activeChar.getHennaStatSTR());
-        writeC(_activeChar.getHennaStatCON());
-        writeC(_activeChar.getHennaStatMEN());
-        writeC(_activeChar.getHennaStatDEX());
-        writeC(_activeChar.getHennaStatWIT());
-        writeD(3); // slots?
-        writeD(_count); //size
-        for (int i = 0; i < _count; i++)
+        int INT = readD();//writeC(_activeChar.getHennaStatINT());
+        int STR = readD();//writeC(_activeChar.getHennaStatSTR());
+        int CON = readD();//writeC(_activeChar.getHennaStatCON());
+        int MEN = readD();//writeC(_activeChar.getHennaStatMEN());
+        int DEX = readD();//writeC(_activeChar.getHennaStatDEX());
+        int WIT = readD();//writeC(_activeChar.getHennaStatWIT());
+        readD();//writeD(3); // slots?
+        int s = readD();//writeD(_count); //size
+        for (int i = 0; i < s; i++)
         {
-            writeD(_hennas[i].getSymbolId());
-            writeD(_hennas[i].getSymbolId());
+            int s1 = readD();//writeD(_hennas[i].getSymbolId());
+            readD();//writeD(_hennas[i].getSymbolId());
         }
     }
     

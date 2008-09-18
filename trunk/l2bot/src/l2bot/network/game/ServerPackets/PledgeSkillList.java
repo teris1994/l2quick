@@ -14,8 +14,8 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Clan;
-import net.sf.l2j.gameserver.model.L2Skill;
+//import net.sf.l2j.gameserver.model.L2Clan;
+//import net.sf.l2j.gameserver.model.L2Skill;
 
 /**
  * Format: (ch) d [dd]
@@ -24,37 +24,38 @@ import net.sf.l2j.gameserver.model.L2Skill;
  */
 public class PledgeSkillList extends L2GameServerPacket
 {
-	private static final String _S__FE_39_PLEDGESKILLLIST = "[S] FE:3a PledgeSkillList";
-	private L2Skill[] _skills;
+	//private static final String _S__FE_39_PLEDGESKILLLIST = "[S] FE:3a PledgeSkillList";
+	//private L2Skill[] _skills;
 
-	public PledgeSkillList(L2Clan clan)
-	{
-        _skills = clan.getAllSkills();
-	}
+	//public PledgeSkillList(L2Clan clan)
+	//{
+        //_skills = clan.getAllSkills();
+	//}
 
 	/**
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x3a);
-		writeD(_skills.length);
-        writeD(0x00);
-		for(L2Skill sk : _skills)
+		//writeC(0xfe);
+		readH();//writeH(0x3a);
+		int s = readD();//writeD(_skills.length);
+                readD();//writeD(0x00);
+		//for(L2Skill sk : _skills)
+                for (int i = 0; i < s; i++) 
 		{
-			writeD(sk.getId());
-			writeD(sk.getLevel());
+			int id = readD();//writeD(sk.getId());
+			int lvl = readD();//writeD(sk.getLevel());
 		}
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_39_PLEDGESKILLLIST;
-	}
+	//@Override
+	//public String getType()
+	//{
+		////return _S__FE_39_PLEDGESKILLLIST;
+	//}
 }

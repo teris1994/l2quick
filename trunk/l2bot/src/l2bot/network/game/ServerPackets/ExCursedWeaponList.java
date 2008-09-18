@@ -23,37 +23,39 @@ import java.util.List;
  */
 public class ExCursedWeaponList extends L2GameServerPacket
 {
-	private static final String _S__FE_45_EXCURSEDWEAPONLIST = "[S] FE:46 ExCursedWeaponList";
-	private List<Integer> _cursedWeaponIds;
+	//private static final String _S__FE_45_EXCURSEDWEAPONLIST = "[S] FE:46 ExCursedWeaponList";
+	//private List<Integer> _cursedWeaponIds;
 
-	public ExCursedWeaponList(List<Integer> cursedWeaponIds)
-	{
-		_cursedWeaponIds = cursedWeaponIds;
-	}
+	//public ExCursedWeaponList(List<Integer> cursedWeaponIds)
+	//{
+		//_cursedWeaponIds = cursedWeaponIds;
+	//}
 
 	/**
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x46);
+		//writeC(0xfe);
+		//writeH(0x46);
 
-		writeD(_cursedWeaponIds.size());
-		for (int i : _cursedWeaponIds)
-		{
-			writeD(i);
-		}
+		int s = readD();//writeD(_cursedWeaponIds.size());
+		//for (int i : _cursedWeaponIds)
+		//{
+                for(int i=0;i<s;i++){
+			int id = readD();//writeD(i);
+                }
+		//}
 	}
 
 	/**
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_45_EXCURSEDWEAPONLIST;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_45_EXCURSEDWEAPONLIST;
+	//}
 
 }

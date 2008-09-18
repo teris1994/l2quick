@@ -14,31 +14,27 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.GameTimeController;
+//import net.sf.l2j.gameserver.GameTimeController;
 
 public class ClientSetTime extends L2GameServerPacket
 {
-	private static final String _S__EC_CLIENTSETTIME = "[S] f2 ClientSetTime [dd]";
-	public static final ClientSetTime STATIC_PACKET = new ClientSetTime();
-
-	private ClientSetTime()
-	{
-	}
+	//private static final String _S__EC_CLIENTSETTIME = "[S] f2 ClientSetTime [dd]";
+	//public static final ClientSetTime STATIC_PACKET = new ClientSetTime();
 
 	@Override
-	protected final void writeImpl()
+	public  void readP()
 	{
-		writeC(0xf2);
-		writeD(GameTimeController.getInstance().getGameTime()); // time in client minutes
-		writeD(6); //constant to match the server time( this determines the speed of the client clock)
+		//writeC(0xf2);
+		int time = readD();//writeD(GameTimeController.getInstance().getGameTime()); // time in client minutes
+		//writeD(6); //constant to match the server time( this determines the speed of the client clock)
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__EC_CLIENTSETTIME;
-	}
+	//@Override
+	//public String getType()
+	//{
+		////return _S__EC_CLIENTSETTIME;
+	//}
 }

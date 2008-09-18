@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.actor.instance.L2BoatInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2BoatInstance;
 
 /**
  * @author Maktakien
@@ -22,37 +22,37 @@ import net.sf.l2j.gameserver.model.actor.instance.L2BoatInstance;
  */
 public class VehicleInfo  extends L2GameServerPacket
 {
-	 private L2BoatInstance _boat;
+	 //private L2BoatInstance _boat;
 	/**
 	 * @param instance
 	 */
-	public VehicleInfo(L2BoatInstance boat)
-	{
-		_boat = boat;
-	}
+	//public VehicleInfo(L2BoatInstance boat)
+	//{
+		//_boat = boat;
+	//}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0x60);
-		writeD(_boat.getObjectId());
-		writeD(_boat.getX());
-		writeD(_boat.getY());
-        writeD(_boat.getZ());
-        writeD(_boat.getPosition().getHeading());
+		//writeC(0x60);
+		int objId = readD();//writeD(_boat.getObjectId());
+		int x = readD();//writeD(_boat.getX());
+		int y = readD();//writeD(_boat.getY());
+                int z = readD();//writeD(_boat.getZ());
+                int h = readD();//writeD(_boat.getPosition().getHeading());
 
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return "[S] 59 VehicleInfo";
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return "[S] 59 VehicleInfo";
+	//}
 
 }

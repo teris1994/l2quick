@@ -17,39 +17,39 @@ package l2bot.network.game.ServerPackets;
 
 public class SpecialCamera extends L2GameServerPacket
 {
-    private static final String _S__C7_SPECIALCAMERA = "[S] d6 SpecialCamera";
-    private int _id;
-    private int _dist;
-    private int _yaw;
-    private int _pitch;
-    private int _time;
-    private int _duration;
+    //private static final String _S__C7_SPECIALCAMERA = "[S] d6 SpecialCamera";
+    //private int _id;
+    //private int _dist;
+    //private int _yaw;
+    //private int _pitch;
+    //private int _time;
+    //private int _duration;
 
-    public SpecialCamera(int id,int dist, int yaw, int pitch, int time, int duration)
-    {
-        _id = id;
-        _dist = dist;
-        _yaw = yaw;
-        _pitch = pitch;
-        _time = time;
-        _duration = duration;
-    }
-
-    @Override
-	public void writeImpl()
-    {
-        writeC(0xd6);
-        writeD(_id);
-        writeD(_dist);
-        writeD(_yaw);
-        writeD(_pitch);
-        writeD(_time);
-        writeD(_duration);
-    }
+    //public SpecialCamera(int id,int dist, int yaw, int pitch, int time, int duration)
+    //{
+        //_id = id;
+        //_dist = dist;
+        //_yaw = yaw;
+        //_pitch = pitch;
+        //_time = time;
+        //_duration = duration;
+    //}
 
     @Override
-	public String getType()
+    public void readP()
     {
-        return _S__C7_SPECIALCAMERA;
+        //writeC(0xd6);
+        //writeD(_id);
+        //writeD(_dist);
+        //writeD(_yaw);
+        //writeD(_pitch);
+        //writeD(_time);
+        //writeD(_duration);
     }
+
+    //@Override
+	//public String getType()
+    //{
+        //return _S__C7_SPECIALCAMERA;
+    //}
 }

@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 /**
  * sample
@@ -26,33 +26,33 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
  */
 public class ChairSit extends L2GameServerPacket
 {
-    private static final String _S__e1_CHAIRSIT = "[S] ed ChairSit";
+    //private static final String _S__e1_CHAIRSIT = "[S] ed ChairSit";
 
-    private L2PcInstance _activeChar;
-    private int _staticObjectId;
+    //private L2PcInstance _activeChar;
+    //private int _staticObjectId;
 
     /**
      */
-    public ChairSit()
-    {
-        _activeChar = player;
-        _staticObjectId = staticObjectId;
-    }
+    //public ChairSit()
+    //{
+        //_activeChar = player;
+        //_staticObjectId = staticObjectId;
+    //}
 
     @Override
-	protected final void writeImpl()
+    public void readP()
     {
-        writeC(0xed);
-        writeD(_activeChar.getObjectId());
-        writeD(_staticObjectId);
+        //writeC(0xed);
+        readD();//writeD(_activeChar.getObjectId());
+        int chair = readD();//writeD(_staticObjectId);
     }
 
     /* (non-Javadoc)
      * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
      */
-    @Override
-	public String getType()
-    {
-        return _S__e1_CHAIRSIT;
-    }
+    //@Override
+	//public String getType()
+    //{
+        //return _S__e1_CHAIRSIT;
+    //}
 }

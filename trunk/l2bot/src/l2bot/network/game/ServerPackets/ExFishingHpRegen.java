@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.L2Character;
+//import net.sf.l2j.gameserver.model.L2Character;
 
 /**
  * Format (ch)dddcccd
@@ -30,49 +30,49 @@ import net.sf.l2j.gameserver.model.L2Character;
  */
 public class ExFishingHpRegen extends L2GameServerPacket
 {
-	private static final String _S__FE_16_EXFISHINGHPREGEN = "[S] FE:28 ExFishingHPRegen";
-	private L2Character _activeChar;
-	private int _time, _fishHP, _hpMode, _anim, _goodUse, _penalty, _hpBarColor;
+	//private static final String _S__FE_16_EXFISHINGHPREGEN = "[S] FE:28 ExFishingHPRegen";
+	//private L2Character _activeChar;
+	//private int _time, _fishHP, _hpMode, _anim, _goodUse, _penalty, _hpBarColor;
 
-	public ExFishingHpRegen(L2Character character, int time, int fishHP, int HPmode, int GoodUse, int anim, int penalty, int hpBarColor)
-	{
-		_activeChar = character;
-		_time = time;
-		_fishHP = fishHP;
-		_hpMode = HPmode;
-		_goodUse = GoodUse;
-		_anim = anim;
-		_penalty = penalty;
-		_hpBarColor = hpBarColor;
-	}
+	//public ExFishingHpRegen(L2Character character, int time, int fishHP, int HPmode, int GoodUse, int anim, int penalty, int hpBarColor)
+	//{
+		////_activeChar = character;
+		//_time = time;
+		//_fishHP = fishHP;
+		//_hpMode = HPmode;
+		//_goodUse = GoodUse;
+		//_anim = anim;
+		//_penalty = penalty;
+		//_hpBarColor = hpBarColor;
+	//}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x28);
+		//writeC(0xfe);
+		readH();//writeH(0x28);
 
-		writeD(_activeChar.getObjectId());
-		writeD(_time);
-		writeD(_fishHP);
-		writeC(_hpMode); // 0 = HP stop, 1 = HP raise
-		writeC(_goodUse); // 0 = none, 1 = success, 2 = failed
-		writeC(_anim); // Anim: 0 = none, 1 = reeling, 2 = pumping
-		writeD(_penalty); // Penalty
-		writeC(_hpBarColor); // 0 = normal hp bar, 1 = purple hp bar
+		int objId = readD();//writeD(_activeChar.getObjectId());
+		int time = readD();//writeD(_time);
+		int hp = readD();//writeD(_fishHP);
+		int hpMode = readC();//writeC(_hpMode); // 0 = HP stop, 1 = HP raise
+		int good = readC();//writeC(_goodUse); // 0 = none, 1 = success, 2 = failed
+		int anim = readC();//writeC(_anim); // Anim: 0 = none, 1 = reeling, 2 = pumping
+		int pen = readD();//writeD(_penalty); // Penalty
+		int barc = readC();//writeC(_hpBarColor); // 0 = normal hp bar, 1 = purple hp bar
 
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_16_EXFISHINGHPREGEN;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_16_EXFISHINGHPREGEN;
+	//}
 
 }

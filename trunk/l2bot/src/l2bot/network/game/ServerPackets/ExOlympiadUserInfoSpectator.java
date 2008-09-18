@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 
 
 /**
@@ -27,43 +27,43 @@ import net.sf.l2j.gameserver.model.actor.instance.L2PcInstance;
 public class ExOlympiadUserInfoSpectator extends L2GameServerPacket
 {
 	// chcdSddddd
-	private static final String _S__FE_29_OLYMPIADUSERINFOSPECTATOR = "[S] FE:7a OlympiadUserInfoSpectator";
-	private int _side;
-	private L2PcInstance _player;
+	//private static final String _S__FE_29_OLYMPIADUSERINFOSPECTATOR = "[S] FE:7a OlympiadUserInfoSpectator";
+	//private int _side;
+	//private L2PcInstance _player;
 
 
 	/**
 	 * @param _player
 	 * @param _side (1 = right, 2 = left)
 	 */
-	public ExOlympiadUserInfoSpectator(L2PcInstance player, int side)
-	{
-		_player = player;
-		_side = side;
-	}
+	//public ExOlympiadUserInfoSpectator(L2PcInstance player, int side)
+	//{
+		//_player = player;
+		//_side = side;
+	//}
 
 
 	@Override
-	protected final void writeImpl()
+	public void readP()
 	{
-		writeC(0xfe);
-		writeH(0x7a);
-		writeC(_side);
-		writeD(_player.getObjectId());
-		writeS(_player.getName());
-		writeD(_player.getClassId().getId());
-		writeD((int)_player.getCurrentHp());
-		writeD(_player.getMaxHp());
-		writeD((int)_player.getCurrentCp());
-		writeD(_player.getMaxCp());
+		//writeC(0xfe);
+		readD();//writeH(0x7a);
+		int side = readC();//writeC(_side);
+		int objId = readD();//writeD(_player.getObjectId());
+		String name = readS();//writeS(_player.getName());
+		int classId = readD();//writeD(_player.getClassId().getId());
+		int hp = readD();//writeD((int)_player.getCurrentHp());
+		int maxHp = readD();//writeD(_player.getMaxHp());
+		int cp = readD();//writeD((int)_player.getCurrentCp());
+		int maxCp = readD();//writeD(_player.getMaxCp());
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return _S__FE_29_OLYMPIADUSERINFOSPECTATOR;
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return _S__FE_29_OLYMPIADUSERINFOSPECTATOR;
+	//}
 }

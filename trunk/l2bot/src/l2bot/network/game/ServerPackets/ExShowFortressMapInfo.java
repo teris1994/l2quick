@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.entity.Fort;
+//import net.sf.l2j.gameserver.model.entity.Fort;
 
 /**
  *
@@ -22,37 +22,37 @@ import net.sf.l2j.gameserver.model.entity.Fort;
  */
 public class ExShowFortressMapInfo extends L2GameServerPacket
 {
-    private final Fort _fortress;
+    //private final Fort _fortress;
     
-    public ExShowFortressMapInfo(Fort fortress)
-    {
-        _fortress = fortress;
-    }
+    //public ExShowFortressMapInfo(Fort fortress)
+    //{
+        //_fortress = fortress;
+    //}
     
     /**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#getType()
      */
-    @Override
-    public String getType()
-    {
-        return "[S] FE:7D ExShowFortressMapInfo";
-    }
+    //@Override
+    //public String getType()
+    //{
+        //return "[S] FE:7D ExShowFortressMapInfo";
+    //}
 
     /**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#writeImpl()
      */
     @Override
-    protected void writeImpl()
+    public void readP()
     {
-        writeC(0xfe);
-        writeH(0x7d);
+        //writeC(0xfe);
+        readH();//writeH(0x7d);
         
-        writeD(_fortress.getFortId());
-        writeD(0); // fortress siege status
-        writeD(0); // barracks count
+        int id = readD();//writeD(_fortress.getFortId());
+        readD();//writeD(0); // fortress siege status
+        readD();//writeD(0); // barracks count
         
-        // foreach barrack do:
-        // writeD() barrack status
+        //////////// foreach barrack do:
+        //////////// writeD() barrack status
     }
     
 }

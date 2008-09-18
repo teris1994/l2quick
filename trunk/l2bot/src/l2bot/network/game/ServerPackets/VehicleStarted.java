@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import net.sf.l2j.gameserver.model.actor.instance.L2BoatInstance;
+//import net.sf.l2j.gameserver.model.actor.instance.L2BoatInstance;
 
 /**
  * @author Kerberos
@@ -22,18 +22,18 @@ import net.sf.l2j.gameserver.model.actor.instance.L2BoatInstance;
  */
 public class VehicleStarted extends L2GameServerPacket
 {
-	private L2BoatInstance _boat;
+	//private L2BoatInstance _boat;
 	
-	private int _state;
+	//private int _state;
 	
 	/**
 	 * @param instance
 	 */
-	public VehicleStarted(L2BoatInstance boat, int state)
-	{
-		_boat = boat;
-		_state = state;
-	}
+	//public VehicleStarted(L2BoatInstance boat, int state)
+	//{
+		//_boat = boat;
+		//_state = state;
+	//}
 	
 	/*
 	 * (non-Javadoc)
@@ -41,11 +41,11 @@ public class VehicleStarted extends L2GameServerPacket
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
 	 */
 	@Override
-	protected void writeImpl()
+	public void readP()
 	{
-		writeC(0xC0);
-		writeD(_boat.getObjectId());
-		writeD(_state);
+		//writeC(0xC0);
+		int objId = readD();//writeD(_boat.getObjectId());
+		int state = readD();//writeD(_state);
 	}
 	
 	/*
@@ -53,10 +53,10 @@ public class VehicleStarted extends L2GameServerPacket
 	 * 
 	 * @see net.sf.l2j.gameserver.BasePacket#getType()
 	 */
-	@Override
-	public String getType()
-	{
-		return "[S] C0 VehicleStarted";
-	}
+	//@Override
+	//public String getType()
+	//{
+		//return "[S] C0 VehicleStarted";
+	//}
 	
 }

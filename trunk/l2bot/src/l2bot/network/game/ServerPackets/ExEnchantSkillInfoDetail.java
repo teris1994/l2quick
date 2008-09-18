@@ -23,43 +23,43 @@ package l2bot.network.game.ServerPackets;
  */
 public class ExEnchantSkillInfoDetail extends L2GameServerPacket
 {
-    private final int _itemId;
-    private final int _itemCount;
+    //private final int _itemId;
+    //private final int _itemCount;
     
-    public ExEnchantSkillInfoDetail(int itemId, int itemCount)
-    {
-        _itemId = itemId;
-        _itemCount = itemCount;
-    }
+    //public ExEnchantSkillInfoDetail(int itemId, int itemCount)
+    //{
+        //_itemId = itemId;
+        //_itemCount = itemCount;
+    //}
     
     /**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#getType()
      */
-    @Override
-    public String getType()
-    {
-        return "[S] FE:5E ExEnchantSkillInfoDetail";
-    }
+    //@Override
+    //public String getType()
+    //{
+        //return "[S] FE:5E ExEnchantSkillInfoDetail";
+    //}
 
     /**
      * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#writeImpl()
      */
     @Override
-    protected void writeImpl()
+    public void readP()
     {
-        writeC(0xfe);
-        writeH(0x5e);
+        //writeC(0xfe);
+        readH();//writeH(0x5e);
         
-        writeD(0);
-        writeD(0);
-        writeD(0);
-        writeD(0);
-        writeQ(0);
-        writeD(0);
-        writeD(_itemCount); // Count
-        writeD(0);
-        writeD(_itemId); // ItemId Required
-        writeD(0);
+        readD();//writeD(0);
+        readD();//writeD(0);
+        readD();//writeD(0);
+        readD();//writeD(0);
+        readQ();//writeQ(0);
+        readD();//writeD(0);
+        int count = readD();//writeD(_itemCount); // Count
+        readD();//writeD(0);
+        int id = readD();//writeD(_itemId); // ItemId Required
+        //writeD(0);
     }
     
 }
