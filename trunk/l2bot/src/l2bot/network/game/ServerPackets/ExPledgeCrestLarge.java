@@ -29,11 +29,11 @@ public class ExPledgeCrestLarge extends L2GameServerPacket
 	//private int _crestId;
 	//private byte[] _data;
 
-	public ExPledgeCrestLarge(int crestId, byte[] data)
-	{
+	//public ExPledgeCrestLarge(int crestId, byte[] data)
+	//{
 		//_crestId = crestId;
         //_data = data;
-	}
+	//}
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()

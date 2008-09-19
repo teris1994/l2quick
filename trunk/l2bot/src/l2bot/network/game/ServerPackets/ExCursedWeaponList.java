@@ -14,7 +14,7 @@
  */
 package l2bot.network.game.ServerPackets;
 
-import java.util.List;
+//import java.util.List;
 
 /**
  * Format: (ch) d[d]
