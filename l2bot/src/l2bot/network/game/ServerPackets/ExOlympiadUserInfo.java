@@ -45,7 +45,12 @@ public class ExOlympiadUserInfo extends L2GameServerPacket
 	@Override
 	public void readP()
 	{
-		///*writeC(0xfe);
+                /*
+                 * Nota: El paquete tambien estaba comentado en l2jserver
+                 * parece que el paquete no se usa ya
+                 * 
+                 */
+		/*///*writeC(0xfe);
 		readH();//writeH(0x2c);
 		int objId = readD();//writeD(_activeChar.getObjectId());
 		String name = readS();//writeS(_activeChar.getName());

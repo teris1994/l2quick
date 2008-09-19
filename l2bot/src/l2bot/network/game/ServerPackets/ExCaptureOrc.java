@@ -41,6 +41,9 @@ public class ExCaptureOrc extends L2GameServerPacket
 	/**
 	 * @see net.sf.l2j.gameserver.network.serverpackets.L2GameServerPacket#writeImpl()
 	 */
+    /*
+     * Nota: Este paquete no se usa
+     */
 	@Override
 	public void readP()
 	{

@@ -24,7 +24,7 @@ package l2bot.network.game.ServerPackets;
 public class ExCloseMPCC extends L2GameServerPacket
 {
 
-	private static final String _S__FE_26_EXCLOSEMPCC = "[S] FE:13 ExCloseMPCC";
+	//private static final String _S__FE_26_EXCLOSEMPCC = "[S] FE:13 ExCloseMPCC";
 
 	/* (non-Javadoc)
 	 * @see net.sf.l2j.gameserver.serverpackets.ServerBasePacket#writeImpl()
