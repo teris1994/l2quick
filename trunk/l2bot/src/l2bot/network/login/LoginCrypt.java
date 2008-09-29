@@ -10,7 +10,8 @@ package l2bot.network.login;
  * @author carl
  */
 import java.io.IOException;
-import l2bot.interfaz.logger;
+import l2bot.interfaz.Sniffer;
+import l2bot.pj.Pj;
         
 public class LoginCrypt {
     
@@ -21,14 +22,22 @@ public class LoginCrypt {
     private BlowfishEngine _decrypt;
     private BlowfishEngine _crypt;
     
-    logger log;
+    Pj pj;
     
-    public LoginCrypt(byte[] init, logger log) throws IOException{
-        this.log = log;
+    public LoginCrypt(byte[] init, Pj pj) throws IOException{
+        this.pj = pj;
         byte[] initd = DecodeInit(init);
+        
         if(initd[0] != 0x00){
-            log.logError("id del paquete init incorrecto");
+            pj.getLogger().logError("id del paquete init incorrecto");
         }
+        
+        byte[] initSn = new byte[initd.length +2];
+        System.arraycopy(initd, 0, initSn, 2, initd.length);
+        
+        Sniffer.getInstance().addPacket(initSn, Sniffer.LOGIN_SERVER, pj.connectionInfo.user);
+        
+        
         RSApublickey = new byte[128];         
         System.arraycopy(initd,9,RSApublickey,0,128);
         
@@ -54,9 +63,10 @@ public class LoginCrypt {
         decrypt(buf,2,size-2);
         //System.out.println(byteArrayToHexString(buf));
         if(!verifyChecksum(buf,2,size-2)){
-            log.logError("Worng checksum");
+            pj.getLogger().logError("Worng checksum");
             return null;
         }
+        Sniffer.getInstance().addPacket(buf, Sniffer.LOGIN_SERVER, pj.connectionInfo.user);
         return buf;
     }
     public byte[] Encriptar(byte[] buf, int size) throws IOException{

@@ -77,4 +77,7 @@ public class GameCrypt
                 _outKey[10] = (byte)(old >> 0x10 &0xff);
                 _outKey[11] = (byte)(old >> 0x18 &0xff);
         }
+        public void enable(){
+            _isEnabled = true;
+        }
 }

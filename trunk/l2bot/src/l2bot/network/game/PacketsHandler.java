@@ -9,7 +9,7 @@
 
 package l2bot.network.game;
 
-import l2bot.interfaz.logger;
+
 import l2bot.network.game.ClientPackets.ProtocolVersion;
 import l2bot.network.game.ServerPackets.*;
 import l2bot.pj.Pj;
@@ -26,7 +26,6 @@ public class PacketsHandler {
     
     public Pj pj;
     
-    public logger log;
     
     public byte estado = 0;
     public void onConect(){
@@ -861,7 +860,7 @@ public class PacketsHandler {
                 }
             }
         }
-        if(pa == null){log.logError("Unknown optcode:" + raw[2]);return;} 
+        if(pa == null){pj.getLogger().logError("Unknown optcode:" + raw[2]);return;} 
         pa.setBytes(raw);
         pa.setPj(pj);
         pa.readP();

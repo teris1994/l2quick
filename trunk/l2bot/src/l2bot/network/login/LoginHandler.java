@@ -15,10 +15,11 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import l2bot.Main;
+import l2bot.interfaz.Sniffer;
 import l2bot.interfaz.dialogs.ServerSelect;
-import l2bot.interfaz.logger;
 import l2bot.network.login.ClientPackets.*;
 import l2bot.network.login.ClientPackets.ClientPacket;
+import l2bot.pj.Pj;
 
 
 
@@ -29,7 +30,7 @@ public class LoginHandler{
         String user,password;
         String gameservers;
         
-        public logger log;
+        public Pj pj;
         
 	public LoginStatus estado;
 	
@@ -52,7 +53,7 @@ public class LoginHandler{
             if(raw == null){
                 if(!error)
                 {
-                    log.logError("Paquete demaseado corto");
+                    pj.getLogger().logError("Paquete demaseado corto");
                     error = true;
                 }
                 return;
@@ -63,8 +64,8 @@ public class LoginHandler{
                 case DESCONECTADO:
                     return;
                 case WF_INIT:
-                    log.logInfo("Recivido Init,enviando Auth GameGuard...");
-                    Loginc = new LoginCrypt(raw,log);
+                    pj.getLogger().logInfo("Recivido Init,enviando Auth GameGuard...");
+                    Loginc = new LoginCrypt(raw,pj);
                     EnviarAuthGG();
                     estado = LoginStatus.WF_authGG;
                     return;
@@ -72,7 +73,7 @@ public class LoginHandler{
                     Loginc.Desencriptar(raw, raw[0] + raw[1]*256);
 
                     if(raw[2] == 0x0B){
-                        log.logInfo("Recivido skip Auth Gameguard, enviando peticion de login...");
+                        pj.getLogger().logInfo("Recivido skip Auth Gameguard, enviando peticion de login...");
                         EnviarAuthLogin();
                         estado = LoginStatus.WF_auth;
                     }
@@ -94,18 +95,18 @@ public class LoginHandler{
                     error = true;
                     return;
                 case 0x03:
-                    log.logInfo("Login ok, Pidiendo lista de servers...");
+                    pj.getLogger().logInfo("Login ok, Pidiendo lista de servers...");
                     sessionId2 = new byte[8];
                     System.arraycopy(raw, 3, sessionId2, 0, 8);
                     enviarReqestServerList();
                     return;
                 case 0x04:
-                    log.logInfo("recivida lista de servers");
+                    pj.getLogger().logInfo("recivida lista de servers");
                     gameServersHandler = new GameServersHandler(raw);
                     ServerSelect sc = new ServerSelect(Main.g,gameServersHandler,gameservers){
                         @Override
                         public void onAceptar(byte ser){
-                            log.logInfo("enviando server login...");
+                            pj.getLogger().logInfo("enviando server login...");
                             _server = ser;
                             enviarReqestServerLogin((byte)(ser+1));
                         }
@@ -124,8 +125,8 @@ public class LoginHandler{
                     parseError(raw[2],raw[3]);
                     return;
                 case 0x07:
-                    log.logInfo("recivido play ok");
-                    log.logInfo("desconectado del ls");
+                    pj.getLogger().logInfo("recivido play ok");
+                    pj.getLogger().logInfo("desconectado del ls");
                     byte[] gsk = new byte[16];
                     gsk[4] = raw[3];
                     gsk[5] = raw[4];
@@ -178,6 +179,7 @@ public class LoginHandler{
         
         public void Send(byte[] raw, int size,int chkoff, ClientPacket.Rellenar fillmode) throws IOException{
             LoginCrypt.appendChecksum(raw,2,chkoff);
+            Sniffer.getInstance().addPacket(raw, Sniffer.CLIENTE_LOGIN, pj.connectionInfo.user);
             switch(fillmode){
                 case SI:
                     if(raw.length < size){
@@ -223,7 +225,7 @@ public class LoginHandler{
             //System.out.println("[" + size + "] " + LoginCrypt.byteArrayToHexString(buf2));
             
             LoginCrypt.appendChecksum(buf2,2,size+6);
-            
+            Sniffer.getInstance().addPacket(buf2, Sniffer.CLIENTE_LOGIN, pj.connectionInfo.user);
             //System.out.println("[" + size + "] " + LoginCrypt.byteArrayToHexString(buf2));
             
             Loginc.crypt(buf2, 2, size+16);
@@ -254,72 +256,72 @@ public class LoginHandler{
         case 0x02:   //Account kicked
                     switch(w){
                         default:
-                            log.logError("No se pudo logear: Razon desconocida.");
+                            pj.getLogger().logError("No se pudo logear: Razon desconocida.");
                             break;
                         case 0x01:
-                            log.logError("No se pudo logear: Ladron de datos");
+                            pj.getLogger().logError("No se pudo logear: Ladron de datos");
                             break;          
                         case 0x08:
-                            log.logError("No se pudo logear: Violacion general");
+                            pj.getLogger().logError("No se pudo logear: Violacion general");
                             break; 
                         case 0x10:
-                            log.logError("No se pudo logear: Cuenta suspendida durante 7 dias");
+                            pj.getLogger().logError("No se pudo logear: Cuenta suspendida durante 7 dias");
                             break; 
                         case 0x20:
-                            log.logError("No se pudo logear: Cuenta baneada");
+                            pj.getLogger().logError("No se pudo logear: Cuenta baneada");
                             break; 
                     }
             break;
         case 0x01:  //Login fail
                     switch(w){
                         default:
-                            log.logError("No se pudo logear: Razon desconocida");
+                            pj.getLogger().logError("No se pudo logear: Razon desconocida");
                             break;
                         case 0x01:
-                            log.logError("No se pudo logear: Error del sistema");
+                            pj.getLogger().logError("No se pudo logear: Error del sistema");
                             break; 
                         case 0x02:
-                            log.logError("No se pudo logear: Contraseña incorrecta");
+                            pj.getLogger().logError("No se pudo logear: Contraseña incorrecta");
                             break;                                   
                         case 0x03:
-                            log.logError("No se pudo logear: Usuario o contraseña incorrecta");
+                            pj.getLogger().logError("No se pudo logear: Usuario o contraseña incorrecta");
                             break; 
                         case 0x04:
-                            log.logError("No se pudo logear: Acseso fallido");
+                            pj.getLogger().logError("No se pudo logear: Acseso fallido");
                             break; 
                         case 0x07:
-                            log.logError("No se pudo logear: Cuenta en uso");
+                            pj.getLogger().logError("No se pudo logear: Cuenta en uso");
                             break; 
                         case 0x0f:
-                            log.logError("No se pudo logear: Servidor sobracargado");
+                            pj.getLogger().logError("No se pudo logear: Servidor sobracargado");
                             break; 
                         case 0x10:
-                            log.logError("No se pudo logear: Servidor en mantenimiento");
+                            pj.getLogger().logError("No se pudo logear: Servidor en mantenimiento");
                             break; 
                         case 0x11:
-                            log.logError("No se pudo logear: Contraseña temporal caducada");
+                            pj.getLogger().logError("No se pudo logear: Contraseña temporal caducada");
                             break; 
                         case 0x23:
-                            log.logError("No se pudo logear: DualBox");
+                            pj.getLogger().logError("No se pudo logear: DualBox");
                             break; 
                         }
             break;
         case 0x06:  //Play fail
                     switch(w){
                         case 0x01:
-                            log.logError("No se pudo logear en el gameserver: Error del sistema");
+                            pj.getLogger().logError("No se pudo logear en el gameserver: Error del sistema");
                             break;
                         case 0x02:
-                            log.logError("No se pudo logear en el gameserver: Usuario o contraseña incorrecto");
+                            pj.getLogger().logError("No se pudo logear en el gameserver: Usuario o contraseña incorrecto");
                             break;
                         case 0x03:
-                            log.logError("No se pudo logear en el gameserver: razon 3");
+                            pj.getLogger().logError("No se pudo logear en el gameserver: razon 3");
                             break;
                         case 0x04:
-                            log.logError("No se pudo logear en el gameserver: razon 4");
+                            pj.getLogger().logError("No se pudo logear en el gameserver: razon 4");
                             break;
                         case 0x0f:
-                            log.logError("No se pudo logear en el gameserver: demaseados jugadores");
+                            pj.getLogger().logError("No se pudo logear en el gameserver: demaseados jugadores");
                             break;
                     }
             break;

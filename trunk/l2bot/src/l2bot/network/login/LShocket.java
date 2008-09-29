@@ -11,7 +11,7 @@ package l2bot.network.login;
  */
 import java.io.*;
 import java.net.*;
-import l2bot.interfaz.logger;
+import l2bot.pj.Pj;
 
 public class LShocket extends LoginHandler implements Runnable {
 	private int puerto;
@@ -27,8 +27,8 @@ public class LShocket extends LoginHandler implements Runnable {
         
 
 
-	public LShocket(int _lpuerto, String _Login,logger l){
-            this.log = l;
+	public LShocket(int _lpuerto, String _Login,Pj l){
+            this.pj = l;
             puerto = _lpuerto;
             host = _Login;
             
@@ -40,10 +40,10 @@ public class LShocket extends LoginHandler implements Runnable {
 
                 entrada = new DataInputStream(Login.getInputStream());
             }catch ( EOFException excepcionEOF ) {
-                log.logError("El cliente termino la conexión" );
+                pj.getLogger().logError("El cliente termino la conexión" );
             }
             catch ( IOException excepcionES ) {
-                log.logError( "Error: imposible conectar al servidor" );
+                pj.getLogger().logError( "Error: imposible conectar al servidor" );
                 return;
             }
             this.estado = LoginHandler.LoginStatus.WF_INIT;
@@ -80,21 +80,21 @@ public class LShocket extends LoginHandler implements Runnable {
                                         onDisconect(false,null,null);
                                     }else
                                     {
-                                        log.logError("Desconectado");
+                                        pj.getLogger().logError("Desconectado");
                                     }
                                     return;
                                 }
 				Paquete(buf2);
                                 
-				String mensaje = byteArrayToHexString(buf2);
+				//String mensaje = byteArrayToHexString(buf2);
 				//System.out.println("S->C" + mensaje);
 			}
 		}
 		catch (ConnectException e){
-			log.logError("Error: Error de conexion");
+			pj.getLogger().logError("Error: Error de conexion");
 		}
                 catch (IOException e){
-			log.logError("Error: Error de comunicacion");
+			pj.getLogger().logError("Error: Error de comunicacion");
 		}
    } 
    

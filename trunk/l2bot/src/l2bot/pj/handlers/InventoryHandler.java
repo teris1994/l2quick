@@ -43,7 +43,7 @@ public class InventoryHandler extends AbstractHandler {
     public int l_bracelet;
     
     public InventoryHandler(){
-        inter = getPj().inter.inv;
+//        inter = getPj().inter.inv;
     }
     
     public void addItem(ItemInfo info)

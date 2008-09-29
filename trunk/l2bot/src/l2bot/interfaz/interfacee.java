@@ -46,22 +46,42 @@ public class interfacee extends JFrame implements ActionListener{
 	
 	private void Menu(){
                 JMenuBar menuBar = new JMenuBar();
+                
+                //menu archivo
+                
 		JMenu menu = new JMenu("Archivo");
 		menu.setMnemonic(KeyEvent.VK_A);
 		
-                JMenuItem menuItem = new JMenuItem("Servidores",KeyEvent.VK_S);
-		JMenuItem menuItem2 = new JMenuItem("Nuevo pj",KeyEvent.VK_N);
+                JMenuItem menuItem11 = new JMenuItem("Servidores",KeyEvent.VK_S);
+		JMenuItem menuItem12 = new JMenuItem("Nuevo pj",KeyEvent.VK_N);
 		
-                menuItem.addActionListener(this);
-                menuItem2.addActionListener(this);
+                menuItem11.addActionListener(this);
+                menuItem12.addActionListener(this);
 
-
-
-                
-		menu.add(menuItem);
-		menu.add(menuItem2);
+		menu.add(menuItem11);
+		menu.add(menuItem12);
                 
 		menuBar.add(menu);
+                
+                
+                //menu herramientas
+                
+		JMenu menu2 = new JMenu("Herramientas");
+		menu.setMnemonic(KeyEvent.VK_H);
+		
+                JMenuItem menuItem21 = new JMenuItem("Sniffer",KeyEvent.VK_S);
+		JMenuItem menuItem22 = new JMenuItem("Scripts",KeyEvent.VK_N);
+		
+                menuItem21.addActionListener(this);
+                menuItem22.addActionListener(this);
+
+		menu2.add(menuItem21);
+		menu2.add(menuItem22);
+                
+		menuBar.add(menu2);
+                
+                
+                
 		setJMenuBar(menuBar);
 
 	}
@@ -114,6 +134,8 @@ public class interfacee extends JFrame implements ActionListener{
                 servidoresClick();
             }else if(a.equals("Nuevo pj")){
                 nuevoPjClick();
+            }else if(a.equals("Sniffer")){
+                Sniffer.mostrar();
             }
         }
         

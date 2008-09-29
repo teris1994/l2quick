@@ -5,6 +5,11 @@
 
 package l2bot.network.puppet;
 
+/**
+ *
+ * @author carl
+ */
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -22,30 +27,24 @@ import java.util.logging.Logger;
 
 import l2bot.network.login.LoginCrypt;
 
-/**
- *
- * @author carl
- */
 
-
-public class PShocket extends PuppetPacketsHandler implements Runnable  {
+public class PGameSocket extends PuppetGamePacketsHandler implements Runnable {
     
     private ServerSocket ssocket;
     private Socket socket;
     private DataOutputStream salida;
     private DataInputStream entrada;
     public boolean conectado;
-    public PShocket()
+    public PGameSocket()
     {
         try {
-            ssocket = new ServerSocket(2106);
+            ssocket = new ServerSocket(7777);
             //System.out.println("sdasdasdasd");
-        } catch (java.net.BindException ex){
-            System.out.println("Ya hay un programa escuchando el puerto 2106, por favor, cierra ese programa y reinicia l2quick si quieres usar las funciones IG");
+        }catch (java.net.BindException ex){
+            System.out.println("Ya hay un programa escuchando el puerto 7777, por favor, cierra ese programa y reinicia l2quick si quieres usar las funciones IG");
         } catch (IOException ex) {
             Logger.getLogger(PShocket.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         Thread hilo = new Thread(this);
         hilo.start();       
     }
@@ -60,7 +59,6 @@ public class PShocket extends PuppetPacketsHandler implements Runnable  {
                 salida = new DataOutputStream( socket.getOutputStream() );      
                 salida.flush();
                 entrada = new DataInputStream(socket.getInputStream());
-                sendInit();
                 while(socket.isConnected() && !socket.isClosed()){
                     byte[] buf = new byte[2];
                     entrada.read(buf);
@@ -85,7 +83,7 @@ public class PShocket extends PuppetPacketsHandler implements Runnable  {
                         }
                         return;
                     }
-                    //System.out.println(LoginCrypt.byteArrayToHexString(buf2));
+                    //System.out.println("C->S" + LoginCrypt.byteArrayToHexString(buf2));
                     paquete(buf2);
                 }
             }
@@ -100,17 +98,7 @@ public class PShocket extends PuppetPacketsHandler implements Runnable  {
     public void sendToClient(byte[] raw){
         try {
             salida.write(raw);
-           // System.out.println(LoginCrypt.byteArrayToHexString(raw)); 
-        } catch (IOException ex) {
-            Logger.getLogger(PShocket.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    @Override
-    public void desconectar(){
-        try {
-            socket.close();
-            
+            //System.out.println(LoginCrypt.byteArrayToHexString(raw)); 
         } catch (IOException ex) {
             Logger.getLogger(PShocket.class.getName()).log(Level.SEVERE, null, ex);
         }

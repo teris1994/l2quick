@@ -12,18 +12,13 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package l2bot.network.game.ServerPackets;
+package l2bot.network.puppet.GameServerPackets;
 
 //import java.sql.PreparedStatement;
-
-import l2bot.pj.ClassId;
-import l2bot.pj.Race;
-import l2bot.pj.handlers.CharSelectHandler.Char;
-
 //import java.sql.ResultSet;
 //import java.util.List;
 //import java.util.logging.Logger;
-//
+
 //import javolution.util.FastList;
 //import net.sf.l2j.L2DatabaseFactory;
 //import net.sf.l2j.gameserver.datatables.ClanTable;
@@ -38,7 +33,7 @@ import l2bot.pj.handlers.CharSelectHandler.Char;
  *
  * @version $Revision: 1.8.2.4.2.6 $ $Date: 2005/04/06 16:13:46 $
  */
-public class CharSelectionInfo extends L2GameServerPacket
+public class CharSelectionInfo extends l2bot.network.puppet.serverpackets.ServerBasePacket
 {
     // d SdSddddddddddffddddddddddddddddddddddddddddddddddddddddddddddffd
     //private static final String _S__1F_CHARSELECTINFO = "[S] 09 CharSelectInfo";
@@ -66,26 +61,37 @@ public class CharSelectionInfo extends L2GameServerPacket
         //_characterPackages = loadCharacterSelectInfo();
         //_activeId = activeId;
     //}
-//    
+    
     //public CharSelectInfoPackage[] getCharInfo()
     //{
         //return _characterPackages;
     //}
     
     @Override
-    public void readP()
+    public void write()
     {
-        debugPacket();
-        //writeC(0x09);
+        /*byte[] test = new byte[]{(byte)0x09,(byte)0x01,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x07,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x54,(byte)0x00,(byte)0x6F,(byte)0x00,(byte)0x6D,(byte)0x00,(byte)0x54,(byte)0x00,(byte)0x61,(byte)0x00,(byte)0x6B,(byte)0x00,(byte)0x65,(byte)0x00,(byte)0x72,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x7A,(byte)0x0B,(byte)0x03,(byte)0x00,(byte)0x64,(byte)0x00,(byte)0x61,(byte)0x00,(byte)0x6E,(byte)0x00,(byte)0x63,(byte)0x00,(byte)0x65,(byte)0x00,(byte)0x72,(byte)0x00,(byte)0x32,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x78,(byte)0x56,(byte)0x34,(byte)0x12,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,
+                                 (byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x5F,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x01,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0xEC,(byte)0x97,(byte)0x40,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x40,(byte)0x7E,(byte)0x40,(byte)0xC8,(byte)0x26,(byte)0x02,(byte)0x00,(byte)0x23,(byte)0x16,(byte)0x0D,(byte)0x01,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,
+                                 (byte)0x29,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x01,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,
+                                 (byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x1E,(byte)0x01,(byte)0x00,(byte)0x00,(byte)0x3E,(byte)0x05,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x90,(byte)0x01,(byte)0x00,(byte)0x00,(byte)0xA4,(byte)0x01,(byte)0x00,(byte)0x00,(byte)0x84,(byte)0x09,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x1E,(byte)0x01,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,
+                                 (byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x03,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x02,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x02,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0xEC,(byte)0x97,(byte)0x40,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x40,(byte)0x7E,(byte)0x40,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x09,
+                                 (byte)0x00,(byte)0x00,(byte)0x00,(byte)0x01,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00,(byte)0x00};
+        writeB(test);
+        if(true){
+            return;
+        }*/
+        
+        writeC(0x09);
         //int size = (_characterPackages.length);
-        int size = readD();//writeD(size);
+        int size = 1;
+        writeD(size);
         
         // Can prevent players from creating new characters (if 0); (if 1, the client will ask if chars may be created (0x13) Response: (0x0D) )
-        readD();//writeD(0x07);
-        readC();//writeC(0x00);
-//        
+        writeD(0x07);
+        writeC(0x00);
+        
         //long lastAccess = 0L;
-//        
+        
         //if (_activeId == -1)
         //{
             //for (int i = 0; i < size; i++)
@@ -97,121 +103,117 @@ public class CharSelectionInfo extends L2GameServerPacket
                 //}
             //}
         //}
-       
+        
         for (int i = 0; i < size; i++)
         {
-            Char ch = getPj().charSelectHandler.addChar();
-                    
-            
             //CharSelectInfoPackage charInfoPackage = _characterPackages[i];
-        
-            ch.nombre = readS();//writeS(charInfoPackage.getName());
-            ch.id = readD();//writeD(charInfoPackage.getCharId());
-            ch.LoginName = readS();//writeS(_loginName);
-            ch.sessionId = readD();//writeD(_sessionId);
-            ch.clanId = readD();//writeD(charInfoPackage.getClanId());
-            readD();//writeD(0x00); // ??
             
-            ch.sexo = readD();//writeD(charInfoPackage.getSex());
+            writeS("TomTaker");  //nombre
+            writeD(199546);   //id
+            writeS("dancer2"); //loginName
+            writeD(0x12345678); //sessionid
+            writeD(0);    ///clan
+            writeD(0x00); // ??
             
-            ch.raza = Race.values()[readD()];//writeD(charInfoPackage.getRace());
+            writeD(0); //sexo
+            writeD(0);   //raza
             
-            //if (charInfoPackage.getClassId() == charInfoPackage.getBaseClassId())
-            int cl = readD();
-            ch.clase = ClassId.values()[cl];    //writeD(charInfoPackage.getClassId());
-            //else
-                //writeD(charInfoPackage.getBaseClassId());
+            /*if (charInfoPackage.getClassId() == charInfoPackage.getBaseClassId())
+                writeD(charInfoPackage.getClassId());
+            else
+                writeD(charInfoPackage.getBaseClassId());
+            */
+            writeD(0x5F);
             
-            readD();//writeD(0x01); // active ??
+            writeD(0x01); // active ??
             
-            readD();//writeD(0x00); // x
-            readD();//writeD(0x00); // y
-            readD();//writeD(0x00); // z
+            writeD(0x00); // x
+            writeD(0x00); // y
+            writeD(0x00); // z
             
-            ch.hp = readF();//writeF(charInfoPackage.getCurrentHp()); // hp cur
-            ch.mp = readF();//writeF(charInfoPackage.getCurrentMp()); // mp cur
+            writeF(500); // hp cur
+            writeF(500); // mp cur
             
-            ch.sp = readD();//writeD(charInfoPackage.getSp());
-            ch.exp = readQ();//writeQ(charInfoPackage.getExp());
-            ch.lvl = readD();//writeD(charInfoPackage.getLevel());
+            writeD(141000);   //sp
+            writeQ(17634851);   //exp
+            writeD(41);     //lvl
             
-            ch.karma = readD();//writeD(charInfoPackage.getKarma()); // karma
-            ch.pkkils = readD();//writeD(charInfoPackage.getPkKills());
+            writeD(0); // karma
+            writeD(1); //pkkils
             
-            readD();//writeD(0x00);
-            readD();//writeD(0x00);
-            readD();//writeD(0x00);
-            readD();//writeD(0x00);
-            readD();//writeD(0x00);
-            readD();//writeD(0x00);
-            readD();//writeD(0x00);
-            readD();//writeD(0x00);
+            writeD(0x00);
+            writeD(0x00);
+            writeD(0x00);
+            writeD(0x00);
+            writeD(0x00);
+            writeD(0x00);
+            writeD(0x00);
+            writeD(0x00);
             
-            ch.hairAll = readD();//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_HAIRALL));
-            ch.rEar = readD();//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_REAR));
-            ch.lEar = readD();//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_LEAR));
-            ch.neck = readD();//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_NECK));
-            ch.rFinger = readD();//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_RFINGER));
-            ch.lFinger = readD();//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_LFINGER));
-            ch.head = readD();//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_HEAD));
-            ch.rHand = readD();//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_RHAND));
-            ch.lHand = readD();//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_LHAND));
-            ch.gloves = readD();//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_GLOVES));
-            ch.chest = readD();//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_CHEST));
-            ch.legs = readD();//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_LEGS));
-            ch.feet = readD();//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_FEET));
-            ch.back = readD();//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_BACK));
-            ch.lrHand = readD();//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_LRHAND));
-            ch.hair= readD();//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_HAIR));
-            ch.hair2 = readD();//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_HAIR2));
+            writeD(0);//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_HAIRALL));
+            writeD(0);//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_REAR));
+            writeD(0);//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_LEAR));
+            writeD(0);//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_NECK));
+            writeD(0);//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_RFINGER));
+            writeD(0);//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_LFINGER));
+            writeD(0);//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_HEAD));
+            writeD(0);//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_RHAND));
+            writeD(0);//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_LHAND));
+            writeD(0);//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_GLOVES));
+            writeD(400);//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_CHEST));
+            writeD(420);//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_LEGS));
+            writeD(2436);//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_FEET));
+            writeD(0);//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_BACK));
+            writeD(286);//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_LRHAND));
+            writeD(0);//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_HAIR));
+            writeD(0);//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_HAIR2));
             
-            ch.rBraz = readD();//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_RBRACELET));
-            ch.lBraz = readD();//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_LBRACELET));
-            readD();//writeD(0x00);
-            readD();//writeD(0x00);
-            readD();//writeD(0x00);
-            readD();//writeD(0x00);
-            readD();//writeD(0x00);
-            readD();//writeD(0x00);
-            ch.hairColor = readD();//writeD(charInfoPackage.getHairStyle());
-            ch.hairStyle = readD();//writeD(charInfoPackage.getHairColor());
-            ch.face = readD();//writeD(charInfoPackage.getFace());
+            writeD(0);//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_RBRACELET));
+            writeD(0);//writeD(charInfoPackage.getPaperdollItemId(Inventory.PAPERDOLL_LBRACELET));
+            writeD(0x00);
+            writeD(0x00);
+            writeD(0x00);
+            writeD(0x00);
+            writeD(0x00);
+            writeD(0x00);
+            writeD(2);//writeD(charInfoPackage.getHairStyle());
+            writeD(3);//writeD(charInfoPackage.getHairColor());
+            writeD(2);//writeD(charInfoPackage.getFace());
             
-            ch.maxHp = readF();//writeF(charInfoPackage.getMaxHp()); // hp max
-            ch.maxMp = readF();//writeF(charInfoPackage.getMaxMp()); // mp max
+            writeF(500); // hp max
+            writeF(500); // mp max
             
             //long deleteTime = charInfoPackage.getDeleteTimer();
             //int deletedays = 0;
             //if (deleteTime > 0)
                 //deletedays = (int)((deleteTime-System.currentTimeMillis())/1000);
-            ch.deleteDays = readD();//writeD(deletedays); // days left before
-            //// delete .. if != 0
-            //// then char is inactive
-            readD();//writeD(charInfoPackage.getClassId());
-            //if (i == _activeId)
-            readD();    //writeD(0x01);
-            //else
-                //writeD(0x00); //c3 auto-select char
+            writeD(0); // days left before
+            // delete .. if != 0
+            // then char is inactive
+            writeD(0x09);  //classid
+            /*if (i == _activeId)
+                writeD(0x01);
+            else
+                writeD(0x00); //c3 auto-select char*/
+            writeD(1);
             
-            ch.weaponEnchantment = readC();//writeC(charInfoPackage.getEnchantEffect() > 127 ? 127 : charInfoPackage.getEnchantEffect());
+            writeC(0);//writeC(charInfoPackage.getEnchantEffect() > 127 ? 127 : charInfoPackage.getEnchantEffect());
             
-            ch.argumentationId = readH();//writeH(charInfoPackage.getAugmentationId());
-            readH();//writeH(0x00); // this is for augmentation too
+            writeH(0);//writeH(charInfoPackage.getAugmentationId());
+            writeH(0x00); // this is for augmentation too
             
-            ///readD();////writeD(charInfoPackage.getTransformId()); // Used to display Transformations  
-            readD();//writeD(0x00); // Currently on retail when you are on character select you don't see your transformation.
-            
+            //////////////writeD(charInfoPackage.getTransformId()); // Used to display Transformations
+            writeD(0x00); // Currently on retail when you are on character select you don't see your transformation.
         }
-        getPj().charSelectHandler.showDialog();
     }
     
     //private CharSelectInfoPackage[] loadCharacterSelectInfo()
     //{
         //CharSelectInfoPackage charInfopackage;
         //List<CharSelectInfoPackage> characterList = new FastList<CharSelectInfoPackage>();
-        
+//        
         //java.sql.Connection con = null;
-        
+//        
         //try
         //{
             //con = L2DatabaseFactory.getInstance().getConnection();
@@ -374,14 +376,14 @@ public class CharSelectionInfo extends L2GameServerPacket
             //}
             //finally { try { con.close(); } catch (Exception e) {} }
         //}
-//        
-        ///*
-         //* Check if the base class is set to zero and alse doesn't match
-         //* with the current active class, otherwise send the base class ID.
-         //*
-         //* This prevents chars created before base class was introduced
-         //* from being displayed incorrectly.
-         //*/
+        
+        /*
+         * Check if the base class is set to zero and alse doesn't match
+         * with the current active class, otherwise send the base class ID.
+         *
+         * This prevents chars created before base class was introduced
+         * from being displayed incorrectly.
+         */
         //if (baseClassId == 0 && activeClassId > 0)
             //charInfopackage.setBaseClassId(activeClassId);
         //else
@@ -397,5 +399,4 @@ public class CharSelectionInfo extends L2GameServerPacket
     //{
         //return _S__1F_CHARSELECTINFO;
     //}
-
 }

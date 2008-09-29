@@ -10,6 +10,7 @@ import java.util.Map;
 import javolution.util.FastMap;
 import l2bot.interfaz.PjInter;
 import l2bot.Main;
+import l2bot.interfaz.logger;
 import l2bot.network.game.GShocket;
 import l2bot.network.login.GameServerInfo;
 import l2bot.network.login.LShocket;
@@ -87,7 +88,7 @@ public class Pj /*extends Character*/ {
     public AbnormalStatusHandler abnormalStatusHandler = new AbnormalStatusHandler();
     public CharSelectHandler charSelectHandler = new CharSelectHandler();
     public PartyHandler partyHandler = new PartyHandler();
-    public InventoryHandler inventoryHandler;
+    public InventoryHandler inventoryHandler = new InventoryHandler();;
     public DoorHandler doorHandler = new DoorHandler();
     public ClanHandler clanHandler = new ClanHandler();
     
@@ -99,7 +100,7 @@ public class Pj /*extends Character*/ {
         
         inter =  new PjInter(Name);
         Main.g.makePJ(inter);
-        loginSocket = new LShocket(connectionInfo.port,connectionInfo.host,inter.l){
+        loginSocket = new LShocket(connectionInfo.port,connectionInfo.host,this){
             @Override
             public void onDisconect(boolean todoOk,GameServerInfo server,byte[] key){
                 //loginSocket = null;
@@ -112,24 +113,31 @@ public class Pj /*extends Character*/ {
         loginSocket.setLoginInfo(connectionInfo.user, connectionInfo.pass,connectionInfo.gss);
         //loginSocket = new LShocket(2106,"127.0.0.1");
         
+       
         
+        
+    }
+    
+    public void init(){
         abnormalStatusHandler.setPj(this);
         charSelectHandler.setPj(this);
         partyHandler.setPj(this);
         inventoryHandler.setPj(this);
         doorHandler.setPj(this);
-        
-        
     }
     
     
     public void conectarAlGs(GameServerInfo server){
-        gameSocket = new GShocket(server.ip,server.port,inter.l);
+        gameSocket = new GShocket(server.ip,server.port,this);
         gameSocket.pj = this;
-        inventoryHandler = new InventoryHandler();
     }
            
     
+    //////bean
+    
+    public logger getLogger(){
+        return this.inter.l;
+    }
     
     
 
