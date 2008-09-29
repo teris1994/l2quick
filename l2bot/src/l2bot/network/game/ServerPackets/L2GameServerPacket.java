@@ -2,6 +2,7 @@
 package l2bot.network.game.ServerPackets;
 
 import l2bot.interfaz.logger;
+import l2bot.network.login.LoginCrypt;
 import l2bot.pj.Pj;
 
 
@@ -107,6 +108,10 @@ public abstract class L2GameServerPacket
     public void setBytes(byte[] raw){
         _decrypt = raw;
         _off = 3;
+    }
+    
+    public void debugPacket(){
+        System.out.println(LoginCrypt.byteArrayToHexString(_decrypt));
     }
     
 }

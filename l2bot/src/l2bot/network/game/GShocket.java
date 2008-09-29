@@ -11,7 +11,8 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.Socket;
-import l2bot.interfaz.logger;
+import l2bot.interfaz.Sniffer;
+import l2bot.pj.Pj;
 
 
 /**
@@ -31,10 +32,10 @@ public class GShocket extends PacketsHandler implements Runnable {
         private DataInputStream entrada;
         
         private GameCrypt crypt = new GameCrypt();
-    public GShocket(String _host, int port ,logger l){
+    public GShocket(String _host, int port ,Pj l){
                 puerto = port;
                 host = _host;
-                log = l;
+                pj = l;
             
             try{
 		game = new Socket(host,puerto);
@@ -44,11 +45,11 @@ public class GShocket extends PacketsHandler implements Runnable {
 
                 entrada = new DataInputStream(game.getInputStream());
             }catch ( EOFException excepcionEOF ) {
-                log.logError( "El cliente termino la conexión" );
+                pj.getLogger().logError( "El cliente termino la conexión" );
                 return;
             }
             catch ( IOException excepcionES ) {
-                log.logError( "Error: imposible conectar al game server" );
+                pj.getLogger().logError( "Error: imposible conectar al game server" );
                 return;
             }
             //this.estado = LoginHandler.LoginStatus.WF_INIT; //hay que implementar algo parecido
@@ -89,22 +90,23 @@ public class GShocket extends PacketsHandler implements Runnable {
                                         //onDisconect(false,null);
                                     }else
                                     {
-                                        log.logError("Desconectado");
+                                        pj.getLogger().logError("Desconectado");
                                     }
                                     return;
                                 }
                                 crypt.decrypt(buf2,2,tama-2);
                                 String mensaje = byteArrayToHexString(buf2);
 				//log.logInfo("mensaje recivido:" + mensaje);
+                                Sniffer.getInstance().addPacket(buf2, Sniffer.GAME_SERVER, pj.connectionInfo.user);
                                 paquete(buf2);
 
 			}
 		}
 		catch (ConnectException e){
-			log.logError("Error: Error de conexion");
+			pj.getLogger().logError("Error: Error de conexion");
 		}
                 catch (IOException e){
-			log.logError("Error: Error de comunicacion");
+			pj.getLogger().logError("Error: Error de comunicacion");
 		}
    } 
    
@@ -116,12 +118,13 @@ public class GShocket extends PacketsHandler implements Runnable {
             h[1] = (byte) (h.length /256);
             System.arraycopy(raw,0,h,2,raw.length);
             //System.out.println("D"+LoginCrypt.byteArrayToHexString(h));
+            Sniffer.getInstance().addPacket(h, Sniffer.CLIENTE_GAME, pj.connectionInfo.user);
             crypt.encrypt(h,2,h.length-2);
             //System.out.println("E"+LoginCrypt.byteArrayToHexString(h));
             salida.write(h);
         }
         catch(IOException e){
-            log.logError("Excepcion :(");
+            pj.getLogger().logError("Excepcion :(");
             e.printStackTrace();
         }
     }

@@ -54,4 +54,10 @@ public class DialogosComunes {
     public static void mostrarTexto(String text){
         new MostrarTexto(Main.g,text).setVisible(true);
     }  
+    
+    public static Propiedades propiedades(String eso){
+        Propiedades p = new Propiedades(Main.g);
+        p.addRow(eso);
+        return p;
+    }
 }

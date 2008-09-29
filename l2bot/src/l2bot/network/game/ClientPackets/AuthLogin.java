@@ -31,7 +31,7 @@ import l2bot.network.game.GShocket;
  */
 public final class AuthLogin extends L2GameClientPacket
 {
-	private static final String _C__08_AUTHLOGIN = "[C] 08 AuthLogin";                      //08 ha cambiado a 2b >.<
+	//private static final String _C__08_AUTHLOGIN = "[C] 08 AuthLogin";                      //08 ha cambiado a 2b >.<
 	//private static Logger _log = Logger.getLogger(AuthLogin.class.getName());
 
 	// loginName + keys must match what the loginserver used.
@@ -83,8 +83,8 @@ public final class AuthLogin extends L2GameClientPacket
 	 * @see net.sf.l2j.gameserver.clientpackets.ClientBasePacket#getType()
 	 */
 	////@Override
-	public String getType()
-	{
-		return _C__08_AUTHLOGIN;
-	}
+	//public String getType()
+	//{
+		//return _C__08_AUTHLOGIN;
+	//}
 }
